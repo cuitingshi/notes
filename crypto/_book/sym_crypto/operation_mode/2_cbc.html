@@ -1,0 +1,650 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>1.3.2 Cipher Block Chaining Mode · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3_cfb.html" />
+    
+    
+    <link rel="prev" href="1_blockciphermode.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    1. Symmetry Cryptography 
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../des/des.html">
+            
+                <a href="../des/des.html">
+            
+                    
+                    1.1 Data Encryption Standard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../aes/">
+            
+                <a href="../aes/">
+            
+                    
+                    1.2 Advanced Encryption Standard
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1" data-path="../aes/euclid.html">
+            
+                <a href="../aes/euclid.html">
+            
+                    
+                    1.2.1 Basic Number Theory -- Euclidean Algorithm 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.2" data-path="../aes/galois_field.html">
+            
+                <a href="../aes/galois_field.html">
+            
+                    
+                    1.2.2 Basic Number Theory -- Galois Field 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.3" data-path="../aes/aes.html">
+            
+                <a href="../aes/aes.html">
+            
+                    
+                    1.2.3 Advanced Encryption Algorithm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    1.3 Operation Mode of Block Cipher
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.3.1" data-path="1_blockciphermode.html">
+            
+                <a href="1_blockciphermode.html">
+            
+                    
+                    1.3.1 Operation Mode of Block Cipher
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.1.3.2" data-path="2_cbc.html">
+            
+                <a href="2_cbc.html">
+            
+                    
+                    1.3.2 Cipher Block Chaining Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.3" data-path="3_cfb.html">
+            
+                <a href="3_cfb.html">
+            
+                    
+                    1.3.3 Cipher FeedBack Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.4" data-path="4_ofb.html">
+            
+                <a href="4_ofb.html">
+            
+                    
+                    1.3.4 Output FeedBack Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.5" data-path="5_ctr.html">
+            
+                <a href="5_ctr.html">
+            
+                    
+                    1.3.5 Counter Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >1.3.2 Cipher Block Chaining Mode</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="operation-modes-of-block-cipher">Operation Modes of Block Cipher</h1><h2 id="2-block-mode-&#x4E4B;-cipher-block-chaining-cbc">2. Block Mode &#x4E4B; Cipher Block Chaining (CBC)</h2><p>&#x9996;&#x5148;&#x6765;&#x770B;&#x770B; CBC &#x7684;&#x5B9A;&#x4E49;, CBC&#x52A0;&#x5BC6;&#x7684;&#x6570;&#x5B66;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= C_i = E_K(P_i \oplus C_{i-1}) \\ C_0 = IV." style="border:none;"></p><p>CBC&#x89E3;&#x5BC6;&#x7684;&#x6570;&#x5B66;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= P_i = D_K(C_i) \oplus C_{i-1} \\ C_0 = IV." style="border:none;"></p><p>&#x5176;&#x4E2D;&#xFF0C;CBC&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#x7684;&#x793A;&#x610F;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p><p><img alt="Cipher Block Chaining (CBC) mode encryption" src="https://upload.wikimedia.org/wikipedia/commons/8/80/CBC_encryption.svg"></p><p>&#x800C;CBC&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#x7684;&#x793A;&#x610F;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p><p><img alt="Cipher Block Chaining (CBC) mode decryption" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/CBC_decryption.svg"></p><h3 id="21-cipher&#x5305;&#x4E2D;&#x5BF9;&#x4E8E;cbc-mode-encryption-&#x548C;-decryption-&#x7684;&#x5B9E;&#x73B0;">2.1. cipher&#x5305;&#x4E2D;&#x5BF9;&#x4E8E;CBC mode encryption &#x548C; decryption &#x7684;&#x5B9E;&#x73B0;</h3><p>golang&#x7684;crypto/cipher&#x5305;&#x4E2D;&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x4E86;CBC&#x6A21;&#x5F0F;&#xFF0C;&#x5176;&#x4E2D;&#xFF0C;</p><ul><li>&#x5BF9;&#x4E8E;CBC&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#xFF0C;<code>cbcEncrypter</code>(&#x5373;cbc)&#x5B9E;&#x73B0;&#x4E86;&#x524D;&#x9762;&#x5B9A;&#x4E49;&#x7684;<code>BlockMode</code>&#x63A5;&#x53E3;&#x4E2D;&#x7684;<code>CryptBlock(dst, src []byte)</code>&#xFF0C;
+</li>
+<li>&#x5BF9;&#x4E8E;CBC&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#xFF0C;<code>cbcDecrypter</code>(&#x5373;cbc)&#x5B9E;&#x73B0;&#x4E86;&#x524D;&#x9762;&#x5B9A;&#x4E49;&#x7684;<code>BlockMode</code>&#x63A5;&#x53E3;&#x4E2D;&#x7684;<code>CryptBlock(dst, src []byte)</code>
+</li></ul>
+<p>&#x9996;&#x5148;&#x6765;&#x770B;&#x770B;CBC mode encryption&#x7684;&#x5B9E;&#x73B0;:</p><h4 id="211-cbc-mode-encryption">2.1.1. CBC mode encryption</h4><p>CBC&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#x7684;&#x793A;&#x610F;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p><p><img alt="Cipher Block Chaining (CBC) mode encryption" src="https://upload.wikimedia.org/wikipedia/commons/8/80/CBC_encryption.svg"></p><p>CBC&#x52A0;&#x5BC6;&#x7684;&#x6570;&#x5B66;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= C_i = E_K(P_i \oplus C_{i-1}) \\ C_0 = IV." style="border:none;"></p><p>&#x6CE8;&#x610F;&#x4E0B;&#x9762;&#x7684;<code>CryptBlocks</code>&#x65B9;&#x6CD5;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#x7684;<code>for</code>&#x5FAA;&#x73AF;&#x91CC;&#x9762;&#x7684;<code>xorBytes</code>&#x64CD;&#x4F5C;&#x3001;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;<code>x.b.Encrypt</code>&#x5206;&#x522B;&#x5BF9;&#x5E94;&#x4E0A;&#x9762;&#x7684;&#x6570;&#x5B66;&#x5B9A;&#x4E49;&#x4E2D;&#x7684;&#x5F02;&#x6216;&#x548C;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#x3002;</p><pre><code class="lang-golang"><span class="hljs-keyword">type</span> cbc <span class="hljs-keyword">struct</span> {
+    b         Block
+    blockSize <span class="hljs-keyword">int</span>
+    iv        []<span class="hljs-keyword">byte</span>
+    tmp       []<span class="hljs-keyword">byte</span>
+}
+<span class="hljs-keyword">type</span> cbcEncrypter cbc
+
+<span class="hljs-comment">// &#x5B9E;&#x73B0;&#x4E86;BlockMode&#x63A5;&#x53E3;&#x4E2D;&#x7684;BlockSize()&#x65B9;&#x6CD5;</span>
+<span class="hljs-keyword">func</span> (x *cbcEncrypter) BlockSize() <span class="hljs-keyword">int</span> { <span class="hljs-keyword">return</span> x.blockSize }
+
+<span class="hljs-comment">// &#x5B9E;&#x73B0;&#x4E86;BlockMode&#x63A5;&#x53E3;&#x4E2D;&#x7684;CryptBlocks()&#x65B9;&#x6CD5;</span>
+<span class="hljs-keyword">func</span> (x *cbcEncrypter) CryptBlocks(dst, src []<span class="hljs-keyword">byte</span>) {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(src)%x.blockSize != <span class="hljs-number">0</span> {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;crypto/cipher: input not full blocks&quot;</span>)
+    }
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(dst) &lt; <span class="hljs-built_in">len</span>(src) {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;crypto/cipher: output smaller than input&quot;</span>)
+    }
+
+    iv := x.iv
+
+    <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(src) &gt; <span class="hljs-number">0</span> {
+        <span class="hljs-comment">// Write the xor to dst, then encrypt in place.</span>
+        xorBytes(dst[:x.blockSize], src[:x.blockSize], iv)
+        x.b.Encrypt(dst[:x.blockSize], dst[:x.blockSize])
+
+        <span class="hljs-comment">// Move to the next block with this block as the next iv.</span>
+        iv = dst[:x.blockSize]
+        src = src[x.blockSize:]
+        dst = dst[x.blockSize:]
+    }
+
+    <span class="hljs-comment">// Save the iv for the next CryptBlocks call.</span>
+    <span class="hljs-built_in">copy</span>(x.iv, iv)
+}
+
+<span class="hljs-keyword">func</span> (x *cbcEncrypter) SetIV(iv []<span class="hljs-keyword">byte</span>) {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(iv) != <span class="hljs-built_in">len</span>(x.iv) {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;cipher: incorrect length IV&quot;</span>)
+    }
+    <span class="hljs-built_in">copy</span>(x.iv, iv)
+}
+
+<span class="hljs-comment">// &#x5982;&#x679C;&#x67D0;&#x4E2A;block cipher &#x5B9E;&#x73B0;&#x4E86;cbcEncAble&#x63A5;&#x53E3;&#x7684;&#x8BDD;, &#x5219;&#x4F1A;&#x4F7F;&#x7528;&#x5B83;&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#x7684;CBC &#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#xFF0C;</span>
+<span class="hljs-comment">// &#x5426;&#x5219;&#x4F7F;&#x7528;cbcEncrypter&#x5B9E;&#x73B0;&#x7684;CBC&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#x3002;</span>
+<span class="hljs-comment">// NewCBCEncrypter returns a BlockMode which encrypts in cipher block chaining</span>
+<span class="hljs-comment">// mode, using the given Block. The length of iv must be the same as the</span>
+<span class="hljs-comment">// Block&apos;s block size.</span>
+<span class="hljs-keyword">func</span> NewCBCEncrypter(b Block, iv []<span class="hljs-keyword">byte</span>) BlockMode {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(iv) != b.BlockSize() {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;cipher.NewCBCEncrypter: IV length must equal block size&quot;</span>)
+    }
+    <span class="hljs-keyword">if</span> cbc, ok := b.(cbcEncAble); ok {
+        <span class="hljs-keyword">return</span> cbc.NewCBCEncrypter(iv)
+    }
+    <span class="hljs-keyword">return</span> (*cbcEncrypter)(newCBC(b, iv))
+}
+
+<span class="hljs-keyword">func</span> newCBC(b Block, iv []<span class="hljs-keyword">byte</span>) *cbc {
+    <span class="hljs-keyword">return</span> &amp;cbc{
+        b:         b,
+        blockSize: b.BlockSize(),
+        iv:        dup(iv),
+        tmp:       <span class="hljs-built_in">make</span>([]<span class="hljs-keyword">byte</span>, b.BlockSize()),
+    }
+}
+
+</code></pre>
+<h4 id="212-cbc-mode-decryption">2.1.2. CBC mode decryption</h4><p>CBC&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#x7684;&#x793A;&#x610F;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p><p><img alt="Cipher Block Chaining (CBC) mode decryption" src="https://upload.wikimedia.org/wikipedia/commons/2/2a/CBC_decryption.svg"></p><p>CBC&#x89E3;&#x5BC6;&#x7684;&#x6570;&#x5B66;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= P_i = D_K(C_i) \oplus C_{i-1} \\ C_0 = IV." style="border:none;"></p><p>&#x540C;&#x6837;, <code>cbcDecrypter</code>&#x5B9E;&#x73B0;&#x4E86;<code>BlockMode</code>&#x63A5;&#x53E3;&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;, &#x6240;&#x4EE5;cbcDecrypter&#x4E5F;&#x5C5E;&#x4E8E;BlockMode&#x3002;</p><pre><code class="lang-golang"><span class="hljs-comment">// A BlockMode represents a block cipher running in a block-based mode (CBC,</span>
+<span class="hljs-comment">// ECB etc).</span>
+<span class="hljs-keyword">type</span> BlockMode <span class="hljs-keyword">interface</span> {
+    <span class="hljs-comment">// BlockSize returns the mode&apos;s block size.</span>
+    BlockSize() <span class="hljs-keyword">int</span>
+
+    <span class="hljs-comment">// CryptBlocks encrypts or decrypts a number of blocks. The length of</span>
+    <span class="hljs-comment">// src must be a multiple of the block size. Dst and src may point to</span>
+    <span class="hljs-comment">// the same memory.</span>
+    CryptBlocks(dst, src []<span class="hljs-keyword">byte</span>)
+}
+</code></pre>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x7531;&#x4E8E;CBC&#x7684;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#x9700;&#x8981;&#x7528;&#x5230;&#x524D;&#x4E00;&#x4E2A;&#x5BC6;&#x6587;&#x5757;&#xFF0C;&#x6240;&#x4EE5;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x591A;&#x4F59;&#x7684;&#x590D;&#x5236;&#xFF0C;&#x9700;&#x8981;&#x4ECE;&#x6700;&#x540E;&#x4E00;&#x5757;&#x5F00;&#x59CB;&#x89E3;&#x5BC6;&#xFF08;&#x4E0A;&#x56FE;&#x9700;&#x8981;&#x4ECE;&#x53F3;&#x81F3;&#x5DE6;&#x770B;&#x1F601;&#xFF09;&#x3002;
+&#x6B64;&#x5916;&#xFF0C;&#x4E0E;&#x52A0;&#x5BC6;&#x8FC7;&#x7A0B;&#x53CD;&#x5411;&#x7684;&#x662F;&#xFF0C;&#x5148;&#x5BF9;&#x5757;&#x8FDB;&#x884C;&#x89E3;&#x5BC6;&#xFF0C;&#x5F97;&#x5230;&#xFF08;plaintext xor prev_ciphertext&#xFF09;&#xFF0C; &#x7136;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x5F02;&#x6216;&#x64CD;&#x4F5C;-- &#xFF08;plaintext xor prev_ciphertext) xor prev_ciphertext
+&#xFF0C;&#x4FBF;&#x53EF;&#x4EE5;&#x5F97;&#x5230;plaintext&#xFF0C;&#x6709;&#x6728;&#x6709;&#x89C9;&#x5F97;&#x5F02;&#x6216;&#x64CD;&#x4F5C;&#x5F88;&#x1F402;&#x5416;&#x1F604;</p><pre><code class="lang-golang"><span class="hljs-keyword">type</span> cbc <span class="hljs-keyword">struct</span> {
+    b         Block
+    blockSize <span class="hljs-keyword">int</span>
+    iv        []<span class="hljs-keyword">byte</span>
+    tmp       []<span class="hljs-keyword">byte</span>
+}
+<span class="hljs-keyword">type</span> cbcDecrypter cbc
+
+<span class="hljs-comment">// &#x5B9E;&#x73B0;&#x4E86;BlockMode&#x63A5;&#x53E3;&#x4E2D;&#x7684;BlockSize()&#x65B9;&#x6CD5;</span>
+<span class="hljs-keyword">func</span> (x *cbcDecrypter) BlockSize() <span class="hljs-keyword">int</span> { <span class="hljs-keyword">return</span> x.blockSize }
+
+<span class="hljs-comment">// &#x5B9E;&#x73B0;&#x4E86;BlockMode &#x63A5;&#x53E3;&#x4E2D;&#x7684;CryptBlocks()&#x65B9;&#x6CD5;</span>
+<span class="hljs-keyword">func</span> (x *cbcDecrypter) CryptBlocks(dst, src []<span class="hljs-keyword">byte</span>) {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(src)%x.blockSize != <span class="hljs-number">0</span> {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;crypto/cipher: input not full blocks&quot;</span>)
+    }
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(dst) &lt; <span class="hljs-built_in">len</span>(src) {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;crypto/cipher: output smaller than input&quot;</span>)
+    }
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(src) == <span class="hljs-number">0</span> {
+        <span class="hljs-keyword">return</span>
+    }
+
+    <span class="hljs-comment">// For each block, we need to xor the decrypted data with the previous block&apos;s ciphertext (the iv).</span>
+    <span class="hljs-comment">// To avoid making a copy each time, we loop over the blocks BACKWARDS.</span>
+    end := <span class="hljs-built_in">len</span>(src)
+    start := end - x.blockSize
+    prev := start - x.blockSize
+
+    <span class="hljs-comment">// Copy the last block of ciphertext in preparation as the new iv.</span>
+    <span class="hljs-built_in">copy</span>(x.tmp, src[start:end])
+
+    <span class="hljs-comment">// Loop over all but the first block.</span>
+    <span class="hljs-keyword">for</span> start &gt; <span class="hljs-number">0</span> {
+        x.b.Decrypt(dst[start:end], src[start:end])
+        xorBytes(dst[start:end], dst[start:end], src[prev:start])
+
+        end = start
+        start = prev
+        prev -= x.blockSize
+    }
+
+    <span class="hljs-comment">// The first block is special because it uses the saved iv.</span>
+    x.b.Decrypt(dst[start:end], src[start:end])
+    xorBytes(dst[start:end], dst[start:end], x.iv)
+
+    <span class="hljs-comment">// Set the new iv to the first block we copied earlier.</span>
+    x.iv, x.tmp = x.tmp, x.iv
+}
+
+<span class="hljs-keyword">func</span> (x *cbcDecrypter) SetIV(iv []<span class="hljs-keyword">byte</span>) {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(iv) != <span class="hljs-built_in">len</span>(x.iv) {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;cipher: incorrect length IV&quot;</span>)
+    }
+    <span class="hljs-built_in">copy</span>(x.iv, iv)
+}
+
+<span class="hljs-comment">// NewCBCDecrypter returns a BlockMode which decrypts in cipher block chaining</span>
+<span class="hljs-comment">// mode, using the given Block. The length of iv must be the same as the</span>
+<span class="hljs-comment">// Block&apos;s block size and must match the iv used to encrypt the data.</span>
+<span class="hljs-keyword">func</span> NewCBCDecrypter(b Block, iv []<span class="hljs-keyword">byte</span>) BlockMode {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(iv) != b.BlockSize() {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;cipher.NewCBCDecrypter: IV length must equal block size&quot;</span>)
+    }
+    <span class="hljs-keyword">if</span> cbc, ok := b.(cbcDecAble); ok { <span class="hljs-comment">//&#x5982;&#x679C;block cipher &#x5B9E;&#x73B0;&#x4E86;cbcDecAble&#x63A5;&#x53E3;&#xFF0C;&#x5219;&#x4F7F;&#x7528;&#x5176;&#x81EA;&#x5B9A;&#x4E49;&#x7684;cbcCBC mode decryption&#x64CD;&#x4F5C;&#x7684;&#x5B9E;&#x73B0;</span>
+        <span class="hljs-keyword">return</span> cbc.NewCBCDecrypter(iv) 
+    }
+    <span class="hljs-keyword">return</span> (*cbcDecrypter)(newCBC(b, iv)) <span class="hljs-comment">//&#x5426;&#x5219;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;cbcDecrypter</span>
+}
+
+<span class="hljs-keyword">func</span> newCBC(b Block, iv []<span class="hljs-keyword">byte</span>) *cbc {
+    <span class="hljs-keyword">return</span> &amp;cbc{
+        b:         b,
+        blockSize: b.BlockSize(),
+        iv:        dup(iv),
+        tmp:       <span class="hljs-built_in">make</span>([]<span class="hljs-keyword">byte</span>, b.BlockSize()),
+    }
+}
+</code></pre>
+<h3 id="22-&#x81EA;&#x5B9A;&#x4E49;&#x7684;cbc&#x8FDE;&#x63A5;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;">2.2 &#x81EA;&#x5B9A;&#x4E49;&#x7684;CBC&#x8FDE;&#x63A5;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;</h3><p>&#x5F53;&#x7136;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4E0D;&#x4F7F;&#x7528;cipher&#x5305;&#x4E2D;&#x5BF9;&#x4E8E;CBC&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x5982;&#x679C;block cipher&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#x7684;CBC&#x8FDE;&#x63A5;&#x6A21;&#x5F0F;&#x7684;&#x8BDD;&#xFF0C;
+&#x5BF9;&#x4E8E;CBC&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#xFF0C;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x4E24;&#x4E2A;&#x63A5;&#x53E3;&#xFF1A;
+1. BlockMode</p><p>&#x9996;&#x5148;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;<code>BlockMode</code>&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5B8C;&#x6210;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x8FDE;&#x63A5;&#x6A21;&#x5F0F;&#x7684;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;</p><pre><code class="lang-golang"><span class="hljs-comment">// A BlockMode represents a block cipher running in a block-based mode (CBC,</span>
+<span class="hljs-comment">// ECB etc).</span>
+<span class="hljs-keyword">type</span> BlockMode <span class="hljs-keyword">interface</span> {
+    <span class="hljs-comment">// BlockSize returns the mode&apos;s block size.</span>
+    BlockSize() <span class="hljs-keyword">int</span>
+
+    <span class="hljs-comment">// CryptBlocks encrypts or decrypts a number of blocks. The length of</span>
+    <span class="hljs-comment">// src must be a multiple of the block size. Dst and src may point to</span>
+    <span class="hljs-comment">// the same memory.</span>
+    CryptBlocks(dst, src []<span class="hljs-keyword">byte</span>)
+}</code></pre>
+<ol><li>cbcEncAble
+</li></ol>
+<p>&#x7136;&#x540E;&#xFF0C;&#x9700;&#x8981;&#x5B9E;&#x73B0;cbcEncAble&#x63A5;&#x53E3;</p><pre><code class="lang-golang"><span class="hljs-keyword">type</span> cbcEncrypter cbc
+
+<span class="hljs-comment">// block cipher &#x9700;&#x8981;&#x5B9E;&#x73B0;&#x8BE5;&#x52A0;&#x5BC6;&#x63A5;&#x53E3;</span>
+<span class="hljs-comment">// cbcEncAble is an interface implemented by ciphers that have a specific</span>
+<span class="hljs-comment">// optimized implementation of CBC encryption, like crypto/aes.</span>
+<span class="hljs-comment">// NewCBCEncrypter will check for this interface and return the specific</span>
+<span class="hljs-comment">// BlockMode if found.</span>
+<span class="hljs-keyword">type</span> cbcEncAble <span class="hljs-keyword">interface</span> {
+    NewCBCEncrypter(iv []<span class="hljs-keyword">byte</span>) BlockMode
+}</code></pre>
+<p>&#x540C;&#x6837;&#xFF0C;&#x5BF9;&#x4E8E;CBC&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#xFF0C;&#x540C;&#x6837;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x4E24;&#x4E2A;&#x63A5;&#x53E3;&#xFF1A;
+1. BlockMode
+  &#x8FD9;&#x91CC;&#x7684;<code>BlockMode&#x4E2D;&#x7684;CrypBlocks(dst, src []byte)</code>&#x9700;&#x8981;&#x5B9E;&#x73B0;CBC&#x7684;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#x3002;
+2. cbcDecAble</p><pre><code class="lang-golang"><span class="hljs-comment">// block cipher &#x9700;&#x8981;&#x5B9E;&#x73B0;&#x8BE5;&#x89E3;&#x5BC6;&#x63A5;&#x53E3;</span>
+<span class="hljs-comment">// cbcDecAble is an interface implemented by ciphers that have a specific</span>
+<span class="hljs-comment">// optimized implementation of CBC decryption, like crypto/aes.</span>
+<span class="hljs-comment">// NewCBCDecrypter will check for this interface and return the specific</span>
+<span class="hljs-comment">// BlockMode if found.</span>
+<span class="hljs-keyword">type</span> cbcDecAble <span class="hljs-keyword">interface</span> {
+    NewCBCDecrypter(iv []<span class="hljs-keyword">byte</span>) BlockMode
+}</code></pre>
+<p>&#x8FD9;&#x6837;&#x5B50;&#x7684;&#x8BDD;&#xFF0C;block cipher &#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x517C;&#x5BB9;&#x73B0;&#x6709;&#x7684;cipher&#x5305;&#x5B9E;&#x73B0;&#x7684;CBC&#x6A21;&#x5F0F;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;</p><ul><li>&#x5BF9;&#x4E8E;&#x52A0;&#x5BC6;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;cipher&#x5305;&#x4E2D;&#x7EDF;&#x4E00;&#x7684;&#x63A5;&#x53E3;<code>NewCBCEncrypter(b Block, iv []byte) BlockMode</code>&#x6765;&#x4F7F;&#x7528;CBC&#x6A21;&#x5F0F;&#x4E86;&#xFF0C;
+&#x53EA;&#x4E0D;&#x8FC7;&#x5728;&#x52A0;&#x5BC6;&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x7684;BlockMode&#x662F;block cipher&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#x7684;<code>CryptBlocks(dst, src []byte)</code>&#x65B9;&#x6CD5;&#xFF1B;
+</li>
+<li>&#x5BF9;&#x4E8E;&#x89E3;&#x5BC6;&#xFF0C;&#x4E5F;&#x662F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;cipher&#x5305;&#x4E2D;&#x7EDF;&#x4E00;&#x7684;&#x63A5;&#x53E3;<code>NewCBCDecrypter(b Block, iv []byte) BlockMode</code>&#xFF0C;
+&#x7136;&#x540E;&#x89E3;&#x5BC6;&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x7684;&#x662F;&#x81EA;&#x5DF1;&#x5B9E;&#x73B0;&#x7684;BlockMode&#x63A5;&#x53E3;&#x4E2D;&#x7684;<code>CryptBlocks(dst, src []byte)</code>&#x65B9;&#x6CD5;
+</li></ul>
+<pre><code class="lang-golang"><span class="hljs-comment">// &#x751F;&#x6210;&#x8D1F;&#x8D23;&#x52A0;&#x5BC6;&#x7684;</span>
+<span class="hljs-comment">// NewCBCEncrypter returns a BlockMode which encrypts in cipher block chaining</span>
+<span class="hljs-comment">// mode, using the given Block. The length of iv must be the same as the</span>
+<span class="hljs-comment">// Block&apos;s block size.</span>
+<span class="hljs-keyword">func</span> NewCBCEncrypter(b Block, iv []<span class="hljs-keyword">byte</span>) BlockMode {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(iv) != b.BlockSize() {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;cipher.NewCBCEncrypter: IV length must equal block size&quot;</span>)
+    }
+    <span class="hljs-keyword">if</span> cbc, ok := b.(cbcEncAble); ok { <span class="hljs-comment">//&#x5982;&#x679C;block cipher &#x5B9E;&#x73B0;&#x4E86;cbcEncAble&#x63A5;&#x53E3;&#xFF0C;&#x5219;&#x4F7F;&#x7528;&#x5176;&#x81EA;&#x5B9A;&#x4E49;&#x7684;cbc mode encryption&#x64CD;&#x4F5C;</span>
+        <span class="hljs-keyword">return</span> cbc.NewCBCEncrypter(iv)
+    }
+    <span class="hljs-keyword">return</span> (*cbcEncrypter)(newCBC(b, iv)) <span class="hljs-comment">// &#x5426;&#x5219;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x4F7F;&#x7528;cipher&#x5305;&#x4E2D;&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x7684;cbc mode encryption&#x64CD;&#x4F5C;</span>
+}
+
+
+<span class="hljs-comment">// &#x751F;&#x6210;&#x8D1F;&#x8D23;&#x89E3;&#x5BC6;&#x7684;</span>
+<span class="hljs-comment">// NewCBCDecrypter returns a BlockMode which decrypts in cipher block chaining</span>
+<span class="hljs-comment">// mode, using the given Block. The length of iv must be the same as the</span>
+<span class="hljs-comment">// Block&apos;s block size and must match the iv used to encrypt the data.</span>
+<span class="hljs-keyword">func</span> NewCBCDecrypter(b Block, iv []<span class="hljs-keyword">byte</span>) BlockMode {
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(iv) != b.BlockSize() {
+        <span class="hljs-built_in">panic</span>(<span class="hljs-string">&quot;cipher.NewCBCDecrypter: IV length must equal block size&quot;</span>)
+    }
+    <span class="hljs-keyword">if</span> cbc, ok := b.(cbcDecAble); ok {
+        <span class="hljs-keyword">return</span> cbc.NewCBCDecrypter(iv)
+    }
+    <span class="hljs-keyword">return</span> (*cbcDecrypter)(newCBC(b, iv))
+}
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1_blockciphermode.html" class="navigation navigation-prev " aria-label="Previous page: 1.3.1 Operation Mode of Block Cipher">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3_cfb.html" class="navigation navigation-next " aria-label="Next page: 1.3.3 Cipher FeedBack Mode">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.3.2 Cipher Block Chaining Mode","level":"1.1.1.3.2","depth":4,"next":{"title":"1.3.3 Cipher FeedBack Mode","level":"1.1.1.3.3","depth":4,"path":"sym_crypto/operation_mode/3_cfb.md","ref":"sym_crypto/operation_mode/3_cfb.md","articles":[]},"previous":{"title":"1.3.1 Operation Mode of Block Cipher","level":"1.1.1.3.1","depth":4,"path":"sym_crypto/operation_mode/1_blockciphermode.md","ref":"sym_crypto/operation_mode/1_blockciphermode.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sym_crypto/operation_mode/2_cbc.md","mtime":"2016-12-03T13:00:17.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-12-03T11:44:21.331Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

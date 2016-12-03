@@ -1,0 +1,476 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>1.3.1 Operation Mode of Block Cipher · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="2_cbc.html" />
+    
+    
+    <link rel="prev" href="./" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    1. Symmetry Cryptography 
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../des/des.html">
+            
+                <a href="../des/des.html">
+            
+                    
+                    1.1 Data Encryption Standard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="../aes/">
+            
+                <a href="../aes/">
+            
+                    
+                    1.2 Advanced Encryption Standard
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1" data-path="../aes/euclid.html">
+            
+                <a href="../aes/euclid.html">
+            
+                    
+                    1.2.1 Basic Number Theory -- Euclidean Algorithm 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.2" data-path="../aes/galois_field.html">
+            
+                <a href="../aes/galois_field.html">
+            
+                    
+                    1.2.2 Basic Number Theory -- Galois Field 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.3" data-path="../aes/aes.html">
+            
+                <a href="../aes/aes.html">
+            
+                    
+                    1.2.3 Advanced Encryption Algorithm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    1.3 Operation Mode of Block Cipher
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.1.1.3.1" data-path="1_blockciphermode.html">
+            
+                <a href="1_blockciphermode.html">
+            
+                    
+                    1.3.1 Operation Mode of Block Cipher
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.2" data-path="2_cbc.html">
+            
+                <a href="2_cbc.html">
+            
+                    
+                    1.3.2 Cipher Block Chaining Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.3" data-path="3_cfb.html">
+            
+                <a href="3_cfb.html">
+            
+                    
+                    1.3.3 Cipher FeedBack Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.4" data-path="4_ofb.html">
+            
+                <a href="4_ofb.html">
+            
+                    
+                    1.3.4 Output FeedBack Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.5" data-path="5_ctr.html">
+            
+                <a href="5_ctr.html">
+            
+                    
+                    1.3.5 Counter Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >1.3.1 Operation Mode of Block Cipher</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="operation-modes-of-block-cipher">Operation Modes of Block Cipher</h1><p>&#x5BC6;&#x7801;&#x5B66;&#x4E2D;&#xFF0C;a <b>mode of operation</b> &#x662F;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;<a href="https://en.wikipedia.org/wiki/Block_cipher" target="_blank">block cipher</a>
+&#x6765;&#x63D0;&#x4F9B;confidentiality &#x6216;&#x8005; authenticity &#x670D;&#x52A1;&#x7684;&#x3002;block cipher &#x81EA;&#x8EAB;&#x53EA;&#x9002;&#x5408;&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x56FA;&#x5B9A;&#x957F;&#x5EA6;&#x7684;&#x5757;&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#x6216;&#x8005;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#xFF0C;
+&#x800C; a mode of operation &#x63D0;&#x4F9B;&#x4E86;&#x5982;&#x4F55;&#x91CD;&#x590D;&#x5730;&#x5C06;&#x4E00;&#x4E2A;cipher&#x7684;&#x5355;&#x4E2A;&#x5757;&#x64CD;&#x4F5C;&#x8F6C;&#x5316;&#x4E3A;&#x9002;&#x5E94;&#x5927;&#x91CF;&#x7684;&#x6570;&#x636E;&#xFF08;&#x5305;&#x542B;&#x591A;&#x4E2A;&#x5757;&#xFF09;&#x3002;
+&#x56E0;&#x6B64;&#xFF0C;&#x5BF9;&#x4E8E;&#x53D8;&#x957F;&#x7684;&#x6D88;&#x606F;&#xFF0C;&#x5B83;&#x9700;&#x8981;&#x5148;&#x5212;&#x5206;&#x4E3A;&#x56FA;&#x5B9A;&#x957F;&#x5EA6;&#x7684;blocks, &#x5E94;&#x7528;block cipher&#x4E2D;&#x7684;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#xFF0C;&#x751F;&#x6210;cipher blocks, &#x7136;&#x540E;&#x518D;&#x7ED3;&#x5408;
+&#x67D0;&#x79CD;&#x8FDE;&#x63A5;&#x6A21;&#x5F0F;&#xFF0C;&#x5C06;&#x8FD9;&#x4E9B;cipher blocks&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#xFF0C;&#x751F;&#x6210;&#x6700;&#x7EC8;&#x7684;&#x5BC6;&#x6587;&#x3002;</p><p>&#x5E38;&#x89C1;&#x7684;<a href="https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation" target="_blank">block cipher mode of operation</a> &#x6709;&#xFF1A;
+1. Electornic Codebook (ECB)&#xFF0C;
+  &#x6700;&#x7B80;&#x5355;&#x7684;mode, &#x5BF9;&#x4E8E;&#x52A0;&#x5BC6;&#xFF0C;The message is divided into blocks, and each block is encrypted separately. &#x7136;&#x540E;&#x518D;&#x628A;&#x5404;&#x4E2A;&#x5BC6;&#x6587;&#x5757;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#x3002;
+  &#x6CE8;&#x610F;&#x5230;&#x5404;&#x4E2A;&#x5757;&#x4E4B;&#x95F4;&#x7684;&#x52A0;&#x5BC6;&#x662F;&#x4E92;&#x4E0D;&#x5F71;&#x54CD;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#xFF0C;&#x5BF9;&#x4E8E;&#x76F8;&#x540C;&#x7684;plaintext&#xFF0C;&#x5B83;&#x662F;&#x4F1A;&#x751F;&#x6210;&#x540C;&#x6837;&#x7684;ciphertext&#x7684;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x867D;&#x7136;&#x5B83;&#x7B80;&#x5355;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x5F15;&#x53D1;&#x4E24;&#x4E2A;&#x7F3A;&#x70B9;&#xFF1A;</p><ul><li>&#x5BF9;&#x4E8E;bitmaps, &#x52A0;&#x5BC6;&#x540E;&#x7684;&#x4F4D;&#x56FE;&#x53EF;&#x80FD;&#x4F1A;&#x770B;&#x5F97;&#x51FA;&#x539F;&#x672C;&#x7684;&#x4F4D;&#x56FE;&#x7684;&#x6A21;&#x5F0F;
+</li>
+<li><p>&#x5BF9;&#x4E8E;&#x534F;&#x8BAE;&#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E86;ECB&#x6A21;&#x5F0F;&#xFF0C;&#x90A3;&#x4E48;&#x534F;&#x8BAE;&#x5C31;&#x4E0D;&#x4F1A;&#x6709;&#x5B8C;&#x6574;&#x6027;&#x4FDD;&#x62A4;&#xFF0C;&#x7531;&#x4E8E;&#x6BCF;&#x4E2A;&#x5757;&#x90FD;&#x662F;&#x4F7F;&#x7528;&#x5B8C;&#x5168;&#x4E00;&#x6837;&#x7684;&#x65B9;&#x5F0F;&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#xFF0C;&#x90A3;&#x4E48;&#x534F;&#x8BAE;&#x66F4;&#x5BB9;&#x6613;&#x53D7;&#x5230;replay attacks.</p></li>
+<li><p>Cipher Block Chaining (CBC)
+&#x800C;&#x5BF9;&#x4E8E;CBC&#x6A21;&#x5F0F;&#xFF0C;&#x5B83;&#x628A;&#x524D;&#x4E00;&#x5757;&#x5BC6;&#x6587;&#x4E0E;&#x5F53;&#x524D;&#x5F85;&#x52A0;&#x5BC6;&#x7684;block&#x8FDB;&#x884C;&#x5F02;&#x6216;&#x64CD;&#x4F5C;&#xFF0C;&#x4ECE;&#x800C;&#x4F7F;&#x5F97;&#x4E0B;&#x4E00;&#x5BC6;&#x6587;&#x5757;&#x7684;&#x751F;&#x6210;&#x4F9D;&#x8D56;&#x4E8E;&#x524D;&#x9762;&#x7684;&#x6240;&#x6709;&#x5904;&#x7406;&#x8FC7;&#x7684;blocks&#x3002;&#x800C;&#x5BF9;&#x4E8E;&#x7B2C;&#x4E00;&#x4E2A;&#x5BC6;&#x6587;&#x5757;
+&#x7684;&#x751F;&#x6210;&#xFF0C;&#x5B83;&#x662F;&#x901A;&#x8FC7;&#x7B2C;&#x4E00;&#x4E2A;&#x660E;&#x6587;&#x5757;&#x4E0E;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x7684;iv&#x751F;&#x6210;&#x7684;(block_1 xor initialization_vector)&#xFF0C;&#x8FD9;&#x6837;&#x5B50;&#x53D8;&#x4FDD;&#x8BC1;&#x4E86;&#x6574;&#x4F53;&#x5BC6;&#x6587;&#x751F;&#x6210;&#x7684;&#x968F;&#x673A;&#x6027;
+&#xFF08;&#x5BF9;&#x4E8E;&#x540C;&#x6837;&#x7684;&#x660E;&#x6587;&#x548C;block cipher -- key&#xFF09;. &#x5982;&#x679C;&#x4E0D;&#x77E5;&#x9053;IV&#x7684;&#x8BDD;&#xFF0C;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#x5BF9;&#x4E8E;&#x9664;&#x4E86;&#x7B2C;&#x4E00;&#x5757;&#x7684;&#x5176;&#x5B83;blocks&#x662F;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x89E3;&#x5BC6;&#x7684;&#xFF0C;&#x56E0;&#x6B64;&#x5982;&#x679C;&#x5728;&#x660E;&#x6587;&#x7684;&#x524D;&#x9762;
+&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x7684;block &#x4F5C;&#x4E3A; Explicit Initialization Vectors (TLS &#x534F;&#x8BAE;&#x4E2D;)&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5BF9;&#x6240;&#x6709;&#x7684;&#x5BC6;&#x6587;&#x5757;&#x7684;&#x5E76;&#x884C;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#x3002;BTW, CBC &#x6A21;&#x5F0F;&#x662F;&#x5E94;&#x7528;
+&#x6700;&#x5E7F;&#x6CDB;&#x7684;&#x1F604;&#x3002;</p></li>
+<li><p>Propagating Cipher Block Chaining (PCBC)
+&#x4EA6;&#x79F0;&#x4E3A;plaintext cipher block chaining, &#x5728;&#x6B64;&#x79CD;&#x6A21;&#x5F0F;&#x4E2D;&#xFF0C;each block of plaintext is XORed with
+both the previous plaintext block and the previous ciphertext block before being encrypted. 
+&#x6CE8;&#x610F;&#xFF0C;&#x76F8;&#x6BD4;&#x4E8E;CBC&#xFF0C;&#x5B83;&#x7684;&#x5F02;&#x6216;&#x64CD;&#x4F5C;&#x9664;&#x4E86;&#x8DDF;&#x524D;&#x4E00;&#x4E2A;&#x5BC6;&#x6587;&#x5757;&#x5F02;&#x6216;&#x5916;&#xFF0C;&#x8FD8;&#x4F1A;&#x8DDF;&#x524D;&#x4E00;&#x4E2A;&#x660E;&#x6587;&#x5FEB;&#x8FDB;&#x884C;&#x4EA6;&#x6216;&#x64CD;&#x4F5C;&#x3002;
+Kerberos&#x8BA1;&#x7B97;&#x673A;&#x7F51;&#x7EDC;&#x8BA4;&#x8BC1;&#x534F;&#x8BAE;&#x4EE5;&#x53CA;WASTE&#x534F;&#x8BAE;&#x4E2D;&#x90FD;&#x7528;&#x5230;&#x4E86;PCBC&#x6A21;&#x5F0F;&#x3002;</p></li>
+<li><p>Cipher Feedback (CFB)
+&#x6CE8;&#x610F;&#x4E0E;CBC&#x7684;&#x533A;&#x522B;&#xFF0C;CBC&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#x4E2D;&#xFF0C;&#x662F;&#x4F7F;&#x7528;&#x660E;&#x6587;&#x5757;P<em>i&#x4E0E;&#x524D;&#x4E00;&#x4E2A;&#x5BC6;&#x6587;&#x5757;C</em>{i-1}&#x5F02;&#x6216;&#x4E4B;&#x540E;&#x518D;&#x8FDB;&#x884C;&#x52A0;&#x5BC6;E<em>K&#x5F97;&#x5230;&#x5BC6;&#x6587;&#x5757;C_i&#x7684;&#xFF0C;
+&#x800C;CFB&#x7684;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#x5374;&#x662F;&#xFF0C;&#x5148;&#x5BF9;&#x524D;&#x4E00;&#x4E2A;&#x5BC6;&#x6587;&#x5757;C</em>{i-1}&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;E<em>K, &#x7136;&#x540E;&#x518D;&#x4E0E;&#x660E;&#x6587;&#x5757;P_i&#x8FDB;&#x884C;&#x4EA6;&#x6216;&#x64CD;&#x4F5C;&#xFF0C;&#x4ECE;&#x800C;&#x751F;&#x6210;&#x5BC6;&#x6587;&#x5757;C_i&#x7684;&#xFF0C;
+&#x5929;&#x5450;&#xFF0C;&#x6709;&#x6728;&#x6709;&#x89C9;&#x5F97;&#x5F88;&#x7C7B;&#x4F3C;&#x1F60F;&#x3002;
+&#x8FD9;&#x6837;&#x5B50;&#x7684;&#x8BDD;&#xFF0C;CFB&#x7684;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#x5E94;&#x8BE5;&#x662F;&#x5148;&#x5C06;&#x5BC6;&#x6587;&#x5757;C</em>{i-1}&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;E_K, &#x7136;&#x540E;&#x518D;&#x4E0E;&#x5BC6;&#x6587;&#x5757;C_i&#x8FDB;&#x884C;&#x5F02;&#x6216;&#x64CD;&#x4F5C;&#xFF0C;&#x4FBF;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x660E;&#x6587;&#x5757;P_i&#x4E86;&#x3002;</p></li>
+<li><p>Output Feedback (OFB)
+OFB &#x6A21;&#x5F0F;</p></li>
+<li><p>Counter (CTR)</p></li></ul>
+<p><strong>&#x5173;&#x4E8E;IV</strong></p><p>Initialization vector (IV), &#x662F;&#x5404;&#x4E2A;&#x6A21;&#x5F0F;&#x4E2D;&#x7528;&#x6765;&#x521D;&#x59CB;&#x5316;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#x7684;&#x53D8;&#x91CF;&#xFF0C;IV&#x5FC5;&#x987B;&#x5F97;&#x968F;&#x673A;&#x70B9;&#xFF0C;&#x8FD9;&#x6837;&#x5B50;&#x7684;&#x8BDD;&#xFF0C;&#x5373;&#x4F7F;block cipher &#x4F7F;&#x7528;&#x4E86;&#x540C;&#x6837;&#x7684;key&#xFF0C;
+&#x5373;&#x4F7F;&#x662F;&#x540C;&#x4E00;&#x4E2A;plaintext, &#x90A3;&#x4E48;&#x6700;&#x7EC8;&#x7ECF;&#x8FC7;&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x8FDE;&#x63A5;&#x4EE5;&#x53CA;block cipher &#x7684;&#x52A0;&#x5BC6;&#x64CD;&#x4F5C;&#x540E;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x5BC6;&#x6587;&#x4E5F;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;</p><p><strong>&#x5173;&#x4E8E;padding</strong></p><p>&#x53E6;&#x5916;&#xFF0C;&#x5FC5;&#x987B;&#x5F97;&#x6CE8;&#x610F;&#xFF0C;&#x4E0E;mode&#x7ED3;&#x5408;&#x4F7F;&#x7528;&#x7684;block cipher&#xFF0C;&#x6309;&#x7167;&#x4F20;&#x7EDF;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5F53;&#x6210;block cipher&#x6765;&#x4F7F;&#x7528;&#x7684;&#x8BDD;&#xFF0C;&#x5373;&#x662F;&#x5BF9;&#x660E;&#x6587;&#x8FDB;&#x884C;&#x8FDB;&#x884C;fixed-size&#x5206;&#x7EC4;&#xFF0C;
+&#x6545;&#x901A;&#x5E38;&#x6700;&#x540E;&#x4E00;&#x5757;&#x9700;&#x8981;padding to fixed size; &#x4F46;&#x662F;&#x5982;&#x679C;&#x628A;block cipher &#x5F53;&#x6210;stream cipher&#x6765;&#x4F7F;&#x7528;&#xFF08;&#x5373;&#x4E0D;&#x5BF9;&#x660E;&#x6587;&#x8FDB;&#x884C;&#x5206;&#x7EC4;&#xFF09;&#xFF0C;&#x5219;&#x4E0D;&#x9700;&#x8981;&#x6253;&#x8865;&#x4E01;&#x3002;</p><h2 id="1-block-cipher-&#x4E0E;-block-mode">1. Block Cipher &#x4E0E; Block Mode</h2><p>&#x5BC6;&#x7801;&#x5B66;&#x4E2D;&#xFF0C;a <b>block cipher</b> &#x662F;&#x4E00;&#x4E2A;&#x9488;&#x5BF9;&#x56FA;&#x5B9A;&#x957F;&#x5EA6;&#x7684;block&#x8FDB;&#x884C;&#x52A0;&#x5BC6;&#x6216;&#x8005;&#x89E3;&#x5BC6;&#x7684;deterministic algorithm&#xFF0C;&#x5176;&#x4E2D;&#x52A0;&#x5BC6;&#x6216;&#x8005;&#x89E3;&#x5BC6;&#x662F;&#x7531;&#x4E00;&#x4E2A;&#x5BF9;&#x79F0;&#x5BC6;&#x94A5;&#x51B3;&#x5B9A;&#x7684;&#x3002;
+Block ciphers &#x662F;&#x5BC6;&#x7801;&#x5B66;&#x534F;&#x8BAE;&#x4E2D;&#x7684;&#x57FA;&#x672C;&#x7EC4;&#x4EF6;&#x3002;&#x800C;Block Mode &#x5219;&#x5B9A;&#x4E49;&#x4E86;&#x5C06;&#x5927;&#x7684;message&#x8FDB;&#x884C;&#x5207;&#x5206;&#x6210;blocks&#xFF0C;&#x7ED3;&#x5408;Block cipher&#x5BF9;&#x4E8E;&#x5355;&#x4E2A;block&#x7684;&#x52A0;&#x5BC6;&#x4E0E;&#x89E3;&#x5BC6;&#xFF0C;&#x9009;&#x62E9;&#x67D0;&#x79CD;
+&#x65B9;&#x5F0F;&#x5C06;&#x8FD9;&#x4E9B;blocks&#x94FE;&#x63A5;&#x6210;&#x6700;&#x7EC8;&#x7684;&#x5BC6;&#x6587;&#x6216;&#x8005;&#x660E;&#x6587;&#x3002;</p><p>&#x4E00;&#x4E2A;block cipher&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x914D;&#x5BF9;&#x7684;&#x7B97;&#x6CD5;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x52A0;&#x5BC6;&#x7B97;&#x6CD5;E&#xFF0C;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x662F;&#x89E3;&#x5BC6;&#x7B97;&#x6CD5;D, &#x89E3;&#x5BC6;&#x7B97;&#x6CD5;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E3A;&#x52A0;&#x5BC6;&#x7684;&#x8F6C;&#x7F6E;&#x51FD;&#x6570;&#x3002;
+&#x4E24;&#x4E2A;&#x7B97;&#x6CD5;&#x7684;&#x8F93;&#x5165;&#x5747;&#x6709;&#x4E24;&#x4E2A;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x5927;&#x5C0F;&#x4E3A;n&#x4F4D;&#x7684;block&#xFF0C;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x662F;&#x5927;&#x5C0F;&#x4E3A;k&#x4E3A;&#x7684;key; &#x7B97;&#x6CD5;&#x7684;&#x8F93;&#x51FA;&#x5747;&#x4E3A;&#x5927;&#x5C0F;&#x4E3A;n&#x4F4D;&#x7684;block.</p><p>Block cipher&#x7684;&#x52A0;&#x5BC6;&#x51FD;&#x6570;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= E_k(P) := E(P, K) : \{0, 1\}^n \times \{0, 1\}^k \rightarrow \{0, 1\}^n" style="border:none;"></p><p>&#x89E3;&#x5BC6;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;&#xFF1A;</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= E_k^{-1}(C) := D(C, K) : \{0, 1\}^n \times \{0, 1\}^k \rightarrow \{0, 1\}^n" style="border:none;"></p><p>&#x5176;&#x4E2D;&#xFF0C;P&#x8868;&#x793A;&#x5927;&#x5C0F;&#x4E3A;n&#x4F4D;&#x7684;plaintext&#xFF08;&#x5373;&#x660E;&#x6587;&#x5757;&#xFF09;,  C&#x8868;&#x793A;&#x5927;&#x5C0F;&#x4E3A;n&#x4F4D;&#x7684;ciphertext&#xFF08;&#x5373;&#x52A0;&#x5BC6;&#x540E;&#x7684;&#x5BC6;&#x6587;&#x5757;&#xFF09;, &#x800C;K&#x8868;&#x793A;&#x5927;&#x5C0F;&#x4E3A;k&#x4F4D;&#x7684;key, 
+&#x5BF9;&#x4E8E;&#x4EFB;&#x610F;&#x7684;key K, &#x5BF9;&#x5BC6;&#x6587;ciphertext C&#x8FDB;&#x884C;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#x540E;&#x4F1A;&#x5F97;&#x5230;&#x539F;&#x672C;&#x7684;&#x660E;&#x6587;plaintext&#xFF0C; &#x53EF;&#x4EE5;&#x8868;&#x793A;&#x5982;&#x4E0B;&#xFF1A;</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \forall{K} : D_K(E_K(P)) = P" style="border:none;"></p><h3 id="11-block-cipher-&#x5B9E;&#x73B0;">1.1 Block Cipher &#x5B9E;&#x73B0;</h3><p>&#x53EF;&#x4EE5;&#x5C06;Block cipher &#x5B9A;&#x4E49;&#x6210;&#x63A5;&#x53E3;&#xFF0C;&#x5982;&#x4E0B;</p><pre><code class="lang-golang"><span class="hljs-comment">// A Block represents an implementation of block cipher</span>
+<span class="hljs-comment">// using a given key. It provides the capability to encrypt</span>
+<span class="hljs-comment">// or decrypt individual blocks. The mode implementations</span>
+<span class="hljs-comment">// extend that capability to streams of blocks.</span>
+<span class="hljs-keyword">type</span> Block <span class="hljs-keyword">interface</span> {
+    <span class="hljs-comment">// BlockSize returns the cipher&apos;s block size.</span>
+    BlockSize() <span class="hljs-keyword">int</span>
+
+    <span class="hljs-comment">// Encrypt encrypts the first block in src into dst.</span>
+    <span class="hljs-comment">// Dst and src may point at the same memory.</span>
+    Encrypt(dst, src []<span class="hljs-keyword">byte</span>)
+
+    <span class="hljs-comment">// Decrypt decrypts the first block in src into dst.</span>
+    <span class="hljs-comment">// Dst and src may point at the same memory.</span>
+    Decrypt(dst, src []<span class="hljs-keyword">byte</span>)
+}</code></pre>
+<h3 id="12-block-mode&#x7684;&#x5B9E;&#x73B0;">1.2 Block Mode&#x7684;&#x5B9E;&#x73B0;</h3><p>block cipher mode of operation &#x53EF;&#x4EE5;&#x5B9A;&#x4E49;&#x4E3A;&#x7EDF;&#x4E00;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x5176;&#x4E2D;&#x7684;<code>CryptBlocks</code>&#x65E2;&#x53EF;&#x4EE5;&#x662F;&#x52A0;&#x5BC6;&#x4EA6;&#x53EF;&#x4EE5;&#x662F;&#x89E3;&#x5BC6;&#x64CD;&#x4F5C;&#xFF0C;
+&#x5982;&#x4E0B;&#xFF1A;</p><pre><code class="lang-golang"><span class="hljs-comment">// A BlockMode represents a block cipher running in a block-based mode (CBC,</span>
+<span class="hljs-comment">// ECB etc).</span>
+<span class="hljs-keyword">type</span> BlockMode <span class="hljs-keyword">interface</span> {
+    <span class="hljs-comment">// BlockSize returns the mode&apos;s block size.</span>
+    BlockSize() <span class="hljs-keyword">int</span>
+
+    <span class="hljs-comment">// CryptBlocks encrypts or decrypts a number of blocks. The length of</span>
+    <span class="hljs-comment">// src must be a multiple of the block size. Dst and src may point to</span>
+    <span class="hljs-comment">// the same memory.</span>
+    CryptBlocks(dst, src []<span class="hljs-keyword">byte</span>)
+}</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 1.3 Operation Mode of Block Cipher">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="2_cbc.html" class="navigation navigation-next " aria-label="Next page: 1.3.2 Cipher Block Chaining Mode">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.3.1 Operation Mode of Block Cipher","level":"1.1.1.3.1","depth":4,"next":{"title":"1.3.2 Cipher Block Chaining Mode","level":"1.1.1.3.2","depth":4,"path":"sym_crypto/operation_mode/2_cbc.md","ref":"sym_crypto/operation_mode/2_cbc.md","articles":[]},"previous":{"title":"1.3 Operation Mode of Block Cipher","level":"1.1.1.3","depth":3,"path":"sym_crypto/operation_mode/README.md","ref":"sym_crypto/operation_mode/README.md","articles":[{"title":"1.3.1 Operation Mode of Block Cipher","level":"1.1.1.3.1","depth":4,"path":"sym_crypto/operation_mode/1_blockciphermode.md","ref":"sym_crypto/operation_mode/1_blockciphermode.md","articles":[]},{"title":"1.3.2 Cipher Block Chaining Mode","level":"1.1.1.3.2","depth":4,"path":"sym_crypto/operation_mode/2_cbc.md","ref":"sym_crypto/operation_mode/2_cbc.md","articles":[]},{"title":"1.3.3 Cipher FeedBack Mode","level":"1.1.1.3.3","depth":4,"path":"sym_crypto/operation_mode/3_cfb.md","ref":"sym_crypto/operation_mode/3_cfb.md","articles":[]},{"title":"1.3.4 Output FeedBack Mode","level":"1.1.1.3.4","depth":4,"path":"sym_crypto/operation_mode/4_ofb.md","ref":"sym_crypto/operation_mode/4_ofb.md","articles":[]},{"title":"1.3.5 Counter Mode","level":"1.1.1.3.5","depth":4,"path":"sym_crypto/operation_mode/5_ctr.md","ref":"sym_crypto/operation_mode/5_ctr.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sym_crypto/operation_mode/1_blockciphermode.md","mtime":"2016-12-03T12:57:54.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-12-03T11:44:21.331Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

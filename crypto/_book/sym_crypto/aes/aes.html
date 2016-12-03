@@ -1,0 +1,449 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>1.2.3 Advanced Encryption Algorithm · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../operation_mode/" />
+    
+    
+    <link rel="prev" href="galois_field.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    1. Symmetry Cryptography 
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../des/des.html">
+            
+                <a href="../des/des.html">
+            
+                    
+                    1.1 Data Encryption Standard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    1.2 Advanced Encryption Standard
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1" data-path="euclid.html">
+            
+                <a href="euclid.html">
+            
+                    
+                    1.2.1 Basic Number Theory -- Euclidean Algorithm 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.2" data-path="galois_field.html">
+            
+                <a href="galois_field.html">
+            
+                    
+                    1.2.2 Basic Number Theory -- Galois Field 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.1.2.3" data-path="aes.html">
+            
+                <a href="aes.html">
+            
+                    
+                    1.2.3 Advanced Encryption Algorithm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../operation_mode/">
+            
+                <a href="../operation_mode/">
+            
+                    
+                    1.3 Operation Mode of Block Cipher
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.3.1" data-path="../operation_mode/1_blockciphermode.html">
+            
+                <a href="../operation_mode/1_blockciphermode.html">
+            
+                    
+                    1.3.1 Operation Mode of Block Cipher
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.2" data-path="../operation_mode/2_cbc.html">
+            
+                <a href="../operation_mode/2_cbc.html">
+            
+                    
+                    1.3.2 Cipher Block Chaining Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.3" data-path="../operation_mode/3_cfb.html">
+            
+                <a href="../operation_mode/3_cfb.html">
+            
+                    
+                    1.3.3 Cipher FeedBack Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.4" data-path="../operation_mode/4_ofb.html">
+            
+                <a href="../operation_mode/4_ofb.html">
+            
+                    
+                    1.3.4 Output FeedBack Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.5" data-path="../operation_mode/5_ctr.html">
+            
+                <a href="../operation_mode/5_ctr.html">
+            
+                    
+                    1.3.5 Counter Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >1.2.3 Advanced Encryption Algorithm</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="block-cipher-&#x5B66;&#x4E60;&#x672D;&#x8BB0;&#x4E4B;-aes">Block cipher &#x5B66;&#x4E60;&#x672D;&#x8BB0;&#x4E4B; AES</h1><h2 id="advanced-encryption-standard">Advanced Encryption Standard</h2><h3 id="&#x7EFC;&#x8FF0;">&#x7EFC;&#x8FF0;</h3><p>For the AES algorithm, the length of the input block, the output block and the State is 128 bits. This is represented by Nb = 4, 
+which reflects the number of 32-bit words (number of columns) in the State.</p><p>For the AES algorithm, the length of the Cipher Key, K, is 128, 192, or 256 bits. The key length is represented by Nk = 4, 6 or 8, 
+which reflects the number of 32-bit words (number of columns) in the Cipher Key.</p><p>For the AES algorithm, the number of rounds to be performed during the execution of the algorithm is ependent on the key size. 
+The number of rounds is represented by Nr, where</p><ul><li>Nr=10 when Nk=4, and Nb=4
+</li>
+<li>Nr=12 when Nk=6, and Nb=4
+</li>
+<li>Nr=14 when Nk=8, and Nb=4
+</li></ul>
+<p>For both its Cipher and Inverse Cipher, the AES algorithm uses a round function that is composed of four different byte-oriented transformations:
+1. byte substitution using a substitution table (S-box),
+2. shifting rows of the State array by different offsets
+3. mixing the data within each column of the State array
+4. adding a Round Key to the State&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x5F02;&#x6216;&#x64CD;&#x4F5C;</p><h3 id="&#x52A0;&#x5BC6;-cipher">&#x52A0;&#x5BC6; Cipher</h3><p>&#x4F2A;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x63CF;&#x8FF0;&#x5982;&#x4E0B;&#xFF1A;</p><pre><code class="lang-C">Cipher
+</code></pre>
+<h2 id="2-rijndael-key-schedule">2. Rijndael Key Schedule</h2><p><a href="https://en.wikipedia.org/wiki/Rijndael_key_schedule" target="_blank">Rijndael key schedule</a> &#x662F;AES (Rijndael) &#x7528;&#x6765;&#x5C06;&#x4E00;&#x4E2A; short key &#x6269;&#x5C55;&#x6210;&#x4E3A; 
+a number of separate round keys. AES &#x7684;&#x4E09;&#x4E2A;&#x7248;&#x672C;&#xFF08;&#x79D8;&#x94A5;&#x957F;&#x5EA6;&#x5206;&#x522B;&#x4E3A;128&#x3001;192&#x3001;256&#x4F4D;&#xFF0C;rounds&#x7684;&#x6570;&#x76EE;&#x5206;&#x522B;&#x4E3A;10&#x3001;12&#x3001;14&#xFF09;&#x5728;&#x6BCF;&#x4E00;&#x8F6E;&#x7684;&#x8F6C;&#x6362;
+&#x4E2D;&#x7684;&#x6700;&#x540E;&#x4E00;&#x6B65;&#x5747;&#x9700;&#x8981;&#x5F02;&#x6216;&#x4E0A;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;128&#x4F4D;&#x7684; round key. &#x800C;&#x8FD9;&#x4E2A;key schedule &#x4ECE;&#x6700;&#x521D;&#x7684;key&#x751F;&#x6210;&#x4E86;&#x6BCF;&#x4E00;&#x8F6E;&#x9700;&#x8981;&#x7684;keys.</p><h3 id="21-common-operations">2.1 Common operations</h3><p>Rijndael&apos;s key schedule &#x4E2D;&#x4F7F;&#x7528;&#x4E86;&#x5982;&#x4E0B;&#x51E0;&#x79CD;&#x64CD;&#x4F5C;&#xFF1A;
+1. Rotate: &#x5FAA;&#x73AF;&#x5DE6;&#x79FB;
+2. Rcon: &#x5176;&#x5B9E;&#x5C31;&#x662F;&#x6709;&#x9650;&#x57DF;&#x4E0A;&#x7684;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;</p><blockquote><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \mathit{Rcon(i)} =  n^{i-1} 
+= \underbrace{n \cdot n \cdot n \ldots}_{i-1}  \mathit{ , where n means polynomial n(x) = x" style="border:none;"></p><pre><code>&#x5176;&#x4E2D;&#xFF0C;&lt;img src=&quot;http://chart.googleapis.com/chart?cht=tx&amp;chl= n \cdot n &quot; style=&quot;border:none;&quot;&gt; &#x8868;&#x793A;Rijndael Finite Field GF(2^8) &#x4E0A;&#x7684;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#xFF0C;</code></pre>
+<p>&#x8BE5;&#x6709;&#x9650;&#x57DF;&#x4F7F;&#x7528;&#x4E0D;&#x53EF;&#x7EA6;&#x51CF;&#x591A;&#x9879;&#x5F0F;&#x662F;<img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \mathit{ p(x) = x^8 %2B x^4 %2B x^3 %2B x^1 %2B 1} " style="border:none;"> 
+   &#xFF0C;&#x6B64;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x5982;&#x4E0B;&#xFF1A;
+ <img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \mathit{ n \cdot n = n(x) \ast n(x) = n &lt;&lt; 1, if the n*n &lt; 2^8} " style="border:none;"></p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \mathit{ n \cdot n = n(x) \ast n(x) modulo p(x) = (n &lt;\!&lt; 1) \oplus 0x1b, if n*n \geq 2^8 } " style="border:none;"></p></blockquote><ol><li><p>Sbox: The <a href="https://en.wikipedia.org/wiki/Rijndael_S-box" target="_blank">Rijndael S-box</a> is a matrix used in the Rijndael cipher, which the AES 
+ cryptographic algorithm was based on. The S-box (substitution box) servers as a lookup table. &#x603B;&#x5171;&#x6709;&#x4E24;&#x79CD;&#xFF1A;</p><ul><li>Forward S-box
+</li>
+<li>Inverse S-box
+</li></ul>
+</li>
+<li><p>Key schedule core</p></li></ol>
+<h2 id="&#x6C47;&#x603B;">&#x6C47;&#x603B;</h2><ol><li>Advanced Encryption Standard: <a href="http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf" target="_blank">http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf</a>
+</li>
+<li>Rijndael Key Schedule: <a href="https://en.wikipedia.org/wiki/Rijndael_key_schedule" target="_blank">https://en.wikipedia.org/wiki/Rijndael_key_schedule</a>
+</li>
+<li>Rijndael S-box: <a href="https://en.wikipedia.org/wiki/Rijndael_S-box" target="_blank">https://en.wikipedia.org/wiki/Rijndael_S-box</a>
+</li></ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="galois_field.html" class="navigation navigation-prev " aria-label="Previous page: 1.2.2 Basic Number Theory -- Galois Field ">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../operation_mode/" class="navigation navigation-next " aria-label="Next page: 1.3 Operation Mode of Block Cipher">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.2.3 Advanced Encryption Algorithm","level":"1.1.1.2.3","depth":4,"next":{"title":"1.3 Operation Mode of Block Cipher","level":"1.1.1.3","depth":3,"path":"sym_crypto/operation_mode/README.md","ref":"sym_crypto/operation_mode/README.md","articles":[{"title":"1.3.1 Operation Mode of Block Cipher","level":"1.1.1.3.1","depth":4,"path":"sym_crypto/operation_mode/1_blockciphermode.md","ref":"sym_crypto/operation_mode/1_blockciphermode.md","articles":[]},{"title":"1.3.2 Cipher Block Chaining Mode","level":"1.1.1.3.2","depth":4,"path":"sym_crypto/operation_mode/2_cbc.md","ref":"sym_crypto/operation_mode/2_cbc.md","articles":[]},{"title":"1.3.3 Cipher FeedBack Mode","level":"1.1.1.3.3","depth":4,"path":"sym_crypto/operation_mode/3_cfb.md","ref":"sym_crypto/operation_mode/3_cfb.md","articles":[]},{"title":"1.3.4 Output FeedBack Mode","level":"1.1.1.3.4","depth":4,"path":"sym_crypto/operation_mode/4_ofb.md","ref":"sym_crypto/operation_mode/4_ofb.md","articles":[]},{"title":"1.3.5 Counter Mode","level":"1.1.1.3.5","depth":4,"path":"sym_crypto/operation_mode/5_ctr.md","ref":"sym_crypto/operation_mode/5_ctr.md","articles":[]}]},"previous":{"title":"1.2.2 Basic Number Theory -- Galois Field ","level":"1.1.1.2.2","depth":4,"path":"sym_crypto/aes/galois_field.md","ref":"sym_crypto/aes/galois_field.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sym_crypto/aes/aes.md","mtime":"2016-12-03T10:52:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-12-03T11:44:21.331Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

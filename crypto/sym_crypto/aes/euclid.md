@@ -1,4 +1,4 @@
-## 欧几里得算法
+## The Euclidean Algorithm 欧几里得算法
 [欧几里得算法](https://en.wikipedia.org/wiki/Euclidean_algorithm)是用来计算两个数的最大公约数的
 
 欧几里德定理可以表示如下：
@@ -23,7 +23,7 @@ func gcd_euclid(a, b int) int {
 }
 ```
 
-## 扩展的欧几里得算法 The Extended Euclidean Algorithm
+## The Extended Euclidean Algorith m扩展的欧几里得算法 
 用处：有限域及RSA等密码算法
 
 The Euclidean algorithm, which is used to find the greates common divisor of two integers, 

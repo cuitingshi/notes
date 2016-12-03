@@ -1,12 +1,11 @@
-# Intro
-These notes are about topics in symmetric cryptography.
+# Summary
 
 * Symmetry Cryptography 
   * [Data Encryption Standard](des/des.md)
-  * [Advanced Encryption Standard](aes/README.md)
-    * [Basic Number Theory -- Euclidean Algorithm ](aes/euclid.md)
-    * [Basic Number Theory -- Galois Field ](aes/galois_field.md)
-    * [Advanced Encryption Algorithm](aes/aes.md)
+  * Advanced Encryption Standard
+    * [Basic Number Theory -- Euclidean Algorithm ](sym_crypto/aes/euclid.md)
+    * [Basic Number Theory -- Galois Field ](sym_crypto/aes/galois.md)
+    * [Advanced Encryption Algorithm](sym_crypto/aes/aes.md)
   * [Operation Mode of Block Cipher](operation_mode/1_blockciphermode.md)
     * [Cipher Block Chaining Mode](operation_mode/2_cbc.md)
     * [Cipher FeedBack Mode](operation_mode/3_cfb.md)

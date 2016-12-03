@@ -1,0 +1,545 @@
+%        File: tls.tex
+%     Created: 一 11 21 03:00 下午 2016 C
+% Last Change: 一 11 21 03:00 下午 2016 C
+%
+\documentclass[a4paper]{ctexart}
+
+\title{\heiti{}TLS协议1.2学习札记}
+\author{\kaishu Cuiting Shi}
+\date{\today{}}
+
+\bibliographystyle{plain}
+
+\usepackage[a4paper, centering, scale=0.8]{geometry}
+\usepackage[nottoc]{tocbibind}
+\usepackage[]{color}
+\usepackage{listings}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{mauve}{rgb}{0.58,0,0.72}
+\definecolor{orange}{rgb}{0.92, 0.72, 0.15}
+\lstdefinelanguage{golang} {
+  classoffset=0,
+  morekeywords={ type, struct, error, int, int8, int16, int32, int64, byte, string, bool, 
+    uint, uint8, uint16, uint32, uint64, nil, func, var, map
+  },  
+  keywordstyle=\color{blue},
+  classoffset=1,
+  morekeywords={ fallthrough, go, chan, break,  default, range,
+    switch, select, case, if, else, for, while, do, in, import, return, 
+  }, 
+  keywordstyle=\color{orange},
+  classoffset=2,
+  morekeywords={ len, copy, panic, make },
+  keywordstyle=\color{red},
+  classoffset=0,
+  sensitive=false,
+  morecomment=[l][\color{dkgreen}]{//},
+  morecomment=[s][\color{dkgreen}]{/*}{*/},
+  morestring=[b]``, 
+}
+\lstset{
+  language=golang,
+  morecomment=[s][\color{dkgreen}]{/*}{*/},
+  stringstyle=\color{mauve},
+  aboveskip=3mm,
+  belowskip=3mm,
+  columns=flexible,
+  breaklines=true,
+  basicstyle={\small \ttfamily}, 
+  numbers=left,
+  numberstyle={\tiny}
+}
+
+\begin{document}
+
+\maketitle{}
+\begin{abstract}
+  这是一篇关于TLS协议1.2的学习笔记
+\end{abstract}
+\tableofcontents{}
+
+\section{Introduction}
+TLS协议是基于SSL 3.0 协议的，二者之间的差异并不是很明显.
+TLS协议的主要目的是为两个通信进程提供隐私性即数据完整性. 该协议有两层: TLS Record Protocol 和 TLS Handshake Protocol.
+TLS Record Protocol 是TLS的协议的最底层，但是是位于一些传输协议的上层的(比如TCP). 
+TLS Record Protocol 为连接提供了安全保障，该连接具有两个主要特点:
+
+\begin{itemize}
+    \zihao{-5}\kaishu 
+  \item 连接具有隐私性。其中采用了对称加密对数据进行加密(比如AES, RC4 等待). 每次连接都会生成新的对称加密的秘钥，
+    该秘钥是基于TLS Handshake Protocol 生成的一个secret 生成的(当然，也可以采用除了TLS Handshake Protocol之外的其它协议进行协商获取secret). 
+    TLS Record Protocol 其实也可以不适用加密, 而是直接传输明文数据.
+  \item 第二个特点是连接是可靠的. 消息的传输包括使用a keyed MAC 来对消息的完整性进行校验. 其中，MAC 计算会采用类似于SHA-1 的 secure hash functions.
+    当然, TLS Record Protocol 也可以不适用MAC，但是只会在如下场景中应用 -- 即另外一个协议仅仅是把TLS Record Protocol 当做协商安全参数的传输工具😂.
+\end{itemize}
+
+好吧，大家经常是使用TLS Record Protocol 来封装各种高层协议. 比如， TLS Record Protocol 可以用来封装 TLS Handshake Protocol, 从而使得在application
+protocol 传输或者接收数据的首字节之前, 便可以允许server 和 client 端进行认证和协商加密算法、cryptographic keys. TLS Handshake protocol 提供的安全连接
+具有下面三个基本特征: 
+
+\begin{itemize}
+    \zihao{-5}\kaishu 
+  \item client 或者server 的身份可以使用公钥、crpytography (比如, RSA, DSA 等等). 该认证是可选的, 但通常至少有一方是要进行认证的.
+  \item 对于共享的secret的协商过程是安全的
+  \item 协商过程是可靠的, 因为只要攻击者试图修改协商的信息，通信的双方必定会觉察到的。
+\end{itemize}
+
+TLS 是独立于应用协议的，高层的协议可以透明地建立在TLS协议上。然而，由于TLS 标准并没有指定protocols 应该如何通过TLS 来增强安全性,
+这使得设计者以及运行在TLS 之上的protocols 的实现必须得自己考虑如何Initiate TLS handshaking、如何解析authentication certificates.
+
+\subsection{TLS协议1.2 VS 1.1}
+相比于TLS协议1.1, TLS协议1.2 具有更大的灵活性，改进如下:
+\begin{description}
+    \zihao{-5}\kaishu 
+  \item[-] 原先在伪随机函数PRF中所使用的 MD5/SHA-1 组合被替换成了 cipher-suite-specified PRFs
+  \item[-] 数字签名元素中的MD5/SHA-1组合被替换成大衣的哈希函数, 元素现在可以增加一个field来致命哈希算法
+  \item[-] 在发送完certificate\_request之后, 如果没有可用证书的话，clients必须发送空的证书列表
+  \item[-] cipher suite的实现者必须得实现TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA
+  \item[-] cipher suites 添加了 HMAC-SHA256, 移除掉了 IDEA 和 DES
+\end{description}
+
+
+\section{TLS协议的目的} \label{sec:goal}
+TLS协议的目的在于:
+\begin{enumerate}
+    \zihao{-5}\kaishu 
+  \item Crytographic security: 应该使用TLS 为双方的通信建立起安全连接
+  \item Interoperability: 在不知道对方的代码的情况下，不同的程序员在他们编写的应用程序中都使用了TLS, 
+    那么这些应用程序是可以成功交换cryptographic parameters 的.
+  \item Extensibility: TLS 的目的在于提供一种新的公钥和bulk encryption methods 可以并入的协议框架中, 
+    这样可以避免实现一个全新的安全库的可能性.
+  \item Relative efficiency: 由于Cryptographic operations常常非常耗费CPU, 特别是其中的public key operations, 为此,
+    TLS 协议增加了session caching scheme, 从而可以减少从零开始建立连接的数量.
+
+\end{enumerate}
+
+
+\section{Cryptographic Attributes}
+总共有五种cryptographic operations:
+\begin{enumerate}
+    \zihao{-5}\kaishu
+  \item digital signing
+  \item stream cipher encryption
+  \item block cipher encryption
+  \item authenticated encryption with additional data (AEAD) encryption
+  \item public key encryption
+\end{enumerate}
+注意对称加密主要有两种模式, 一种是序列加密(亦称为流加密 strema cipher encryption), 另外一种是分组加密(即block cipher encryption).
+
+%\begin{lstlisting}[frame=single, stepnumber=5, firstnumber=25, caption={ TLS package 中对于net.Conn接口的实现}]{/usr/local/Cellar/go/1.7/libexec/src/crypto/tls/conn.go}
+
+%\end{lstlisting}
+
+\lstinputlisting[frame=single, stepnumber=3, firstnumber=1, caption={ TLS package 中对于net.Conn接口的实现}]{/usr/local/Cellar/go/1.7/libexec/src/crypto/tls/conn.go}
+
+\subsection{signature}
+主要有两种数字签名算法 DSA: 一种RSA, 另外一种ECDSA.
+对于RSA  签名, 会使用RSASSA-PKCS1-v1\_5 签名机制，其中DigestInfo必须是DER编码的.
+对于DSA 签名, SHA-1 hash的20个字节是直接通过数字签名算法运行得到，会生成r 和 s 这两个大整数.
+
+\subsection{encyption}
+对于 stream cipher encryption, 明文的每一个比特位都会和由一个cryptographically secure keyed pseudorandom number generator 生成的数据(比特位数与明文的位数相同)进行异或.
+换句话说, 序列密码法是一种文本加密方法，其中，在数据流的各个二进制数字中应用加密秘钥以及算法，每次处理一个比特位;
+
+对于 block cipher encryption, 即分组密码法, 明文的每一个分组(块)都被加密成一个密文块. CBC (Cipher Block Chaining) 模式中会完成所有的block cipher encryption, 
+而且 all items that are block-ciphered will be an exact multiple of the cipher block length.
+
+对于 AEAD encryption, 明文在被加密的同时保证了明文的数据完整性. 输入可以是任意长度的, 然后 AEAD-ciphered output 通常要比输入的长度大一些，毕竟它加上了完整性校验值.
+
+对于 public key encryption, 使用公钥算法可以对明文进行加密, 但是得到的密文只能被对应的秘钥进行解密. 
+A public-key-encrypted element is encoded as an opague vector $<0..2^{16}-1>$, 其中长度由加密算法和key决定. 
+
+而对于 RSA encryption, 这个是使用 RSAES-PKCS1-v1\_5 encryption scheme 实现的.
+
+\section{HMAC and the Pseudorandom Function}
+为了保护消息的完整性, TLS record layer 使用了 a keyed Message Authentication Code (MAC). 而该RFC中定义的 cipher suites 使用了
+HMAC 来生成 MAC . HMAC 是基于哈希函数的.
+
+另外, 为了生成 key 或者进行验证, 需要使用 construction 来将 secrets 扩展到数据块中。这个伪随机函数(PRF)的输入是 a secret, a seed, an identifying label,
+输出是长度不固定的数据.
+
+下面将基于 HMAC 来定义一个伪随机函数 PRF, 该函数还统一使用了SHA-256哈希函数. 当然，也可以通过明确指出PRF来定义新的cipher suites， 但是这得用比SHA-256安全性更高的哈希函数.
+
+首先，定义一下P\_hash(secret, data) 函数, 该函数是用来扩张数据（其实是增加输出的MAC的位数的), 它使用一个函数函数来讲secret 和 seed 扩张为任意长度的输出:
+\begin{verbatim}
+P_Hash(secret, seed) = HMAC_hash(secret, A(1) + seed) + 
+                       HMAC_hash(secret, A(2) + seed) +
+                       HMAC_hash(secret, A(3) + seed) + ...
+                       
+//其中， A()的定义如下:
+A(0) = seed
+A(1) = HMAC_hash(secret, A(i-1))
+\end{verbatim}
+其中，P\_hash函数可以被调用任意次数，从而可以生成特定长度的数据. 比如，P\_Hash使用了SHA256，则如果要生成80字节的数据的话，
+得迭代三次(SHA256生成的哈希是16字节，$16 + 32 + 48 = 96$), 得到96字节的数据,
+然后去掉末尾的16字节, 便可以得到80字节的数据.
+而TLS 中的PRF 是通过P\_Hash() 函数生成的，如下
+\begin{verbatim}
+//其中label是一个ASCII编码的字符串
+PRF(secret, label, seed) = P_[hash](scret, label + seed)
+\end{verbatim}
+
+下面是go的tls包对于P\_hash函数的实现，注意，增加了一个新的参数hash，把其中要用到的哈希函数作为参数传进来
+\begin{lstlisting}[frame=single, stepnumber=5, firstnumber=1, caption={go中对于pHash的实现}]
+// pHash implements the P_hash function, as defined in RFC 4346, section 5.
+func pHash(result, secret, seed []byte, hash func() hash.Hash) {
+	h := hmac.New(hash, secret)
+	h.Write(seed)
+	a := h.Sum(nil)
+
+	j := 0
+	for j < len(result) {
+		h.Reset()
+		h.Write(a)
+		h.Write(seed)
+		b := h.Sum(nil)
+		todo := len(b)
+		if j+todo > len(result) {
+			todo = len(result) - j
+		}
+		copy(result[j:j+todo], b)
+		j += todo
+
+		h.Reset()
+		h.Write(a)
+		a = h.Sum(nil)
+	}
+}
+\end{lstlisting}
+
+接下来是关于PRF算法的, PRF算法是用来从master secret来生成keys的. go的tls包对于PRF函数的实现，总共有三种 -- prf10、prf12、prf30，分别对应TLS 1.0, TLS 1.2 以及SSL/3.0协议,
+下面只介绍prf12的实现:
+\begin{lstlisting}[frame=single, stepnumber=5, firstnumber=1, caption={prf12的实现}]
+// prf12 implements the TLS 1.2 pseudo-random function, as defined in RFC 5246, section 5.
+func prf12(hashFunc func() hash.Hash) func(result, secret, label, seed []byte) {
+	return func(result, secret, label, seed []byte) {
+		labelAndSeed := make([]byte, len(label)+len(seed))
+		copy(labelAndSeed, label)
+		copy(labelAndSeed[len(label):], seed)
+
+		pHash(result, secret, labelAndSeed, hashFunc)
+	}
+}
+\end{lstlisting}
+
+
+
+然后这个是TLS中对于HMAC的使用，
+\begin{lstlisting}[frame=single, stepnumber=5, firstnumber=1, caption={TLS中Hmac的使用}]
+func (c *Conn) encryptTicket(state *sessionState) ([]byte, error) {
+	serialized := state.marshal()
+	encrypted := make([]byte, ticketKeyNameLen+aes.BlockSize+len(serialized)+sha256.Size)
+	keyName := encrypted[:ticketKeyNameLen]
+	iv := encrypted[ticketKeyNameLen : ticketKeyNameLen+aes.BlockSize]
+	macBytes := encrypted[len(encrypted)-sha256.Size:]
+
+	if _, err := io.ReadFull(c.config.rand(), iv); err != nil {
+		return nil, err
+	}
+	key := c.config.ticketKeys()[0]
+	copy(keyName, key.keyName[:])
+	block, err := aes.NewCipher(key.aesKey[:])
+	if err != nil {
+		return nil, errors.New("tls: failed to create cipher while encrypting ticket: " + err.Error())
+	}
+	cipher.NewCTR(block, iv).XORKeyStream(encrypted[ticketKeyNameLen+aes.BlockSize:], serialized)
+
+	mac := hmac.New(sha256.New, key.hmacKey[:])
+	mac.Write(encrypted[:len(encrypted)-sha256.Size])
+	mac.Sum(macBytes[:0])
+
+	return encrypted, nil
+}
+
+\end{lstlisting}
+
+下面是crypto/hmac对于HMAC的实现源码：
+\begin{lstlisting}[frame=single, stepnumber=5, firstnumber=1, caption={Go中Hmac的实现}]
+type hmac struct {
+	size         int
+	blocksize    int
+	opad, ipad   []byte
+	outer, inner hash.Hash
+}
+
+func (h *hmac) Sum(in []byte) []byte {
+	origLen := len(in)
+	in = h.inner.Sum(in)
+	h.outer.Reset()
+	h.outer.Write(h.opad)
+	h.outer.Write(in[origLen:])
+	return h.outer.Sum(in[:origLen])
+}
+
+func (h *hmac) Write(p []byte) (n int, err error) {
+	return h.inner.Write(p)
+}
+
+func (h *hmac) Size() int { return h.size }
+
+func (h *hmac) BlockSize() int { return h.blocksize }
+
+func (h *hmac) Reset() {
+	h.inner.Reset()
+	h.inner.Write(h.ipad)
+}
+
+// New returns a new HMAC hash using the given hash.Hash type and key.
+func New(h func() hash.Hash, key []byte) hash.Hash {
+	hm := new(hmac)
+	hm.outer = h()
+	hm.inner = h()
+	hm.size = hm.inner.Size()
+	hm.blocksize = hm.inner.BlockSize()
+	hm.ipad = make([]byte, hm.blocksize)
+	hm.opad = make([]byte, hm.blocksize)
+	if len(key) > hm.blocksize {
+		// If key is too big, hash it.
+		hm.outer.Write(key)
+		key = hm.outer.Sum(nil)
+	}
+	copy(hm.ipad, key)
+	copy(hm.opad, key)
+	for i := range hm.ipad {
+		hm.ipad[i] ^= 0x36
+	}
+	for i := range hm.opad {
+		hm.opad[i] ^= 0x5c
+	}
+	hm.inner.Write(hm.ipad)
+	return hm
+}
+\end{lstlisting}
+
+
+\section{TLS Record Protocol}
+TLS Record Protocol 是一个分层协议，在每一层，消息可能包含长度、备注和内容等信息域。TLS Record Protocol 主要负责携带待传输的消息,
+将数据分成分组、可能还会对其进行压缩、对数据生成MAC、加密、然后传输结果. 在接收到数据的时候, TLS Record Protocol会解密、验证MAC、解压、
+重组分块、然后再发送给上一级的clients.
+
+使用TLS Record Protocol的clients只要有四种协议: 
+\begin{itemize}
+    \zihao{-5}
+  \item the TLS Handshake protocol
+  \item the Alert Protocol
+  \item the change cipher spec protocol
+  \item the application data protocol
+\end{itemize}
+
+\subsection{Connection States}
+
+TLS connection state 是TLS Record Protocol的运作环境. 它指明了压缩算法、加密算法、MAC算法. 下面是go的tls包关于connection state 的定义: 
+\begin{lstlisting}[frame=single, stepnumber=5, firstnumber=1, caption={Go中connection的定义}]
+ // ConnectionState records basic TLS details about the connection.
+type ConnectionState struct {
+	Version                     uint16     // TLS version used by the connection (e.g. VersionTLS12)
+	HandshakeComplete           bool       // TLS handshake is complete
+	DidResume                   bool       // connection resumes a previous TLS connection
+	CipherSuite                 uint16     // cipher suite in use (TLS_RSA_WITH_RC4_128_SHA, ...)
+	NegotiatedProtocol          string     // negotiated next protocol (from Config.NextProtos)
+	NegotiatedProtocolIsMutual  bool       // negotiated protocol was advertised by server
+	ServerName                  string     // server name requested by client, if any (server side only)
+	PeerCertificates            []*x509.Certificate   // certificate chain presented by remote peer
+	VerifiedChains              [][]*x509.Certificate // verified chains built from PeerCertificates
+	SignedCertificateTimestamps [][]byte   // SCTs from the server, if any
+	OCSPResponse                []byte     // stapled OCSP response from server, if any
+
+	// TLSUnique contains the "tls-unique" channel binding value (see RFC
+	// 5929, section 3). For resumed sessions this value will be nil
+	// because resumption does not include enough context (see
+	// https://secure-resumption.com/#channelbindings). This will change in
+	// future versions of Go once the TLS master-secret fix has been
+	// standardized and implemented.
+	TLSUnique []byte
+}
+\end{lstlisting}
+
+\subsection{影响connection states的参数 -- 术语}
+注意，TLS record layer 会使用下面列出的安全参数生成
+ client write MAC key, server write MAC key, 
+ client write encryption key, server write encryption key, 
+ client write IV, server write IV. 对于client write 参数， server 在接收和处理records的时候，会使用client write 这些参数，反之亦然。
+当下面列的安全参数设置完毕，并且生成了相关的keys之后，则连接状态connection states 便可以通过转移到current states 被实例化. 
+每个连接状态都会包含如下的条目：
+\begin{itemize}
+    \zihao{-5}
+  \item compression state: 即压缩算法的当前状态
+  \item cipher state: 加密算法的当前状态
+  \item MAC key: 使用上面的那些安全参数生成的MAC算法的key
+  \item sequence number: 读写状态各自维护了自己的sequence number
+\end{itemize}
+\emph{安全参数：}
+\begin{description}
+  \item[master secret]A 48-byte secret shared between the two peers in the connection
+  \item[client random]A 32-byte value provided by the client
+  \item[server random]A 32-byte value provided by the server
+  \item[RPF algorithm]An algorithm used to generate keys from the master secret
+  \item[bulk encryption algorithm]An algorithm to be used for bulk encryption. 必须指明算法的key size, 何种cipher (block, stream, or AEAD cipher), 
+    cipher 所使用的block size, the length of explicit and implicit initialization vectors (or nonces)
+  \item[MAC algorithm]An algorithm to be used for message authentication. 必须要指明算法所返回的MAC碼的大小
+\end{description}
+
+
+\subsection{Record layer}
+The TLS record layer receives uninterpreted data from higher layers in non-empty blocks of arbitrary size.
+
+\subsubsection{Fragmentation}
+The record layer fragments informatin blocks into TLSPaintext records carrying data in chunks of $2^14$ bytes or less. 
+Client message boundaries are not preserved in the record layer (比如, multiple client messages of the same ContentType MAY be
+coalesced into a single TLSPlaintext record, or a single message MAY be fragmented across several records).也就是说，
+多个相同内容类型的client messages 可能会被重组成一条记录TLSPlaintext record, 但是一条过大的client message也可能会被切分成多条记录。
+
+此外，值得注意的是，由于历史原因，TLS1.0继承了SSL/3.0，版本号可能会写作3.1, 而TLS1.2对应3.3
+
+\begin{lstlisting}[frame=single, stepnumber=5, firstnumber=1, caption={TLS协议中的TLS record 类型以及handshake 消息类型}]
+const (
+	VersionSSL30 = 0x0300
+	VersionTLS10 = 0x0301
+	VersionTLS11 = 0x0302
+	VersionTLS12 = 0x0303
+)
+
+const (
+	maxPlaintext    = 16384        // maximum plaintext payload length
+	maxCiphertext   = 16384 + 2048 // maximum ciphertext payload length
+	recordHeaderLen = 5            // record header length
+	maxHandshake    = 65536        // maximum handshake we support (protocol max is 16 MB)
+
+	minVersion = VersionTLS10
+	maxVersion = VersionTLS12
+)
+
+// TLS record types.
+type recordType uint8
+
+const (
+	recordTypeChangeCipherSpec recordType = 20
+	recordTypeAlert            recordType = 21
+	recordTypeHandshake        recordType = 22
+	recordTypeApplicationData  recordType = 23
+)
+
+// TLS handshake message types.
+const (
+	typeHelloRequest       uint8 = 0
+	typeClientHello        uint8 = 1
+	typeServerHello        uint8 = 2
+	typeNewSessionTicket   uint8 = 4
+	typeCertificate        uint8 = 11
+	typeServerKeyExchange  uint8 = 12
+	typeCertificateRequest uint8 = 13
+	typeServerHelloDone    uint8 = 14
+	typeCertificateVerify  uint8 = 15
+	typeClientKeyExchange  uint8 = 16
+	typeFinished           uint8 = 20
+	typeCertificateStatus  uint8 = 22
+	typeNextProtocol       uint8 = 67 // Not IANA assigned
+)
+
+// TLS compression types.
+const (
+	compressionNone uint8 = 0
+)
+\end{lstlisting}
+
+\subsubsection{Record Payload Protection}
+record中携带的数据被压缩后，会经历 encryption 和 MAC functions 的处理. decryption functions 会反转此过程.
+record中的MAC 也包含了一个序列号，从而可以检测到消息是否消失、重复或者是额外的.
+下面是record写的源码实现：
+
+
+\begin{lstlisting}[frame=single, stepnumber=5, firstnumber=1, caption={TLS协议中如何写record}]
+// writeRecordLocked writes a TLS record with the given type and payload to the
+// connection and updates the record layer state.
+// c.out.Mutex <= L.
+func (c *Conn) writeRecordLocked(typ recordType, data []byte) (int, error) {
+	b := c.out.newBlock()
+	defer c.out.freeBlock(b)
+
+	var n int
+	for len(data) > 0 {
+		explicitIVLen := 0
+		explicitIVIsSeq := false
+
+		var cbc cbcMode
+		if c.out.version >= VersionTLS11 {
+			var ok bool
+			if cbc, ok = c.out.cipher.(cbcMode); ok {
+				explicitIVLen = cbc.BlockSize()
+			}
+		}
+		if explicitIVLen == 0 {
+			if _, ok := c.out.cipher.(cipher.AEAD); ok {
+				explicitIVLen = 8
+				// The AES-GCM construction in TLS has an
+				// explicit nonce so that the nonce can be
+				// random. However, the nonce is only 8 bytes
+				// which is too small for a secure, random
+				// nonce. Therefore we use the sequence number
+				// as the nonce.
+				explicitIVIsSeq = true
+			}
+		}
+		m := len(data)
+		if maxPayload := c.maxPayloadSizeForWrite(typ, explicitIVLen); m > maxPayload {
+			m = maxPayload
+		}
+		b.resize(recordHeaderLen + explicitIVLen + m)
+		b.data[0] = byte(typ)
+		vers := c.vers
+		if vers == 0 {
+			// Some TLS servers fail if the record version is
+			// greater than TLS 1.0 for the initial ClientHello.
+			vers = VersionTLS10
+		}
+		b.data[1] = byte(vers >> 8)
+		b.data[2] = byte(vers)
+		b.data[3] = byte(m >> 8)
+		b.data[4] = byte(m)
+		if explicitIVLen > 0 {
+			explicitIV := b.data[recordHeaderLen : recordHeaderLen+explicitIVLen]
+			if explicitIVIsSeq {
+				copy(explicitIV, c.out.seq[:])
+			} else {
+				if _, err := io.ReadFull(c.config.rand(), explicitIV); err != nil {
+					return n, err
+				}
+			}
+		}
+		copy(b.data[recordHeaderLen+explicitIVLen:], data)
+		c.out.encrypt(b, explicitIVLen)
+		if _, err := c.write(b.data); err != nil {
+			return n, err
+		}
+		n += m
+		data = data[m:]
+	}
+
+	if typ == recordTypeChangeCipherSpec {
+		if err := c.out.changeCipherSpec(); err != nil {
+			return n, c.sendAlertLocked(err.(alert))
+		}
+	}
+
+	return n, nil
+}
+\end{lstlisting}
+
+\paragraph{Null or Standard Stream Cipher}
+
+注意MAC是在加密前计算得到的，stream ciphter 加密了包含MAC的entire block.
+
+\paragraph{CBC Block Cipher}
+
+对于分组加密（比如3DES、AES）, 
+
+\subparagraph{IV}
+The Initialization Vector (IV) SHOULD be chosen at random, and MUST be unpredictable. Note that in versions of TLS prior to 1.1,
+there was no IV field, and the last ciphertext block of the previous reord (the ``CBC residue'') was used a the IV. This was 
+changed to prevent the attacts described in CBCATT. For block ciphers, the IV length is of length 等于安全参数中的 \begin{verbatim} record_iv_lenghth \end{verbatim},
+亦等于\begin{verbatim} block_size \end{verbatim}
+
+\end{document}
+
+
+\end{document}

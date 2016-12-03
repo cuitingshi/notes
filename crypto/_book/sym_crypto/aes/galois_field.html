@@ -1,0 +1,506 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>1.2.2 Basic Number Theory -- Galois Field  · GitBook</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.0">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="aes.html" />
+    
+    
+    <link rel="prev" href="euclid.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    1. Symmetry Cryptography 
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.1" data-path="../des/des.html">
+            
+                <a href="../des/des.html">
+            
+                    
+                    1.1 Data Encryption Standard
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    1.2 Advanced Encryption Standard
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.2.1" data-path="euclid.html">
+            
+                <a href="euclid.html">
+            
+                    
+                    1.2.1 Basic Number Theory -- Euclidean Algorithm 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.1.1.2.2" data-path="galois_field.html">
+            
+                <a href="galois_field.html">
+            
+                    
+                    1.2.2 Basic Number Theory -- Galois Field 
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.2.3" data-path="aes.html">
+            
+                <a href="aes.html">
+            
+                    
+                    1.2.3 Advanced Encryption Algorithm
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3" data-path="../operation_mode/">
+            
+                <a href="../operation_mode/">
+            
+                    
+                    1.3 Operation Mode of Block Cipher
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1.3.1" data-path="../operation_mode/1_blockciphermode.html">
+            
+                <a href="../operation_mode/1_blockciphermode.html">
+            
+                    
+                    1.3.1 Operation Mode of Block Cipher
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.2" data-path="../operation_mode/2_cbc.html">
+            
+                <a href="../operation_mode/2_cbc.html">
+            
+                    
+                    1.3.2 Cipher Block Chaining Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.3" data-path="../operation_mode/3_cfb.html">
+            
+                <a href="../operation_mode/3_cfb.html">
+            
+                    
+                    1.3.3 Cipher FeedBack Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.4" data-path="../operation_mode/4_ofb.html">
+            
+                <a href="../operation_mode/4_ofb.html">
+            
+                    
+                    1.3.4 Output FeedBack Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.1.3.5" data-path="../operation_mode/5_ctr.html">
+            
+                <a href="../operation_mode/5_ctr.html">
+            
+                    
+                    1.3.5 Counter Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >1.2.2 Basic Number Theory -- Galois Field </a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="galois-field-multiplication-&#x5B9E;&#x73B0;&#x7B97;&#x6CD5;">Galois Field Multiplication &#x5B9E;&#x73B0;&#x7B97;&#x6CD5;</h1><p>&#x6709;&#x9650;&#x57DF; GF(2^n) &#x4E0A;&#x7684;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#x53EF;&#x4EE5;&#x5229;&#x7528; <a href="https://en.wikipedia.org/wiki/Multiplication_algorithm#Peasant_or_binary_multiplication" target="_blank">Peasant or binary multiplication algorithm</a>
+&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x4E0B;&#x9762;&#x5148;&#x6765;&#x8BF4;&#x4E00;&#x4E0B;Peasant&apos;s algorithm</p><h2 id="1-peasants-algorithm">1. Peasant&apos;s Algorithm</h2><p>&#x4E0D;&#x5F97;&#x4E0D;&#x8BF4;&#xFF0C;&#x8FD9;&#x4E2A;&#x7B97;&#x6CD5;&#x7B80;&#x76F4;&#x662F;&#x4E8C;&#x8FDB;&#x5236;&#x7CFB;&#x7EDF;&#x7684;&#x9F3B;&#x7956;&#x5416;&#x1F602;&#xFF0C;&#x5176;&#x5B9E;&#x5B83;&#x5C31;&#x662F;&#x7B80;&#x5355;&#x7C97;&#x66B4;&#x5730;&#x6BCF;&#x6B21;&#x53EA;&#x4E58;&#x4EE5;2&#xFF08;&#x5BF9;&#x5E94;&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;&#xFF09;&#xFF0C;&#x5982;&#x679C;&#x6709;&#x4F59;&#x6570;&#x5219;&#x9700;&#x8981;&#x6267;&#x884C;&#x52A0;&#x6CD5;&#x64CD;&#x4F5C;.
+&#x5177;&#x4F53;&#x7684;&#x6570;&#x5B66;&#x8FD0;&#x7B97;&#x89C1;<a href="http://www.cut-the-knot.org/Curriculum/Algebra/PeasantMultiplication.shtml" target="_blank">Russian Peasant Multiplication</a>&#x3002;</p><p>&#x4E0B;&#x9762;&#x6765;&#x8BF4;&#x4E00;&#x4E0B;&#x4F5C;&#x4E3A;&#x7B97;&#x6CD5;&#x7684;<a href="http://www.cs.yale.edu/homes/aspnes/pinewiki/RussianPeasantsAlgorithm.html" target="_blank">Russian Peasant&apos;s Algorithm</a>,</p><p>&#x57FA;&#x672C;&#x7684;&#x601D;&#x60F3;&#x662F;&#x5982;&#x679C;&#x8981;&#x8BA1;&#x7B97;n*m, &#x5219;&#x53EF;&#x4EE5;&#x8F6C;&#x6362;&#x4E3A;&#x5982;&#x4E0B;&#x7684;&#x8FD0;&#x7B97;&#xFF1A;</p><ul><li>&#x5982;&#x679C;n&#x662F;&#x5076;&#x6570;&#xFF0C; &#x5219;&#x53EF;&#x4EE5;&#x8F6C;&#x6362;&#x4E3A;&#x8BA1;&#x7B97; n/2 * 2m;
+</li>
+<li>&#x5982;&#x679C;n&#x662F;&#x5947;&#x6570;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x8F6C;&#x6362;&#x4E3A;&#x8BA1;&#x7B97; (n-1)/2 * 2m + m.
+</li></ul>
+<p>&#x56E0;&#x6B64;&#x8BA1;&#x7B97;&#x7684;&#x590D;&#x6742;&#x6027;&#x4E3A;<img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= T(n) \leq T(n/2) %2B \Theta{(1)} = \Theta{(n)} = \Theta{(\lg{(n)})}" style="border:none;"></p><p>&#x5BF9;&#x5E94;&#x7684;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#x6240;&#x793A;</p><pre><code class="lang-golang"><span class="hljs-keyword">func</span> RussianPeasantMultiply(n, m <span class="hljs-keyword">int</span>) <span class="hljs-keyword">int</span>{
+    <span class="hljs-keyword">var</span> accumulator <span class="hljs-keyword">int</span> = <span class="hljs-number">0</span>
+    while m != <span class="hljs-number">0</span> {
+      <span class="hljs-keyword">if</span> m &amp; <span class="hljs-number">1</span> == <span class="hljs-number">1</span> {
+          accumulator += n
+      }
+      m = m &gt;&gt; <span class="hljs-number">1</span>
+      n = n &lt;&lt; <span class="hljs-number">1</span>
+    }
+    <span class="hljs-keyword">return</span> accumulator
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x4EC5;&#x4EC5;&#x5C06;&#x4E0A;&#x8FF0;&#x601D;&#x60F3;&#x4EC5;&#x4EC5;&#x7528;&#x4E8E;&#x7B80;&#x5355;&#x7684;&#x7B97;&#x672F;&#x8FD0;&#x7B97;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x6709;&#x70B9;&#x6D6A;&#x8D39;&#x4EBA;&#x624D;&#x4E86;&#x1F602;&#xFF0C;
+&#x5176;&#x5B9E;&#x5728;polynomial arithmetic, modular arithmetic, &#x6709;&#x9650;&#x57DF; GF(2^n) &#x4E0A;&#x7684;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#x5B83;&#x90FD;&#x53EF;&#x4EE5;&#x5927;&#x5C55;&#x8EAB;&#x624B;&#x7684;&#xFF0C;
+<a href="https://www.embeddedrelated.com/showarticle/760.php" target="_blank">&#x6233;&#x8FD9;&#x91CC;</a></p><ol><li>&#x7528;&#x6765;&#x8BA1;&#x7B97; interger exponentiation : 
+<ul><li>&#x5982;&#x679C; m &#x662F;&#x5076;&#x6570;&#xFF0C;&#x5219;&#x6709;<img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= n^m = (n \times n)^{(m/2)}" style="border:none;">
+</li>
+<li>&#x5982;&#x679C; m &#x662F;&#x5947;&#x6570;&#xFF0C;&#x5219;&#x6709;<img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= n^m = (n \times n)^{(m-1/2)} \times n" style="border:none;">
+</li></ul>
+</li></ol>
+<pre><code class="lang-golang"><span class="hljs-keyword">func</span> RPexp(n, m <span class="hljs-keyword">int</span>) <span class="hljs-keyword">int</span> {
+  <span class="hljs-keyword">var</span> accumulator <span class="hljs-keyword">int</span> = <span class="hljs-number">1</span>
+  while m != <span class="hljs-number">0</span> {
+    <span class="hljs-keyword">if</span> m &amp; <span class="hljs-number">1</span> == <span class="hljs-number">1</span> {
+      accumulator *= n
+    }
+    m = m &gt;&gt; <span class="hljs-number">1</span>
+    n *= n
+  }
+  <span class="hljs-keyword">return</span> accumulator
+}</code></pre>
+<ol><li>&#x7528;&#x6765;&#x8BA1;&#x7B97; multiplication in GF(2): &#x8FD9;&#x91CC;&#x7C7B;&#x4F3C;&#x4E8E;&#x4E0A;&#x9762;&#x7684;&#x7528;&#x6765;&#x8BA1;&#x7B97;&#x666E;&#x901A;&#x4E58;&#x6CD5;&#x7684;&#x51FD;&#x6570;<code>RussianPeasantMultiply(n, m int) int</code>, 
+&#x53EA;&#x4E0D;&#x8FC7;&#x56E0;&#x4E3A;GF(2)&#x4E0A;&#x7684;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x662F;&#x5F02;&#x6216;&#x8FD0;&#x7B97;&#xFF08;&#x52A0;&#x6CD5;&#x7684;&#x7ED3;&#x679C;&#x53EA;&#x80FD;&#x662F;0&#x6216;&#x8005;1&#x1F601;&#xFF09;
+</li></ol>
+<pre><code class="lang-golang"><span class="hljs-keyword">func</span> RussianPeasantMultiplyGF2(n, m <span class="hljs-keyword">int</span>) <span class="hljs-keyword">int</span> {
+  <span class="hljs-keyword">var</span> acumulator <span class="hljs-keyword">int</span> = <span class="hljs-number">0</span>;
+  while m != <span class="hljs-number">0</span> {
+    <span class="hljs-keyword">if</span> m &amp; <span class="hljs-number">1</span> == <span class="hljs-number">1</span> {
+      accumulator ^= n
+    }
+    m = m &gt;&gt; <span class="hljs-number">1</span>
+    n = n &lt;&lt; <span class="hljs-number">1</span>
+  }
+  <span class="hljs-keyword">return</span> accumulator</code></pre>
+<h2 id="2-galois-field-gf2n-&#x4E0A;&#x7684;&#x8FD0;&#x7B97;">2. Galois Field GF(2^N) &#x4E0A;&#x7684;&#x8FD0;&#x7B97;</h2><ol><li><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= n \cdot m " style="border:none;"> : &#x6709;&#x9650;&#x57DF; GF(2^N) &#x4E0A;&#x7684;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;,</p><p>&#x6709;&#x9650;&#x57DF; GF(2^N) &#x662F;&#x591A;&#x9879;&#x5F0F;&#x53D6;&#x6A21;&#x8FD0;&#x7B97;, &#x5373;&#x4E58;&#x6CD5;&#x7684;&#x7ED3;&#x679C;&#x5982;&#x679C;&#x5927;&#x4E8E;2^N&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5C06;&#x8BE5;&#x7ED3;&#x679C; modulo &#x4E0D;&#x53EF;&#x7EA6;&#x51CF;&#x591A;&#x9879;&#x5F0F;p(x), &#x53EF;&#x4EE5;&#x8868;&#x793A;&#x5982;&#x4E0B;&#xFF1A;</p><blockquote><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large \forall n, m \in GF(2^N) " style="border:none;"> ,</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large  n \cdot m = \left\( \sum_{i=0}^N{n_i x^i} \right\) \ast 
+   \left\( \sum_{i=0}^N{m_i  x^i}\right\) \mathit {  modulo } p(x) \mathit{, if n * m &gt;= 2^N}" style="border:none;"></p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large  n \cdot m = \left\( \sum_{i=0}^N{n_i x^i} \right\) \ast 
+   \left\( \sum_{i=0}^N{m_i  x^i}\right\) \mathit{, if n * m &gt;= 2^N}" style="border:none;"></p></blockquote></li></ol>
+<ol><li><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \dot%2B, \mathit{  } \minus" style="border:none;"> : &#x5206;&#x522B;&#x8868;&#x793A;&#x6709;&#x9650;&#x57DF; GF(2^N) &#x4E0A;&#x7684;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x3001;&#x51CF;&#x6CD5;&#x8FD0;&#x7B97;.</p><p>&#x6709;&#x9650;&#x57DF; GF(2^N) &#x4E0A;&#x7684;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x548C;&#x51CF;&#x6CD5;&#x8FD0;&#x7B97;&#x90FD;&#x662F;&#x7CFB;&#x6570;&#x8FD0;&#x7B97;&#xFF0C;&#x5176;&#x4E2D;&#x6BCF;&#x4E2A;&#x7CFB;&#x6570;&#x8FDB;&#x884C;&#x666E;&#x901A;&#x7684;&#x52A0;&#x51CF;&#x3001;&#x7136;&#x540E;&#x6A21;&#x4EE5;2&#x7684;&#x8FD0;&#x7B97; --  (m_i + n_i) % 2 &#xFF0C;
+&#x56E0;&#x6B64;&#xFF0C;&#x6709;&#x9650;&#x57DF;GF(2^N) &#x7684;&#x52A0;&#x6CD5;&#x3001;&#x51CF;&#x6CD5;&#x8FD0;&#x7B97;&#x662F;&#x7B49;&#x540C;&#x4E8E;&#x5F02;&#x6216;&#x8FD0;&#x7B97;&#x7684;,
+&#x4E0B;&#x9762;&#x7528;&#x516C;&#x5F0F;&#x6765;&#x8868;&#x793A;&#x4E00;&#x4E0B;&#x8BE5;&#x6709;&#x9650;&#x57DF;&#x4E0A;&#x7684;&#x52A0;&#x6CD5;&#x8FD0;&#x7B97;&#x548C;&#x51CF;&#x6CD5;&#x8FD0;&#x7B97;</p><blockquote><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large \forall n, m \in GF(2^N) " style="border:none;"> ,</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large  n \dot%2B m = \sum_{i=0}^N{(n_i %2B m_i) \mathit{ \% 2 } \ast x^i} = \sum_{i=0}^N{n_i \oplus m_i \ast x^i} " style="border:none;"></p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large  n \minus m = \sum_{i=0}^N{(n_i -  m_i) \mathit{ \% 2 } \ast x^i} = \sum_{i=0}^N{n_i \oplus m_i \ast x^i}" style="border:none;"></p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large \therefore n \dot%2B m =  n \minus m }" style="border:none;"></p></blockquote></li></ol>
+<h2 id="3-rijndael-finite-field-multiplication-&#x5B9E;&#x73B0;&#x7B97;&#x6CD5;">3. Rijndael Finite Field Multiplication &#x5B9E;&#x73B0;&#x7B97;&#x6CD5;</h2><p>Rijndael &#x6709;&#x9650;&#x57DF;&#x5176;&#x5B9E;&#x662F;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#x4E2D;&#x4F7F;&#x7528;&#x4E0D;&#x53EF;&#x7EA6;&#x51CF;&#x591A;&#x9879;&#x5F0F;<img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= p(x) = x^8 %2B x^4 %2B x^3 %2B x^1 %2B 1" style="border:none;"> &#x7684;
+Galois Field <img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= GF(2^8)" style="border:none;"> 
+&#x8BE5;&#x6709;&#x9650;&#x57DF;&#x4E0A;&#x7684;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x5982;&#x4E0B;&#xFF1A;</p><blockquote><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large \forall n, m \in GF(2^8) " style="border:none;"> ,</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large  n \cdot m = \left\( \sum_{i=0}^7{n_i x^i} \right\) \ast 
+\left\( \sum_{i=0}^7{m_i  x^i}\right\) \mathit {  modulo } p(x) \mathit{, if n * m &gt;= 2^8}" style="border:none;"></p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= \Large  n \cdot m = \left\( \sum_{i=0}^7{n_i x^i} \right\) \ast 
+\left\( \sum_{i=0}^7{m_i  x^i}\right\) \mathit{, if n * m &gt;= 2^8}" style="border:none;"></p></blockquote><p>&#x5219;&#x8FD9;&#x4E2A;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; a modified version of the &quot;peasant&apos;s algorithm&quot; &#x6765;&#x5B9E;&#x73B0;, 
+&#x7ED3;&#x5408;Peasant&apos;s Multiplication &#x4E58;&#x6CD5;&#x7684;&#x601D;&#x60F3;&#xFF0C;&#x5BF9;&#x4E8E;&#x4E0A;&#x9762;&#x8FD9;&#x4E2A;&#x5F0F;&#x5B50;&#xFF0C;&#x53EF;&#x4EE5;&#x8868;&#x793A;&#x6210;</p><ul><li><p>&#x5982;&#x679C; m &#x662F;&#x5076;&#x6570;&#xFF0C;&#x5219;&#x6709;</p><blockquote><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl=  n \cdot m = \left [ \left\( \sum_{i=0}^7{n_i x^i} \right\)  \cdot x \right ] \mathit{  } \cdot \mathit{  } 
+\left [ \( \sum_{i=0}^7{m_i  x^i} \) \div x \right ] " style="border:none;"></p><p>that is</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl=  n  \cdot m  = (n \cdot x) \cdot (m \div x)  " style="border:none;"></p></blockquote></li>
+<li><p>&#x5982;&#x679C; m &#x662F;&#x5947;&#x6570;&#xFF0C;&#x5219;&#x6709;
+ &gt;</p><blockquote><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl=  n \cdot m = \sum_{i=0}^7{n_i x^i}  \dot%2B \left [\left\( \sum_{i=0}^7{n_i x^i} \right\) \cdot x \right ] 
+\mathit{  } \cdot \mathit{  } 
+\left [ \( \sum_{i=0}^7{m_i  x^i} \) \div x \right ] " style="border:none;"></p><p>that is</p><p><img src="http://chart.googleapis.com/chart?cht=tx&amp;chl= n \cdot m = n \dot%2B (n \cdot x) \cdot ( (m \minus 1) \div x) " style="border:none;"></p></blockquote></li></ul>
+<p>&#x56E0;&#x6B64;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5982;&#x4E0B;, &#x7B97;&#x6CD5;&#x7684;&#x6587;&#x5B57;&#x7248;&#x89C1;<a href="https://en.wikipedia.org/wiki/Finite_field_arithmetic#Rijndael.27s_finite_field" target="_blank">&#x6B64;&#x6750;&#x6599;&#x4E2D;&#x7684;Multiplication &#x4E0B;&#x7684;Rijndael&apos;s finite field &#x7684;&#x63CF;&#x8FF0;</a>&#xFF1A;</p><pre><code class="lang-golang"><span class="hljs-comment">// &#x6709;&#x9650;&#x57DF;GF(2^n)&#x4E0A;&#x7684;&#x4E58;&#x6CD5;&#xFF0C;&#x5176;&#x4E2D;&#x4E0D;&#x53EF;&#x7EA6;&#x51CF;&#x591A;&#x9879;&#x5F0F;&#x662F; p(x) = x^n + r(x)</span>
+<span class="hljs-comment">// &#x8BA1;&#x7B97; n * m mod p</span>
+<span class="hljs-comment">// &#x6CE8;&#x610F;&#xFF0C;&#x4E0B;&#x9762;&#x90FD;&#x662F;&#x9AD8;&#x9636;&#x7CFB;&#x6570;&#x5728;&#x5DE6;</span>
+<span class="hljs-keyword">func</span> RPMultGF2n(n, m, r <span class="hljs-keyword">int8</span>) <span class="hljs-keyword">int</span> {
+  <span class="hljs-keyword">var</span> accumulator <span class="hljs-keyword">int8</span> = <span class="hljs-number">0</span>
+  while m != <span class="hljs-number">0</span> {
+    <span class="hljs-keyword">if</span> m &amp; <span class="hljs-number">1</span> == <span class="hljs-number">1</span> {
+      accumulator ^= n
+    }
+    m &gt;&gt;= <span class="hljs-number">1</span>
+    <span class="hljs-comment">// &#x8BA1;&#x7B97; n \cdot x</span>
+    <span class="hljs-keyword">if</span> (n &gt;&gt; <span class="hljs-number">7</span> &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">1</span> { <span class="hljs-comment">// leftmost bit is 1</span>
+      n = n &lt;&lt; <span class="hljs-number">1</span> ^ r <span class="hljs-comment">// &#x5BF9;&#x5E94;&#x4E0A;&#x9762;&#x7684; n * x modulo p</span>
+    }<span class="hljs-keyword">else</span>{
+      n &lt;&lt;= <span class="hljs-number">1</span>
+    }
+  }
+  <span class="hljs-keyword">return</span> accumulator
+}
+
+<span class="hljs-keyword">func</span> RPMultRijndaelField(n, m) {
+  <span class="hljs-keyword">var</span> r <span class="hljs-keyword">int8</span> = <span class="hljs-number">0x15</span>
+  <span class="hljs-keyword">return</span> RPMultGF2n(n, m, r)
+}
+</code></pre>
+<p>&#x6709;&#x6CA1;&#x6709;&#x7528;&#x7B80;&#x5355;&#x7684;Russian Peasant&apos;s Multiplication &#x7684;&#x601D;&#x60F3;&#x6765;&#x5B9E;&#x73B0;&#x6709;&#x9650;&#x57DF;GF(2^N) &#x4E0A;&#x7684;&#x4E58;&#x6CD5;&#xFF0C;
+&#x518D;&#x7ED3;&#x5408;&#x79FB;&#x4F4D;&#x64CD;&#x4F5C;&#x6765;&#x5B9E;&#x73B0;&#x5F88;&#x5DE7;&#x5999;&#x554A;&#x1F609;&#xFF0C;&#x5176;&#x5B9E;GCM&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#x4E5F;&#x7528;&#x5230;&#x7684;&#x54E6;</p>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="euclid.html" class="navigation navigation-prev " aria-label="Previous page: 1.2.1 Basic Number Theory -- Euclidean Algorithm ">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="aes.html" class="navigation navigation-next " aria-label="Next page: 1.2.3 Advanced Encryption Algorithm">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.2.2 Basic Number Theory -- Galois Field ","level":"1.1.1.2.2","depth":4,"next":{"title":"1.2.3 Advanced Encryption Algorithm","level":"1.1.1.2.3","depth":4,"path":"sym_crypto/aes/aes.md","ref":"sym_crypto/aes/aes.md","articles":[]},"previous":{"title":"1.2.1 Basic Number Theory -- Euclidean Algorithm ","level":"1.1.1.2.1","depth":4,"path":"sym_crypto/aes/euclid.md","ref":"sym_crypto/aes/euclid.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sym_crypto/aes/galois_field.md","mtime":"2016-12-03T10:52:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.0","time":"2016-12-03T11:44:21.331Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
