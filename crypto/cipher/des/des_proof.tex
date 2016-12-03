@@ -1,0 +1,43 @@
+%        File: des_proof.tex
+%     Created: 二 11 29 01:00 下午 2016 C
+% Last Change: 二 11 29 01:00 下午 2016 C
+%
+\documentclass[a4paper]{ctexart}
+\usepackage{amsmath}
+
+\title{DES 解密与加密证明}
+\author{Cuiting Shi}
+\date{\today{}}
+
+\begin{document}
+\maketitle{}
+
+\section{DES 解密与加密关系}
+
+证明DES解密只需要将原本用于加密的subkeys的次序颠倒即可
+
+首先，对于加密，已知 $ LE_i, RE_i $, 求 $ LE_{i+1}, RE_{i+1} $, 则有
+\begin{equation}
+  \begin{split}
+  LE_{i+1} & =  RE_i; \\
+  RE_{i+1} & =  LE_i \oplus Fiestel(RE_i, subkeys_i) \\
+           & =  LE_i \oplus Permutation( \\
+           &   SubstituteSBOX(ExpandBlock(RE_i) \oplus Subkey_i) )
+  \end{split}
+  \label{equ_encrypt}
+\end{equation}
+
+
+则对于解密，相当于已知 $ LE_{i+1}, RE_{i+1} $, 求 $ LE_i, RE_i $, 则有
+\begin{equation}
+  \begin{split}
+  RE_i & = LE_{i+1}; \\
+  LE_i & = RE_{i+1} \oplus Fiestel(RE_i, subkeys_i) \\
+       & = LE_i
+  \end{split}
+  \label{equ_decrypt}
+\end{equation}
+
+\end{document}
+
+
