@@ -356,7 +356,7 @@ func cryptBlock(subkeys []uint64, dst, src []byte, decrypt bool) {
 ```
 
 ### 证明 DES 的解密过程与加密过程只需要将subkeys 颠倒即可
-具体见文档des_proof.pdf
+具体见文档[des_proof](./des_proof.pdf)
 
 
 ## 汇总
