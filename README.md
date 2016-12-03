@@ -21,6 +21,11 @@ try to find a way to express logically, those unintelligible ideas seems to beco
 
 ## [gRPC](./grpc)
 These notes focus on google Remote Procedure Call and protocol buffer.
-  * [1. Google Protocol Buffer](grpc/protoc.md)
+  * [1. Google Protocol Buffer](grpc/proto.md)
   * [2. Google Remote Procedure Call](grpc/grpc.md)
-  
+    * [2.1 The Types of gRPC Methods](grpc/method/README.md)
+      * [2.1.1 The Simplest RPC Method](grpc/method/simple.md)
+      * [2.1.2 The Server-side Streaming RPC Method](grpc/method/serverstream.md)
+      * [2.1.3 The Client-side Streaming RPC Method](grpc/method/clientstream.md)
+      * [2.1.4 The Bidirectional Streaming RPC Method](grpc/method/bistream.md)
+    * [2.2 gRPC Authenticaton](grpc_auth.md)
