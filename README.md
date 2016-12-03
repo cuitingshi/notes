@@ -1,9 +1,9 @@
 # Intro
-These notes are just a glimpse of what I have learned in these days. 
 Recently, I tried to read the source codes of IBM hyperledger project to have a better understanding of blockchain.
 I found it a need to prepaer myself with some knowledge in specific field, like cryptographics. 
-And it turned out that writting is really a good way.  It's not just about recording those ephemeral thoughts, but as I 
-try to find a way to express logically, those unintelligible ideas seems to become less obscure.
+And it turned out that writting is really a good way.  It's not just about keeping track of what I have learned. 
+Instead, as I try to find a way to express logically, those unintelligible ideas seems to become less obscure. 
+Those ephemeral thoughts just came out like spring😁. Really amazing, you guys could try it too~
 
 ## [Cryptographic](./crypto)
   * [1. Symmetry Cryptography ](crypto/sym_crypto/README.md)
@@ -28,4 +28,4 @@ These notes focus on google Remote Procedure Call and protocol buffer.
       * [2.1.2 The Server-side Streaming RPC Method](grpc/method/serverstream.md)
       * [2.1.3 The Client-side Streaming RPC Method](grpc/method/clientstream.md)
       * [2.1.4 The Bidirectional Streaming RPC Method](grpc/method/bistream.md)
-    * [2.2 gRPC Authenticaton](grpc_auth.md)
+    * [2.2 gRPC Authenticaton](grpc/grpc_auth.md)
