@@ -1,9 +1,10 @@
 # Intro
 Recently, I tried to read the source codes of IBM hyperledger project to have a better understanding of blockchain.
-I found it a need to prepaer myself with some knowledge in specific field, like cryptographics. 
+I found it a need to prepaer myself with some knowledge in specific fields, like cryptography. 
 And it turned out that writting is really a good way.  It's not just about keeping track of what I have learned. 
-Instead, as I try to find a way to express logically, those unintelligible ideas seems to become less obscure. 
-Those ephemeral thoughts just came out like spring😁. Really amazing, you guys could try it too~
+Instead, as I tried to find a way to express myself more logically, those unintelligible ideas seems to become less obscure. 
+Those ephemeral thoughts just came out like a spring😁. Really amazing, you guys could try it too~
+By the way, the notes are also available as [gitbook html pages](https://xyzlol.gitbooks.io/notes/content/).
 
 ## [Cryptographic](./crypto)
   * [1. Symmetry Cryptography ](crypto/sym_crypto/README.md)
