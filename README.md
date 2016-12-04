@@ -1,10 +1,10 @@
 # Intro
 Recently, I tried to read the source codes of IBM hyperledger project to have a better understanding of blockchain.
 I found it a need to prepare myself with some knowledge in specific fields, like cryptography. 
-And it turned out that writting was really an effective way.  It's not just about keeping track of what I have learned. 
+And it turned out that writing was an effective way.  It's not just about keeping track of what I have learned. 
 Instead, as I tried to find a way to express myself more logically, those unintelligible ideas seemed to become less obscure. 
-Those ephemeral thoughts just came out like a spring😁. Really amazing, I should keep following it~
-By the way, the notes are also available as [gitbook html pages](https://xyzlol.gitbooks.io/notes/content/).
+Those ephemeral thoughts just came out like a spring.😁 Really amazing, I should keep following it~ 
+  By the way, the notes are also available as [gitbook html pages](https://xyzlol.gitbooks.io/notes/content/).
 
 ## [Cryptographic](./crypto)
   * [1. Symmetry Cryptography ](crypto/sym_crypto/README.md)
@@ -21,7 +21,7 @@ By the way, the notes are also available as [gitbook html pages](https://xyzlol.
       * [1.3.5 Counter Mode](crypto/sym_crypto/operation_mode/5_ctr.md)
 
 ## [gRPC](./grpc)
-These notes focus on google Remote Procedure Call and protocol buffer.
+ These notes focus on Google Remote Procedure Call and protocol buffer.
   * [1. Google Protocol Buffer](grpc/proto.md)
   * [2. Google Remote Procedure Call](grpc/grpc.md)
     * [2.1 The Types of gRPC Methods](grpc/method/README.md)
