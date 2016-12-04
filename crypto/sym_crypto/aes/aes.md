@@ -10,7 +10,7 @@ which reflects the number of 32-bit words (number of columns) in the State.
 For the AES algorithm, the length of the Cipher Key, K, is 128, 192, or 256 bits. The key length is represented by Nk = 4, 6 or 8, 
 which reflects the number of 32-bit words (number of columns) in the Cipher Key.
 
-For the AES algorithm, the number of rounds to be performed during the execution of the algorithm is ependent on the key size. 
+For the AES algorithm, the number of rounds to be performed during the execution of the algorithm is dependent on the key size. 
 The number of rounds is represented by Nr, where 
 - Nr=10 when Nk=4, and Nb=4
 - Nr=12 when Nk=6, and Nb=4
