@@ -1,6 +1,7 @@
 {
     "plugins": [
-        "download-pdf"
+        "download-pdf",
+        "prettify-html"
     ],
     "pluginsConfig": {}
 }
