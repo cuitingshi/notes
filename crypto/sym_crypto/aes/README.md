@@ -1,5 +1,5 @@
 # Intro
+ 
 The next topic has something to do with Advanced Cryptography Standard.
 
-We have to go through some basic number theories in case of being trapped 
-by the transformations used in Advanced Cryptography Standard (AES).😁
+In case of being muddled up with the transformations used in Advanced Encryption Standard (AES), We have to go through some basic number theories at first.😁
