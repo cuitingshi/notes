@@ -1,5 +1,5 @@
 # Intro
-These notes are about topics in symmetric cryptography.
+ These notes are about topics in symmetric cryptography.
 
 * Symmetry Cryptography 
   * [Data Encryption Standard](des/des.md)
