@@ -1,7 +1,8 @@
 {
     "plugins": [
         "download-pdf",
-        "prettify-html"
+        "prettify-html",
+        "comments"
     ],
     "pluginsConfig": {}
 }
