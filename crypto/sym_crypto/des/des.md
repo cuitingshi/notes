@@ -15,7 +15,7 @@ IP 的实现代码可以见[DES 实现之 Initial Permutation](#imp_ip),
 FP 的实现代码可以见[DES 实现之 Final Permutation](#imp_fp)
 
 对于中间的转换操作，进一步解释：
-- 图中的<img src="http://chart.googleapis.com/chart?cht=tx&chl= \oplus " style="border:none;"> 表示异或操作；
+- 图中的 <img src="http://chart.googleapis.com/chart?cht=tx&chl= \oplus " style="border:none;"> 表示异或操作；
 - F-function scramble half a block together with some of the key. The output from the F-function is then combined with the other half of the block,
   and the halves are swapped before the next round. After the final round, the halfves are swapped; 
   this is a feature of the Feistel strucure which makes ecryption and decryption similar processes.
