@@ -39,12 +39,11 @@ through a cryptographic hash function to maximize unpredictability of individual
 ## 1. 特意构造的随机数生成算法
 ### 1.1 Linear Congruential Generator
 所有的 LCG 均使用如下的公式：
+$$ r_{n + 1} = a \times r_n + c (\ mod\  m)$$
 
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= \Large r_{n %2B 1} = a \times r_n %2B c \mbox{ (mod m) }" style="border:none;">
-
-* 其中， r_0 是一个 seed;
-* r_1, r_2, r_3, ..., 是生成的随机数；
-* a, c, m 是常数
+  * 其中， r_0 是一个 seed;
+  * r_1, r_2, r_3, ..., 是生成的随机数；
+  * a, c, m 是常数
 
 对于 LCG, 如果选取合适的 a, c 和 m 的情况下，则可以使得生成的从 0 到 m-1 的整数呈均匀分布。
 但是，LCG 生成的数字不是 cryptoraphically secure 的， 因为 r_n 和 r_{n+1} 不是相互独立的，只要知道了 r_n, 
@@ -53,16 +52,14 @@ through a cryptographic hash function to maximize unpredictability of individual
 BSD libc 和 Microsoft C Runtime (MSCVRT.DLL) 就实现了 LCG, 它们使用的公式如下, 注意上面的 seed 对应这些公式中的 state_0. 
 
 BSD formula:
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= \Large state_{n %2B 1} = 1103515245 \times state_n %2B 12345 \mbox{ (mod 2^{31}) }" style="border:none;">
-* 其中， rand_n = state_n
-* rand_n 的范围是 0 到 2147483647
+$$ state_{n + 1} = 1103515245 \times state_n + 12345 ( \ mod\  2^{31})$$
+  * 其中， rand_n = state_n
+  * rand_n 的范围是 0 到 2147483647
 
 Microsoft formula:
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= \Large state_{n %2B 1} = 214013 \times state_n %2B 2531011 \mbox{ (mod 2^{31}) }" style="border:none;">
-* 其中， rand_n = state_n / 2^{16}
-* rand_n 的范围是 0 到 32767
+$$ state_{n + 1} = 214013 \times state_n +  2531011  (\ mod\  2^{31})$$
+  * 其中， rand_n = state_n / 2^{16}
+  * rand_n 的范围是 0 到 32767
 
 C 语言中的实现是：
 ```C

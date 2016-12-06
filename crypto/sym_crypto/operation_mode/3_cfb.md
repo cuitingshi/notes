@@ -1,12 +1,10 @@
-# Operation Modes of Block Cipher
+# Crypto 学习札记之 Operation Modes of Block Cipher
 ## 3. Block Mode 之 Cipher Feedback (CFB)
 首先来看看 CFB 的定义, CFB 加密的数学定义如下：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= C_i = E_K(C_{i-1}) \oplus P_{i} \\ C_0 = IV." style="border:none;">
+$$ C_i = E_K(C_{i-1}) \oplus P_{i}, \ where\  C_0 = IV$$
 
 CFB解密的数学定义如下：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= P_i = E_K(C_{i-1}) \oplus C_{i} \\ C_0 = IV." style="border:none;">
+$$ P_i = E_K(C_{i-1}) \oplus C_{i} \ where\  C_0 = IV$$
 
 注意，上面的加密解密操作中异或的对象都是
 <img src="http://chart.googleapis.com/chart?cht=tx&chl= E_K(C_{i-1}) " style="border:none;">
@@ -103,6 +101,7 @@ func (x *cfb) XORKeyStream(dst, src []byte) {
 ### 3.2 CFB模式的使用
 前面已经说明了CFB模式会使得block cipher 变成一个 stream cipher，
 注意下面如何使用CFB进行加密和解密操作,
+
 1. 先使用下面的方法生成一个 stream cipher 接口 -- Stream
     - 对于要使用CFB加密的话，需要调用函数 `NewCFBEncrypter(block Block, iv []byte) Stream` 来生成一个用于加密的 stream cipher -- CFBEncrypter;
     - 对于解密的话，需要调用函数 `NewCFBDecrypter(block Block, iv []byte) Stream` 来生成一个用于解密的 stream cipher -- CFBDecrypter;

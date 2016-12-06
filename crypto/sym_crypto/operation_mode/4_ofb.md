@@ -1,20 +1,17 @@
-# Operation Modes of Block Cipher
+# Crypto 学习札记之 Operation Modes of Block Cipher
 ## 4. Block Mode 之 Output Feedback (OFB)
 The <font color="red">*Output Feedback*</font> (OFB) mode makes a block cipher into a syncrhonous stream cipher.
 OFB 首先生成keystream blocks, 然后再跟plaintext blocks 做异或操作生成密文。
 由于异或操作的对称性，加密操作和解密操作实际上是一样的。
 
 首先来看看 OFB 的定义, OFB 加密的数学定义如下：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= C_j = P_j \oplus E_K( I_{j-1} ) " style="border:none;">
+$$C_j = P_j \oplus E_K( I_{j-1} ) $$
 
 OFB解密的数学定义如下：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= P_j = C_j \oplus E_K( I_{j-1} ) " style="border:none;">
+$$ P_j = C_j \oplus E_K( I_{j-1} ) $$
 
 其中的输出反馈是
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= I_j = E_K(I_{j-1}) \\ I_0 = IV" style="border:none;">
+$$ I_j = E_K(I_{j-1}) \ where\  I_0 = IV$$
 
 
 值得注意的是，上面的加密解密操作中异或的对象都是

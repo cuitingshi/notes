@@ -2,10 +2,12 @@
 [欧几里得算法](https://en.wikipedia.org/wiki/Euclidean_algorithm)是用来计算两个数的最大公约数的
 
 欧几里德定理可以表示如下：
->gcd(a, b) = gcd(b, a%b)
->
+$$ 
+gcd(a, b) = gcd(b, a \% b)
+$$
 
 用于计算两个正整数 a 和 b 的最大公因子的Standard Euclidean algorithm 可以描述如下：
+
 1. Set the value of the variable c to the larger of the two values a and b, and set d to the smaller of a and b.
 2. Find the remaindr when c is divided by d. Call this remainder r.
 3. If r = 0, then gcd(a, b) = d. Stop.
@@ -31,20 +33,23 @@ can be extended to solve linear Diophantine equations.
 
 ### The division algorithm
 
-> **Thearem 1. Division algorithm** Given any two positive intergers n and d, there exist intergers q and r (respectively called the quotient 
-> and the remainder) such that
->
-> n = q*d + 4 and 0 <= r < d
->
+**Thearem 1. Division algorithm** Given any two positive intergers n and d, there exist intergers q and r (respectively called the quotient 
+and the remainder) such that
+
+$$
+ n = q \ast d + 4 and 0 \leq r < d
+$$
 
 ### Our goal 
 The standard Euclidean algorith gives the greatest common divisor and nothing else. However, 
 if we keep track of a bit more information as we go through the algorithm, we can discover how 
 to write the greatest common divisor as an interger linear combination of the two original numbers. 
 In other words, we can find intergers s and t such that
->
-> gcd(a, b) = s*a + t*b
->
+
+$$
+ gcd(a, b) = s \ast a + t \ast b
+$$
+
 
 注意到，由于 gcd(a, b) 通常要小于a、b， 因此 s 或者 t 中的一个通常是负数😁
 
@@ -63,28 +68,33 @@ writing this greatest common divisor as an integer linear combination of a and b
 3. If r = 0, then gcd(a, b) = d. <font color="darkgreen">The expression for the previous value of r gives an expression for gcd(a, b) interms of a and b.</font> Stop.
 4. Otherwise, use the current values of d and r as the new values of c and d respectively, and go back to stop 2.
 
-基本算法： 对于不完全为0的非负整数a、b, gcd(a, b) 表示a, b 的最大公约数， 必然存在整数x、y，使得 gcd(a,b) = ax+ by
+基本算法： 对于不完全为0的非负整数a、b, gcd(a, b) 表示a, b 的最大公约数， 必然存在整数x、y，使得 $gcd(a,b) = ax+ by $
 
-证明如下：
-> 设 a > b
->
-> 推理1： 显然当 b= 0时， gcd(a, b) = a. 此时 x =1, y = 0;
->
-> 推理2： 当ab!= 0 时，设 
->
-> a * x_1 + b * y_1 = gcd(a, b);
->
-> b * x_2 + (a%b) * y_2 = gcd(b, a%b).
->
-> 则根据 standard Euclidean Algorith gcd(a,b) = gcd(b, a%b) 有
->
-> a * x_1 + b * y_1 = b * x_2 + (a mod b) * y_2, 
->
-> 即 a * x_1 + b * y_1 = b * x_2 + [ a - (a/b) * b ] * y_2
->
-> 则根据恒等定理可知： x_1 = y_2; y_1 = x_2 - (a/b) * y_2;
+**证明如下：**
 
-这样子，便可以得到了求解x_1, y_1 的方法： x_1, y_1 的值可以基于 x_2 和 y_2 来表示。 上面的思想便可以以递归的形式定义实现，
+设 a > b
+1. 推理1： 显然当 b= 0时， gcd(a, b) = a. 此时 x =1, y = 0;
+2. 推理2： 当ab!= 0 时，设 
+
+$$
+  a\ast x_1 + b \ast y_1 = gcd(a, b) ; 
+  b\ast x_2 + (a \% b) \ast y_2 = gcd(b, a \% b) 
+$$
+
+根据 standard Euclidean Algorith gcd(a,b) = gcd(b, a%b) 有
+
+$$a \ast x_1 + b \ast y_1 = b \ast x_2 + (a \% b) \ast y_2 $$
+  
+that is, 
+
+$$a \ast x_1 + b \ast y_1 = b \ast x_2 + ( a - \frac{a}{b} \ast b ) \ast y_2 $$
+
+故根据恒等定理可知： 
+$$
+x_1 = y_2; y_1 = x_2 - \frac{a}{b} \ast y_2 
+$$
+
+这样子，便可以得到了求解 $x_{1}, y_{1} $ 的方法： $x_{1}, y_{1} $ 的值可以基于 $x_{2},  y_{2} $ 来表示。 上面的思想便可以以递归的形式定义实现，
 算法可实现如下：
 ```golang
 func extgcd(a, b int) ( r, x, y int) {
@@ -101,10 +111,11 @@ func extgcd(a, b int) ( r, x, y int) {
 
 ### 扩展欧几里得算法的应用
 A common use of the extended Euclidean algorithm is to solve a linear Diophantine equation in two variables. Such an equation is of the form
->
-> ax + by = c
->
-> 其中， a、b、c 是常量， x 和 y 是变量
+
+$$
+ax + by = c
+$$
+其中， a、b、c 是常量， x 和 y 是变量
 
 有三种可能性：
 #### Case 1: c = gcd(a, b)
@@ -112,18 +123,22 @@ A common use of the extended Euclidean algorithm is to solve a linear Diophantin
 
 #### Case 2: c is a multiple of gcd(a, b)
 假设 c 是 gcd(a, b) 的倍数，即
-> c = k * gcd(a, b)
->
-> where k is an integer
+
+$$ c = k \ast gcd(a, b), k \in N
+$$
 
 Then we can find a solution to the Diophantine equation `ax + by = c` by writing gcd(a, b) in terms of a and b 
 and then multiplying the coefficients by k.
 
-比如， consider the Diophantine equation
-> 1398x + 324y = 60
+比如， consider the Diophantine equation: 
+$$ 
+1398x + 324y = 60 
+$$
 
 又因为 gcd(1389, 324) = 6, 根据 the extended Euclidean algorithm 我们可以知道：
-> 6 = -19 * 1398 + 82 * 324
+$$ 
+6 = -19 \ast 1398 + 82 \ast 324
+$$
 
 又因为 60 是 6 的倍数， 所以 we can use this to write 60 interms of 1398 and 324:
 > 60 = 10 * (6)
@@ -142,16 +157,15 @@ The extended Euclidean algorithm, if carried out all the way to the end, gives a
 We can add or subtract 0 as many times as we like without changing the value of an expression, and this is the basis for generating other 
 solutions to a Diophantine equation, as long as we are given one initial solution.
 
-比如说， 当 a= 1398，b = 324 时， we saw that the extended Euclidean algorithm produces the expression 
-> 0 = 54 * a - 233 * b,
-> 
-> so, 0 = 54 * (1398) - 233 * (324)
+比如说， 当 a= 1398，b = 324 时， we saw that the extended Euclidean algorithm produces the expression $0 = 54 \ast a - 233 \ast b $
 
-因此，对于 the Diophantine equation  `1398x + 324y = 60` ，
+so, $0 = 54 \ast (1398) - 233 \ast (324) $
 
-Suppose we know one value of x and one value of y that together form a solution to this equation. Since `0 = 54*(1298) - 233*(324)`, 
+Therefore, for the Diophantine equation  $1398x + 324y = 60 $
+
+Suppose we know one value of x and one value of y that together form a solution to this equation. Since  $0 = 54\ast(1298) - 233\ast(324) $, 
 if we add 54 to x and subtract 233 from y, we will produce another solution, 因为
->
+
 > 1398(x+54) + 324(y-233) = 1398x + 1398*(54) + 324y + 324 *(-233)
 >
 >   = 1398x + 324y + [ 1398*(54) + 324 * (-233)]
@@ -190,11 +204,13 @@ func gcdStein( a, b int) int {
 ## 应用情形总结
 欧几里得算法可以用来求
 - 两个普通整数的最大公因子
-- 两个多项式的最大公因子gcd[ a(x), b(x) ]
+- 两个多项式的最大公因子 $gcd( a(x), b(x) ) $
 
 扩展欧几里得算法可以用来求
 - gcd(a, b) 以及满足 ax + by = gcd(a,b) 的x, y
-- 普通的模运算中的乘法逆元 b^(-1) * b = 1 (mod n) ==> 其实就是 nx + by = 1 (mod n) ==> extgcd(n, b) 中返回的最大公因数必须为1，此外 y 就是 b 的乘法逆元
+- 普通的模运算中的乘法逆元 $ b^{-1} \ast b = 1 (mod\  n) $
+  , 其实就是 $nx + by = 1 (mod\  n) \Rightarrow extgcd(n, b) $
+  中返回的最大公因数必须为1，此外 y 就是 b 的乘法逆元
 - 多项式乘法中 b(x) 以 a(x) 为模的乘法逆元, 只不过算法实现的时候，中间的加减法以及乘法运算都要依照多项式上的运算定义来进行
 
 

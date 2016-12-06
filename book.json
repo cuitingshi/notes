@@ -1,8 +1,22 @@
 {
+    "title": "密码学、网络编程学习札记",
+    "author": "Cuiting Shi",
     "plugins": [
         "download-pdf",
         "prettify-html",
-        "comments"
+        "comments",
+        "advanced-emoji",
+        "github",
+        "katex-full"
     ],
-    "pluginsConfig": {}
+    "pluginsConfig": {
+      "github":{
+        "url": "https://github.com/xyzLOL"
+      },
+      "download-pdf":{
+        "base":"https://github.com/xyzLOLO/notes/",
+        "label": "Download PDF"
+      }
+
+    }
 }

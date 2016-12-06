@@ -1,4 +1,4 @@
-# Operation Modes of Block Cipher
+# Crypto 学习札记之 Operation Modes of Block Cipher
 密码学中，a <b>mode of operation</b> 是一个使用[block cipher](https://en.wikipedia.org/wiki/Block_cipher)
 来提供confidentiality 或者 authenticity 服务的。block cipher 自身只适合对于一个固定长度的块进行加密或者解密操作，
 而 a mode of operation 提供了如何重复地将一个cipher的单个块操作转化为适应大量的数据（包含多个块）。
@@ -6,6 +6,7 @@
 某种连接模式，将这些cipher blocks连接起来，生成最终的密文。
 
 常见的[block cipher mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) 有：
+
 1. Electornic Codebook (ECB)，
   最简单的mode, 对于加密，The message is divided into blocks, and each block is encrypted separately. 然后再把各个密文块连接起来。
   注意到各个块之间的加密是互不影响的，因此，对于相同的plaintext，它是会生成同样的ciphertext的。因此，虽然它简单，但是会引发两个缺点：
@@ -55,17 +56,15 @@ Block ciphers 是密码学协议中的基本组件。而Block Mode 则定义了�
 
 Block cipher的加密函数可以定义如下：
 
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= E_k(P) := E(P, K) : \{0, 1\}^n \times \{0, 1\}^k \rightarrow \{0, 1\}^n" style="border:none;">
-
+$$ E_k(P) := E(P, K) : \{0, 1\}^n \times \{0, 1\}^k \rightarrow \{0, 1\}^n $$
 解密可以定义如下：
 
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= E_k^{-1}(C) := D(C, K) : \{0, 1\}^n \times \{0, 1\}^k \rightarrow \{0, 1\}^n" style="border:none;">
+$$ E_k^{-1}(C) := D(C, K) : \{0, 1\}^n \times \{0, 1\}^k \rightarrow \{0, 1\}^n $$
 
 其中，P表示大小为n位的plaintext（即明文块）,  C表示大小为n位的ciphertext（即加密后的密文块）, 而K表示大小为k位的key, 
 对于任意的key K, 对密文ciphertext C进行解密操作后会得到原本的明文plaintext， 可以表示如下：
 
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= \forall{K} : D_K(E_K(P)) = P" style="border:none;">
-
+$$ \forall{K} : D_K(E_K(P)) = P $$
 
 ### 1.1 Block Cipher 实现
 可以将Block cipher 定义成接口，如下

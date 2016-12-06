@@ -1,6 +1,7 @@
-# Operation Modes of Block Cipher
+# Crypto 学习札记之 Operation Modes of Block Cipher
 ## 5. Block Mode 之 Counter Mode (CTR)
 CTR mode (CM) 有两种模式：
+
 1. interger counter mode (ICM);
 2. segmented integer counter (SIC) mode
 

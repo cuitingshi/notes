@@ -25,6 +25,7 @@ FP 的实现代码可以见[DES 实现之 Final Permutation](#imp_fp)
 
 ### <label id="sub_feistelfunc">The Feistel (F) function</label>
 The F-function, 每次作用于半个分组上(32 bits) ，总共有四个阶段，如下图所示：
+
 1. Expansion: 使用 expansion permutation(对应图中的 E) 将32位的half-block 转换为48位. 具体为duplicate half of the bits. 输出为 eight 6-bit (8\*6=48 bits) pieces, 
    each containing a copy of 4 corresponding input bits, plus a copy of the immediately adjacent bit from each of the input pieces to either side.
    具体的扩展规则见[此材料中的 Expansion function (E)](https://en.wikipedia.org/wiki/DES_supplementary_material)

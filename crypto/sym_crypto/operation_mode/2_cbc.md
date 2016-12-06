@@ -1,12 +1,10 @@
-# Operation Modes of Block Cipher
+# Crypto 学习札记之 Operation Modes of Block Cipher
 ## 2. Block Mode 之 Cipher Block Chaining (CBC) 
 首先来看看 CBC 的定义, CBC加密的数学定义如下：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= C_i = E_K(P_i \oplus C_{i-1}) \\ C_0 = IV." style="border:none;">
+$$C_i = E_K(P_i \oplus C_{i-1}) , \ where\ C_0 = IV $$
 
 CBC解密的数学定义如下：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= P_i = D_K(C_i) \oplus C_{i-1} \\ C_0 = IV." style="border:none;">
+$$ P_i = D_K(C_i) \oplus C_{i-1},  \ where\ C_0 = IV$$
 
 其中，CBC模式中的加密操作的示意图如下：
 
@@ -24,14 +22,13 @@ golang的crypto/cipher包中已经实现了CBC模式，其中，
 
 首先来看看CBC mode encryption的实现:
 
-#### 2.1.1. CBC mode encryption
+#### 2.1.1 CBC mode encryption
 CBC模式中的加密操作的示意图如下：
 
 ![Cipher Block Chaining (CBC) mode encryption](https://upload.wikimedia.org/wikipedia/commons/8/80/CBC_encryption.svg)
 
 CBC加密的数学定义如下：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= C_i = E_K(P_i \oplus C_{i-1}) \\ C_0 = IV." style="border:none;">
+$$ C_i = E_K(P_i \oplus C_{i-1}), \ where \  C_0 = IV$$
 
 注意下面的`CryptBlocks`方法的实现中的`for`循环里面的`xorBytes`操作、加密操作`x.b.Encrypt`分别对应上面的数学定义中的异或和加密操作。
 
@@ -107,14 +104,13 @@ func newCBC(b Block, iv []byte) *cbc {
 
 ```
 
-#### 2.1.2. CBC mode decryption
+#### 2.1.2 CBC mode decryption
 CBC模式中的解密操作的示意图如下：
 
 ![Cipher Block Chaining (CBC) mode decryption](https://upload.wikimedia.org/wikipedia/commons/2/2a/CBC_decryption.svg)
 
 CBC解密的数学定义如下：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= P_i = D_K(C_i) \oplus C_{i-1} \\ C_0 = IV." style="border:none;">
+$$ P_i = D_K(C_i) \oplus C_{i-1} , \ where\  C_0 = IV $$
 
 同样, `cbcDecrypter`实现了`BlockMode`接口中定义的两个方法, 所以cbcDecrypter也属于BlockMode。
 ```golang
@@ -220,7 +216,9 @@ func newCBC(b Block, iv []byte) *cbc {
 ### 2.2 自定义的CBC连接模式的实现
 当然，也可以不使用cipher包中对于CBC模式的实现，如果block cipher想要使用自己实现的CBC连接模式的话，
 对于CBC加密操作，需要实现两个接口：
-1. BlockMode
+
+#### 2.2.1 自定义的 Cipher 加密部分需要实现的接口
+**1. BlockMode**
 
 首先需要实现接口`BlockMode`中定义的两个方法，完成自定义的连接模式的加密操作
 ```golang
@@ -237,7 +235,7 @@ type BlockMode interface {
 }
 ```
 
-2. cbcEncAble
+**2. cbcEncAble**
 
 然后，需要实现cbcEncAble接口
 ```golang
@@ -253,11 +251,14 @@ type cbcEncAble interface {
 }
 ```
 
+#### 2.2.2 自实现的Cipher 解密部分需要实现的接口
 同样，对于CBC解密操作，同样需要实现两个接口：
-1. BlockMode
-  这里的`BlockMode中的CrypBlocks(dst, src []byte)`需要实现CBC的解密操作。
-2. cbcDecAble
 
+**1. BlockMode**
+
+  这里的`BlockMode中的CrypBlocks(dst, src []byte)`需要实现CBC的解密操作。
+
+**2. cbcDecAble**
 ```golang
 // block cipher 需要实现该解密接口
 // cbcDecAble is an interface implemented by ciphers that have a specific
