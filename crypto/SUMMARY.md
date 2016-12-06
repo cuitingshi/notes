@@ -12,4 +12,6 @@
       * [1.3.2 Cipher Block Chaining Mode](sym_crypto/operation_mode/2_cbc.md)
       * [1.3.3 Cipher FeedBack Mode](sym_crypto/operation_mode/3_cfb.md)
       * [1.3.4 Output FeedBack Mode](sym_crypto/operation_mode/4_ofb.md)
-      * [1.3.5 Counter Mode](sym_crypto/operation_mode/5_ctr.md)
+    * [1.4 Random Number Generator](sym_crypto/randnum/README.md)
+      * [1.4.1 Pseudo-random Number Generator](sym_crypto/randnum/prng.md)
+      * [1.4.2 Revest Cipher 4 Algorithm](sym_crypto/randnum/rc4.md) * [1.3.5 Counter Mode](sym_crypto/operation_mode/5_ctr.md)

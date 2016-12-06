@@ -12,3 +12,6 @@
     * [Cipher FeedBack Mode](operation_mode/3_cfb.md)
     * [Output FeedBack Mode](operation_mode/4_ofb.md)
     * [Counter Mode](operation_mode/5_ctr.md)
+  * [Random Number Generator](randnum/README.md)
+    * [Pseudo-random Number Generator](randnum/prng.md)
+    * [Revest Cipher 4 Algorithm](randnum/rc4.md)

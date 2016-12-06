@@ -19,6 +19,9 @@ Those ephemeral thoughts just came out like a spring.😁 Really amazing, I shou
       * [1.3.3 Cipher FeedBack Mode](crypto/sym_crypto/operation_mode/3_cfb.md)
       * [1.3.4 Output FeedBack Mode](crypto/sym_crypto/operation_mode/4_ofb.md)
       * [1.3.5 Counter Mode](crypto/sym_crypto/operation_mode/5_ctr.md)
+    * [1.4 Random Number Generator](crypto/sym_crypto/randnum/README.md)
+      * [1.4.1 Pseudo-random Number Generator](crypto/sym_crypto/randnum/prng.md)
+      * [1.4.2 Revest Cipher 4 Algorithm](crypto/sym_crypto/randnum/rc4.md)
 
 ## [gRPC](./grpc)
  These notes focus on Google Remote Procedure Call and protocol buffer.

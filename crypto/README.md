@@ -15,3 +15,6 @@ This is the summary of my notes on cryptography
       * [Cipher FeedBack Mode](sym_crypto/operation_mode/3_cfb.md)
       * [Output FeedBack Mode](sym_crypto/operation_mode/4_ofb.md)
       * [Counter Mode](sym_crypto/operation_mode/5_ctr.md)
+    * [Random Number Generator](sym_crypto/randnum/README.md)
+      * [Pseudo-random Number Generator](sym_crypto/randnum/prng.md)
+      * [Revest Cipher 4 Algorithm](sym_crypto/randnum/rc4.md)
