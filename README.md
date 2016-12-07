@@ -1,3 +1,7 @@
+---
+search: false
+---
+
 # Intro
 Recently, I tried to read the source codes of IBM hyperledger project to have a better understanding of blockchain.
 I found it a need to prepare myself with some knowledge in specific fields, like cryptography. 

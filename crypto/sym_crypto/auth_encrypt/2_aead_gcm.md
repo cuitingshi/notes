@@ -1,7 +1,7 @@
 # Crypto 学习札记之 Authenticated Encryption 
 
 ## 2. AE 算法之 Galois/Counter Mode (GCM)
-作为一种authenticated encryption algorithm, [Galois/Counter Mode (GCM)](https://en.wikipedia.org/wiki/Galois/Counter_Mode) is a mode of operation for symmetric key cryptographic block ciphers.
+作为一种authenticated encryption algorithm, [Galois/Counter Mode (GCM)][1] is a mode of operation for symmetric key cryptographic block ciphers.
 由于 GCM 效率和性能上的优势 -- 还可以通过硬件资源提升 GCM 的性能，从而实现高速的通信信道，所以大家对它的认可度都比较高😀。
 
 GCM is defined for block ciphers with a block size of 128bits. 
@@ -19,8 +19,7 @@ instruction pipeline or a hardware pipeline. In contrast, the cipher block chain
 pipeline stalls that hamper its efficiency and performance.
 
 ### 2.1  GCM 的基本操作
-[GCM](http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-revised-spec.pdf)
-将 counter mode of encryption 与 new Galois mode of authentication 组合起来，基本操作如下图所示，
+[GCM][2] 将 counter mode of encryption 与 new Galois mode of authentication 组合起来，基本操作如下图所示，
 主要有两大部分：图中的上部分是用于生成密文的 counter mode, 下半部分是用于生成消息认证码MAC的 Galois Mult function (mult_H)
 
 - 对于 counter mode, 这部分还是用于生成密文的
@@ -64,14 +63,14 @@ GCM 中主要用到了两个函数：
 2. multiplication over the field  <img src="http://chart.googleapis.com/chart?cht=tx&chl= \small GF(2^{128})" style="border:none;">. 
     
     其中，
-    - <img src="http://chart.googleapis.com/chart?cht=tx&chl=  X \cdot Y" style="border:none;">:  
-      The multiplication of two elements <img src="http://chart.googleapis.com/chart?cht=tx&chl= \small X,Y \in GF(2^{128})" style="border:none;">
-    - <img src="http://chart.googleapis.com/chart?cht=tx&chl= X \oplus Y" style="border:none;">: 
-      the addition of X and Y. Addition in this field is equivalent to the bitwise exclusive-or operation.
+    - $X \cdot Y $  
+      : The multiplication of two elements $X,Y \in GF(2^{128}) $ 
+    - $X \oplus Y $ 
+      : The addition of X and Y. Addition in this field is equivalent to the bitwise exclusive-or operation.
 
 其他的函数，如
-- <img src="http://chart.googleapis.com/chart?cht=tx&chl= MSB_t(S)" style="border:none;">:
-  reuturns the bit string containing only the most significant (leftmost) t bits of S, and the symbol {} denotes
+- $MSB_{t}(S) $
+  : Reuturns the bit string containing only the most significant (leftmost) t bits of S, and the symbol {} denotes
   the bit string with zero length.
 
 ### 2.2 GCM 中的加密和解密
@@ -89,17 +88,14 @@ GCM 的加密操作主要由 counter mode of encryption 和 Galois mode of authe
 ![GCM basic operation](https://upload.wikimedia.org/wikipedia/commons/6/6a/GCM-Galois_Counter_Mode.svg)
 
 The authneticated encryption is defined by the following equations:
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= H = E(K, 0^{128}) " style="border:none;"> 
->
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= Y_0 = \{ IV \parallel 0^{32}1 , \quad if\quad len(IV) = 96\\ \quad \\ GHASH(H, \{ \quad \}, IV), \quad  otherwise." style="border:none;">
->
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= Y_i = incr(Y_{i-1}) \quad for\quad i = 1, \cdots, n-1" style="border:none;">
->
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= C_i = P_i \oplus E(K, Y_i) \quad for \quad i=1, \cdots, n-1" style="border:none;">
->
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= C_n^\ast = P_n^\ast \oplus MSB_u(E(K, Y_n))" style="border:none;">
->
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= T = MSB_t(GHASH(H, A, C) \oplus E(K, Y_0))" style="border:none;">
+ $$ H = E(K, 0^{128})  $$
+> $$ Y_0 = { IV \parallel 0^{32}1 , \  if\ len(IV) = 96, \ else$$
+> $$ Y_0 = GHASH(H, \ , IV), \   otherwise.$$
+
+$$ Y_i = incr(Y_{i-1}) \ for\  i = 1, \cdots, n-1$$
+$$ C_i = P_i \oplus E(K, Y_i) \ for\  i=1, \cdots, n-1$$
+$$ C_n^\ast = P_n^\ast \oplus MSB_u(E(K, Y_n))$$
+$$ T = MSB_t(GHASH(H, A, C) \oplus E(K, Y_0))$$
 
 上面的公式中的中间的2、3、4、5 是属于CTR mode 的定义，用来加密明文plaintext 的，
 其中用到的符号的含义如下： 
@@ -133,19 +129,17 @@ The authneticated encryption is defined by the following equations:
 
 #### 2.2.2 GCM 中的解密操作
 GCM 的解密操作类似于加密操作，只不过 the hash step 和 encrypt step 的顺序需要倒过来，具体如下：
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= H = E(K, 0^{128}) " style="border:none;"> 
->
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= Y_0 = \{ IV \parallel 0^{32}1 , \quad if\quad len(IV) = 96\\ \quad \\ GHASH(H, \{ \quad \}, IV), \quad  otherwise." style="border:none;">
->
+$$ H = E(K, 0^{128}) $$ 
+
+ <img src="http://chart.googleapis.com/chart?cht=tx&chl= Y_0 = \{ IV \parallel 0^{32}1 , \quad if\quad len(IV) = 96\\ \quad \\ GHASH(H, \{ \quad \}, IV), \quad  otherwise." style="border:none;">
+
 先进行认证，计算出authenticaiton tag T', 判断其是否等于消息中携带的tag T :
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= T^' = MSB_t(GHASH(H, A, C) \oplus E(K, Y_0))" style="border:none;">
->
+$$ T^' = MSB_t(GHASH(H, A, C) \oplus E(K, Y_0)) $$
+
 然后，对密文进行解密：
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= Y_i = incr(Y_{i-1}) \quad for\quad i = 1, \cdots, n-1" style="border:none;">
->
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= P_i = C_i \oplus E(K, Y_i) \quad for \quad i=1, \cdots, n-1" style="border:none;">
->
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= P_n^\ast = C_n^\ast \oplus MSB_u(E(K, Y_n))" style="border:none;">
+$$ Y_i = incr(Y_{i-1}) \  for\  i = 1, \cdots, n-1$$
+$$ P_i = C_i \oplus E(K, Y_i) \  for\  i=1, \cdots, n-1$$
+$$ P_n^\ast = C_n^\ast \oplus MSB_u(E(K, Y_n))$$
 
 
 
@@ -204,17 +198,15 @@ This method is identical to Algorithm 1, but is defined in terms of elements ins
 #### 2.3.2 计算tag 的 GHASH 函数中的有限域运算
 GCM 算法中使用到的有限域 GF(2^128), 即阶数为 <img src="http://chart.googleapis.com/chart?cht=tx&chl= 2^{128} " style="border:none;">
 的有限域， 其多项式模运算中的除数使用了如下的多项式：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large GF(2^{128}) = x^{128} %2B x^7 %2B x^2 %2B x %2B 1" style="border:none;">
+$$ GF(2^{128}) = x^{128} + x^7 + x^2 + x + 1 $$
 
 换句话说，GCM 算法中的有限域上的乘法运算的key feture 是元素，（对应上面的多项式的系数，除了X^128）：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl= R = 1110001\parallel 0^{120}" style="border:none;">, 其中最左边的位是 X_0, 最右边的位是 X_127
+$$ R = 1110001\parallel 0^{120} $$
+其中最左边的位是 X_0, 最右边的位是 X_127
 
 The MAC / authentication tag is constructed by feeding blocks of data into the GHASH function and encrypting the result.
 GHASH 函数可以定义为：
-
-<img src="http://chart.googleapis.com/chart?cht=tx&chl=\Large GHASH(H, A, C) = X_{m %2B n %2B 1}" style="border:none;">
+$$ GHASH(H, A, C) = X_{m + n + 1}$$
 
 其中，
 - H 是 hash key, a string of 128 zero bits encrypted using the block cipher (AES/DES)
@@ -230,6 +222,7 @@ GHASH 函数可以定义为：
 图中的mult 表示 GF(2^128) 域上的乘法，H 表示用于计算MAC的秘钥， mult H 这表示乘以 GHASH函数中的秘钥H。
 此外，值得注意的是，😜 MAC 算法 GHASH 是计算<font color="orange">密文的MAC (不是明文哦😯)</font>的（因此，这属于之前说过的 Authentication Encryption 中的EtM 模式）
 则上面的公式表示，
+
 1. 先对于大小约为m个128位分组的 Auth_Data (AEAD 中的 associated data) 做
   <img src="http://chart.googleapis.com/chart?cht=tx&chl= GHASH_H^'(0,\/ authdata\/A) " style="border:none;"> 
  运算（对应上面的公式中的前三条），
@@ -251,12 +244,8 @@ GHASH 函数可以定义为：
   最后的计算结果就是用来认证的authentication tag (MAC)
 
 其实总的运算可以表示为，
-
-> <img src="http://chart.googleapis.com/chart?cht=tx&chl= \Large GHASH_H^'(0,\/ A^' \parallel C^' \parallel len(A) \parallel len(C)) " style="border:none;"> 
->
->  <img src="http://chart.googleapis.com/chart?cht=tx&chl=  = \quad  GHASH_H^'(0, \/ S) " style="border:none;">
->
->  <img src="http://chart.googleapis.com/chart?cht=tx&chl=   = (S_1 \cdot H^{m%2Bn%2B1}) \oplus (S_2 \cdot H^{m%2Bn}) \oplus \ldots \oplus (S_{m%2Bn%2B1} \cdot H) " style="border:none;"> 
+$$ GHASH_H^'(0,\/ A^' \parallel C^' \parallel len(A) \parallel len(C))   =   GHASH_H^'(0, \/ S) $$ 
+$$ = (S_1 \cdot H^{m+n+1}) \oplus (S_2 \cdot H^{m+n}) \oplus \ldots \oplus (S_{m+n+1} \cdot H) $$ 
 
 其中，有两点要说明：
 - H表示GHASH函数的秘钥， 0表示初始化的X_0的值，A' 和 C' 则分别表示在A和C右边补0的变种（最后一个分组均要通过补0达到128位😀）;
@@ -714,3 +703,5 @@ func (hc *halfConn) decrypt(b *block) (ok bool, prefixLen int, alertValue alert)
 ## 资料汇总
 1. NIST GCM : http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-revised-spec.pdf
 
+[1]: https://en.wikipedia.org/wiki/Galois/Counter_Mode "Galois Counter Mode"
+[2]: http://csrc.nist.gov/groups/ST/toolkit/BCM/documents/proposedmodes/gcm/gcm-revised-spec.pdf "GCM Specification"

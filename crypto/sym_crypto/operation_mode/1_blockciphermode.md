@@ -1,11 +1,11 @@
 # Crypto 学习札记之 Operation Modes of Block Cipher
-密码学中，a <b>mode of operation</b> 是一个使用[block cipher](https://en.wikipedia.org/wiki/Block_cipher)
+密码学中，a <b>mode of operation</b> 是一个使用[block cipher][1] 
 来提供confidentiality 或者 authenticity 服务的。block cipher 自身只适合对于一个固定长度的块进行加密或者解密操作，
 而 a mode of operation 提供了如何重复地将一个cipher的单个块操作转化为适应大量的数据（包含多个块）。
 因此，对于变长的消息，它需要先划分为固定长度的blocks, 应用block cipher中的加密操作，生成cipher blocks, 然后再结合
 某种连接模式，将这些cipher blocks连接起来，生成最终的密文。
 
-常见的[block cipher mode of operation](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) 有：
+常见的[block cipher mode of operation][2] 有：
 
 1. Electornic Codebook (ECB)，
   最简单的mode, 对于加密，The message is divided into blocks, and each block is encrypted separately. 然后再把各个密文块连接起来。
@@ -46,7 +46,7 @@ Initialization vector (IV), 是各个模式中用来初始化加密操作的变�
 另外，必须得注意，与mode结合使用的block cipher，按照传统，如果是当成block cipher来使用的话，即是对明文进行进行fixed-size分组，
 故通常最后一块需要padding to fixed size; 但是如果把block cipher 当成stream cipher来使用（即不对明文进行分组），则不需要打补丁。
 
-## 1. Block Cipher 与 Block Mode
+## Block Cipher 与 Block Mode
 密码学中，a <b>block cipher</b> 是一个针对固定长度的block进行加密或者解密的deterministic algorithm，其中加密或者解密是由一个对称密钥决定的。
 Block ciphers 是密码学协议中的基本组件。而Block Mode 则定义了将大的message进行切分成blocks，结合Block cipher对于单个block的加密与解密，选择某种
 方式将这些blocks链接成最终的密文或者明文。
@@ -66,7 +66,7 @@ $$ E_k^{-1}(C) := D(C, K) : \{0, 1\}^n \times \{0, 1\}^k \rightarrow \{0, 1\}^n 
 
 $$ \forall{K} : D_K(E_K(P)) = P $$
 
-### 1.1 Block Cipher 实现
+### Block Cipher 实现
 可以将Block cipher 定义成接口，如下
 ```golang
 // A Block represents an implementation of block cipher
@@ -86,7 +86,7 @@ type Block interface {
 	Decrypt(dst, src []byte)
 }
 ```
-### 1.2 Block Mode的实现
+### Block Mode的实现
 
 block cipher mode of operation 可以定义为统一的接口，其中的`CryptBlocks`既可以是加密亦可以是解密操作，
 如下：
@@ -104,3 +104,5 @@ type BlockMode interface {
 }
 ```
 
+[1]: https://en.wikipedia.org/wiki/Block_cipher "Block Cipher"
+[2]: https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation "Block Cipher Mode of Operation"

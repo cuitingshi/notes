@@ -139,7 +139,7 @@ func (c *Cipher) XORKeyStream(dst, src []byte) {
 }
 ```
 
-对应 [AMD64 处理器上的汇编语言的优化版](http://www.zorinaq.com/papers/rc4-amd64.html)实现如下：
+对应 [AMD64 处理器上的汇编语言的优化版][1]实现如下：
 ```arm
 // RC4 implementation optimized for AMD64 processors.
 TEXT .xorKeyStream(SB),NOSPLIT, $0
@@ -289,3 +289,4 @@ finished:
 首先调用rc4包中的`func NewCipher(key []byte) (*Cipher, error)`新生成一个Cipher, 
   然后调用`func (c *Cipher) XORKeyStream(dst, src []byte)`进行加密或者解密
 
+[1]: http://www.zorinaq.com/papers/rc4-amd64.html "RC4 Algorihm Optimized Implementation for Processor AMD64"

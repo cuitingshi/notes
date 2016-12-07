@@ -29,15 +29,15 @@ or other random events to give different sequences every time it is used.
   - 非对称密码
   - 哈希函数或者消息验证码
 
-不过现有的编程语言主要使用了下面[两类来生成随机数](http://rosettacode.org/wiki/Random_number_generator_(included))： 
+不过现有的编程语言主要使用了下面[两类来生成随机数][1]： 
 1. Linear Congruential Generator (LCG), 即线性同余发生器
 2. Generalized Feedback Shift Register (GFSR), 它还有个衍生出来的子类： the Mersenne twister
 
 The last main type is where the output of one of the previous ones (typically a Mersenne twister) is fed 
 through a cryptographic hash function to maximize unpredictability of individual bits. 
 
-## 1. 特意构造的随机数生成算法
-### 1.1 Linear Congruential Generator
+## 特意构造的随机数生成算法
+### Linear Congruential Generator
 所有的 LCG 均使用如下的公式：
 $$ r_{n + 1} = a \times r_n + c (\ mod\  m)$$
 
@@ -90,7 +90,7 @@ inline int rand()
 #endif /* MS rand */
 ```
 
-### 1.2 [Blum-Blum-Shub 生成器](http://diamond.boisestate.edu/~liljanab/ISAS/course_materials/BBSpresentation.pdf)
+### [Blum-Blum-Shub 生成器][2]
 Blum prime number x: x 是素数，且 x mod 4 = 3
  
 
@@ -116,9 +116,9 @@ func BBS(p, q int) int {
 
 ```
 
-其实使用BBS还可以作为一种加密、解密方案，具体可以参看该[课程资料](http://diamond.boisestate.edu/~liljanab/ISAS/course_materials/BBSpresentation.pdf)
+其实使用BBS还可以作为一种加密、解密方案，具体可以参看该[课程资料][2]
 以及 Pascal Junod 发表的论文
-[Cryptographic Secure Pseudo-Random Bits Generation : The Blum-Blum-Shub Generator](http://www.cs.miami.edu/home/burt/learning/Csc609.062/docs/bbs.pdf)
+[Cryptographic Secure Pseudo-Random Bits Generation : The Blum-Blum-Shub Generator][3]
 
 
 其中，秘钥是两个 Blum prime numbers, p 和 q; 公钥是 n = p * q;
@@ -133,11 +133,11 @@ func BBS(p, q int) int {
 但是，怎么从 x_{n+1}、p、q 解密出 x_n 呢？？🤔
 
 如果想要了解背后的数论知识（涉及到 Quadratic Residues、Legendre symbol、Jacobi symbol、Fermat Little Theorem 及相关的定理），
-可以看一下[Pascal Junod 的论文的第三节 The Blum-Blum-Shub Generator](http://www.cs.miami.edu/home/burt/learning/Csc609.062/docs/bbs.pdf)
+可以看一下[Pascal Junod 的论文的第三节 The Blum-Blum-Shub Generator][3]
 
 
 
-### 1.3 Linear-Feedback Shift Register (LFSR)
+### Linear-Feedback Shift Register (LFSR)
 一个反馈移位寄存器有两大部分：
 - 移位寄存器
 - 反馈函数
@@ -153,11 +153,11 @@ affect the next state are called the taps. 称之为 taps）得到。
 而后者是采用taps序列指定的每一位与移位寄存器做异或，然后取代taps序列中指定的bits，
 
 
-#### [Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister)
+#### [Mersenne Twister][4]
 
 
-## 2. 基于现有密码算法的PRNG
-### 2.1 基于分组密码的PRNG
+## 基于现有密码算法的PRNG
+### 基于分组密码的PRNG
 其实前面在Block cipher 中的CTR 和 OFB 模式中就用到了，每种情况里， seed 由两部分组成：
 - 加密秘钥值
 - 没产生一个随机数分组后都要更新的V 值
@@ -167,9 +167,9 @@ affect the next state are called the taps. 称之为 taps）得到。
 两种情况下，每次都是生成一个伪随机位分组（如果加密部分使用的是AES，则是128位的伪随机分组）。
 这两部分可以回去参考一下之前写的笔记。
 
-### 2.2 基于 3DES 加密的 ANSI X9.17 PRNG
+### 基于 3DES 加密的 ANSI X9.17 PRNG
 
-ANSI_X9.17 伪随机发生器使用了 3DES 加密， 该算法主要在金融安全应用及PGP中所使用[算法流程](http://www.hit.bme.hu/~buttyan/courses/Revkomarom/prng.pdf).
+ANSI_X9.17 伪随机发生器使用了 3DES 加密， 该算法主要在金融安全应用及PGP中所使用[算法流程][5].
 
 ANSI_X9.17 PRNG 的算法和工作流程如下图所示，其中 K 是加密算法 3DES 的秘钥
 
@@ -177,10 +177,14 @@ ANSI_X9.17 PRNG 的算法和工作流程如下图所示，其中 K 是加密算�
 
 
 
-## 3. 基于哈希函数的 PRNG
-### 3.1 DSA PRNG
+## 基于哈希函数的 PRNG
+### DSA PRNG
 DSA PRNG 是基于哈希函数来生成伪随机数的，算法及流程图如下：
 
 ![DSA PRNG](image/dsa_prng.png)
 
-
+[1]: http://rosettacode.org/wiki/Random_number_generator_(included) "Randome Number Generator"
+[2]: http://diamond.boisestate.edu/~liljanab/ISAS/course_materials/BBSpresentation.pdf "Blum-BLum-Shub Encryption Scheme"
+[3]: http://www.cs.miami.edu/home/burt/learning/Csc609.062/docs/bbs.pdf "Blum-Blum-Shub"
+[4]: https://en.wikipedia.org/wiki/Mersenne_Twister "Mersenne Twister"
+[5]: http://www.hit.bme.hu/~buttyan/courses/Revkomarom/prng.pdf "PRNG Overview"

@@ -1,5 +1,5 @@
 ## Grpc -- gRPC Authentication
-gRPC支持两种[认证机制](http://www.grpc.io/docs/guides/auth.html)，一是SSL/TLS, 另外一种是Token-based authentication with Google.
+gRPC支持两种[认证机制][1]，一是SSL/TLS, 另外一种是Token-based authentication with Google.
   
 ### Authentication API
 
@@ -9,7 +9,7 @@ gRPC支持两种[认证机制](http://www.grpc.io/docs/guides/auth.html)，一�
 - Channel Credentials: 用于Channel认证，比如SSL credentials
 - Call Credentials: 用于函数调用认证，比如C++中的ClientContext
 
-其中，对于go语言，[package credentials](https://godoc.org/google.golang.org/grpc/credentials#PerRPCCredentials)
+其中，对于go语言，[package credentials][2] 
 实现了gRPC库所支持的credentials。
 
 ### Client端使用SSL/TLS
@@ -172,8 +172,7 @@ func NewServerTLSFromFile(certFile, keyFile string) (TransportCredentials, error
 func NewTLS(c *tls.Config) TransportCredentials
 ```
 
-要想具体了解TLS,还得去看一下[package crypto/tls](https://godoc.org/crypto/tls#Config)
-以及[TLS 协议](https://tools.ietf.org/html/rfc5246)😁
+要想具体了解TLS,还得去看一下[package crypto/tls][3] 以及 [TLS 协议][4]😁
 
 BTW, 接口`TransportCredentials`已经由tlsCreds实现了,
 其重用可以参见hyperledger/fabric/gossip/comm/crypto.go,
@@ -238,3 +237,7 @@ func (c *tlsCreds) ServerHandshake(rawConn net.Conn) (net.Conn, AuthInfo, error)
 }
 ```
 
+[1]: http://www.grpc.io/docs/guides/auth.html "GRPC authentication guide"
+[2]: https://godoc.org/google.golang.org/grpc/credentials#PerRPCCredentials "gRPC authentication credential"
+[3]: https://godoc.org/crypto/tls#Config "go package crypto/tls"
+[4]: https://tools.ietf.org/html/rfc5246 "rfc5246 The Transport Layer Security Protocol"

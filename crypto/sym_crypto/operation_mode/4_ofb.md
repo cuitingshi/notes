@@ -1,5 +1,5 @@
 # Crypto 学习札记之 Operation Modes of Block Cipher
-## 4. Block Mode 之 Output Feedback (OFB)
+## Block Mode 之 Output Feedback (OFB)
 The <font color="red">*Output Feedback*</font> (OFB) mode makes a block cipher into a syncrhonous stream cipher.
 OFB 首先生成keystream blocks, 然后再跟plaintext blocks 做异或操作生成密文。
 由于异或操作的对称性，加密操作和解密操作实际上是一样的。
@@ -16,7 +16,7 @@ $$ I_j = E_K(I_{j-1}) \ where\  I_0 = IV$$
 
 值得注意的是，上面的加密解密操作中异或的对象都是
 <img src="http://chart.googleapis.com/chart?cht=tx&chl= E_K(I_{j-1}) " style="border:none;">
-, 这样子的话，就赤裸裸地变成了[stream cipher](https://en.wikipedia.org/wiki/Stream_cipher), 有木有有木有😉
+, 这样子的话，就赤裸裸地变成了[stream cipher][1], 有木有有木有😉
 
 
 
@@ -29,11 +29,11 @@ $$ I_j = E_K(I_{j-1}) \ where\  I_0 = IV$$
 ![Output FeedBack (OFB) mode decryption](https://upload.wikimedia.org/wikipedia/commons/f/f5/OFB_decryption.svg)
 
 
-### 4.0 题外话 -- stream cipher
+### 题外话 -- stream cipher
 A stream cipher is a symmetric key cipher where plaintext digits are combined with a pseudorandom cipher digit stream (keystream).
 其中的combining 操作通常是采用异或运算。
 
-此外，其中的[keystream](https://en.wikipedia.org/wiki/Keystream)指的是a stream of random or pseudorandom characters that are combined
+此外，其中的[keystream][2] 指的是a stream of random or pseudorandom characters that are combined
 with a plaintext message to produce an encrypted message (the ciphertext)。值得注意的是，keystream 中的 characters 可以是bits, bytes, numbers,
 也可以是实际的字符（比如A-Z），keystream 是依使用情况而定的。
 
@@ -52,7 +52,7 @@ type Stream interface {
 
 ```
 
-### 4.1 cipher包中对于OFB  mode encryption 和 decryption 的实现
+### cipher包中对于OFB  mode encryption 和 decryption 的实现
 注意到之前的CFB的数学定义中的加密和解密操作中，
 异或的对象均是经过最初的 `IV` 经过加密逐步演进而来的, 对于明文<img src="http://chart.googleapis.com/chart?cht=tx&chl= P_j" style="border:none;">
  或者密文<img src="http://chart.googleapis.com/chart?cht=tx&chl= C_j" style="border:none;">
@@ -126,7 +126,7 @@ func (x *ofb) XORKeyStream(dst, src []byte) {
 }
 ```
 
-### 4.2 OFB模式的使用
+### OFB模式的使用
 前面已经说明了OFB模式会使得block cipher 变成一个 stream cipher，
 注意下面如何使用OFB进行加密和解密操作, 区别只在于输入的数据是明文数据还是密文数据, 统一的都是调用`NewOFB(b Block, iv []byte)`来生成Strem
 接口，然后再调用 ofb 对于 Stream 接口的实现中的 `XORKeyStream` 方法，进行相应的加密或者解密操作
@@ -165,4 +165,5 @@ func NewOFB(b Block, iv []byte) Stream {
 }
 
 ```
-
+[1]: https://en.wikipedia.org/wiki/Stream_cipher "Stream Cipher"
+[2]: https://en.wikipedia.org/wiki/Keystream "Key Stream"

@@ -1,20 +1,19 @@
-# GO GRPC 学习札记
-
 > 2016年11月17日 星期四 18时48分47秒 CST
 
+# GO GRPC 学习札记
+## :blush: 如何使用
 
-## 如何使用
 generate codes from .proto file: 
 
 `$ protoc -I IMPORT_DIR PROTO_FILE --go_out=plugins=grpc:EXPORT_DIR`
 
-### [定义一个gRPC](http://www.grpc.io/docs/tutorials/basic/go.html)
+### [定义一个gRPC][1] 
 总共有四种rpc methods 可以定义
 
-* [The Simple RPC](method/simple.md)
-* [Server-side Streaming RPC](method/serverstream.md)
-* [Client-side Streaming RPC](method/clientstream.md)
-* [Bidirectional Streaming RPC](method/bistream.md)
+* [The Simple RPC][2] 
+* [Server-side Streaming RPC][3] 
+* [Client-side Streaming RPC][4]
+* [Bidirectional Streaming RPC][5]
 
 
 ### 最后的工作
@@ -52,7 +51,7 @@ var _RouteGuide_serviceDesc = grpc.ServiceDesc{
 ```
 
 ## gRPC Authentication 
-* [gRPC Authentication](grpc_auth.md)
+* [gRPC Authentication][6] 
 
 ## 汇总
 1. 定义gRPC: http://www.grpc.io/docs/tutorials/basic/go.html
@@ -61,3 +60,11 @@ var _RouteGuide_serviceDesc = grpc.ServiceDesc{
 4. package credentials: https://godoc.org/google.golang.org/grpc/credentials#PerRPCCredentials
 5. go中TLS实现,package crypto/tls: https://godoc.org/crypto/tls#Config
 6. TLS 协议: https://tools.ietf.org/html/rfc5246
+
+[1]: http://www.grpc.io/docs/tutorials/basic/go.html "gRPC 基础教程--go 语言版"
+[2]: method/simple.md
+[3]: method/serverstream.md
+[4]: method/clientstream.md
+[5]: method/bistream.md
+[6]: grpc_auth.md
+

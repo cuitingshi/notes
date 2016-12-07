@@ -65,7 +65,7 @@ Cryptographic hash functions 在信息安全中应用广泛，比如 digital sig
 2. Password verification, 可以利用这类函数计算出每个 password 的 hash digest, 然后存储到数据库中，这样就可以减少存储明文密码带来的风险了。
     不过在实际中，通常还会将password 连接上 a random, non-secet <font color="red">salt</font> ，然后存储的是 hash(password_salt)，
     因为对于不同的用户，其 password 是不一样的，因此可以进一步降低通过提前计算出常见的密码的哈希值来盗取用户的账户。
-3. Proof-of-work, [proof-or-work system](https://en.wikipedia.org/wiki/Proof-of-work_system) (or protocol, or function) 
+3. Proof-of-work, [proof-or-work system][1] (or protocol, or function) 
      require some work from service requester (通常是指服务请求者需要耗费一定的处理时间)  ，
      从而可以抵制 denial of service attacks 和其他的service abuses such as spam o a network 的。
      工作量证明机制中有一个明显的“不公平”😉的特性，
@@ -257,3 +257,4 @@ type Writer interface {
 
 ```
 
+[1]: https://en.wikipedia.org/wiki/Proof-of-work_system "Proof of Work System"

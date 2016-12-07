@@ -1,5 +1,5 @@
 ## The Euclidean Algorithm 欧几里得算法
-[欧几里得算法](https://en.wikipedia.org/wiki/Euclidean_algorithm)是用来计算两个数的最大公约数的
+[欧几里得算法][1] 是用来计算两个数的最大公约数的
 
 欧几里德定理可以表示如下：
 $$ 
@@ -219,3 +219,5 @@ func gcdStein( a, b int) int {
 ## 汇总
 1. Euclidean Algorithm: https://en.wikipedia.org/wiki/Euclidean_algorithm
 2. Euclidean Algorithm，Stein Algorithm, Extended Euclidean Algorithm: https://xuanwo.org/2015/03/11/number-theory-gcd/
+
+[1]: https://en.wikipedia.org/wiki/Euclidean_algorithm "Euclidean Algorithm"

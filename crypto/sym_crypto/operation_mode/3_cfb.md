@@ -1,5 +1,5 @@
 # Crypto 学习札记之 Operation Modes of Block Cipher
-## 3. Block Mode 之 Cipher Feedback (CFB)
+## Block Mode 之 Cipher Feedback (CFB)
 首先来看看 CFB 的定义, CFB 加密的数学定义如下：
 $$ C_i = E_K(C_{i-1}) \oplus P_{i}, \ where\  C_0 = IV$$
 
@@ -8,7 +8,7 @@ $$ P_i = E_K(C_{i-1}) \oplus C_{i} \ where\  C_0 = IV$$
 
 注意，上面的加密解密操作中异或的对象都是
 <img src="http://chart.googleapis.com/chart?cht=tx&chl= E_K(C_{i-1}) " style="border:none;">
-, 这样子的话，就赤裸裸地变成了[stream cipher](https://en.wikipedia.org/wiki/Stream_cipher), 有木有有木有😉
+, 这样子的话，就赤裸裸地变成了[stream cipher][1], 有木有有木有😉
 
 另外，CFB (还有 OFB 和 CTR，它们的共同点都是将一个block cipher 转换成了一个stream cipher) 相比于 CBC 模式，主要有两个优点：
 1. the block cipher is only ever used in the encrypting direction,
@@ -24,11 +24,11 @@ $$ P_i = E_K(C_{i-1}) \oplus C_{i} \ where\  C_0 = IV$$
 ![Cipher FeedBack (CFB) mode decryption](https://upload.wikimedia.org/wikipedia/commons/5/57/CFB_decryption.svg)
 
 
-### 3.0 题外话 -- stream cipher
+### 题外话 -- stream cipher
 A stream cipher is a symmetric key cipher where plaintext digits are combined with a pseudorandom cipher digit stream (keystream).
 其中的combining 操作通常是采用异或运算。
 
-此外，其中的[keystream](https://en.wikipedia.org/wiki/Keystream)指的是a stream of random or pseudorandom characters that are combined
+此外，其中的[keystream][2] 指的是a stream of random or pseudorandom characters that are combined
 with a plaintext message to produce an encrypted message (the ciphertext)。值得注意的是，keystream 中的 characters 可以是bits, bytes, numbers,
 也可以是实际的字符（比如A-Z），keystream 是依使用情况而定的。
 
@@ -47,7 +47,7 @@ type Stream interface {
 
 ```
 
-### 3.1 cipher包中对于CFB mode encryption 和 decryption 的实现
+### cipher包中对于CFB mode encryption 和 decryption 的实现
 注意到之前的CFB的数学定义中的加密和解密操作中，
 均是异或上前一个密文块经key加密后的块<img src="http://chart.googleapis.com/chart?cht=tx&chl= E_K(C_{i-1}) " style="border:none;">
 ,  因此，这个就可以当做一个stream cipher 了，
@@ -98,7 +98,7 @@ func (x *cfb) XORKeyStream(dst, src []byte) {
 }
 ```
 
-### 3.2 CFB模式的使用
+### CFB模式的使用
 前面已经说明了CFB模式会使得block cipher 变成一个 stream cipher，
 注意下面如何使用CFB进行加密和解密操作,
 
@@ -142,3 +142,5 @@ func newCFB(block Block, iv []byte, decrypt bool) Stream {
 }
 ```
 
+[1]: https://en.wikipedia.org/wiki/Stream_cipher "Stream Cipher"
+[2]: https://en.wikipedia.org/wiki/Keystream "Key Stream"

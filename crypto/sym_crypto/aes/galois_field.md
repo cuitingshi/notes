@@ -1,13 +1,13 @@
 # Galois Field Multiplication 实现算法
 有限域 $GF(2^{n}) $
-上的乘法运算可以利用 [Peasant or binary multiplication algorithm](https://en.wikipedia.org/wiki/Multiplication_algorithm#Peasant_or_binary_multiplication)
+上的乘法运算可以利用 [Peasant or binary multiplication algorithm][1]
 来实现，下面先来说一下Peasant's algorithm
 
-## 1. Peasant's Algorithm
+## Peasant's Algorithm
 不得不说，这个算法简直是二进制系统的鼻祖吖😂，其实它就是简单粗暴地每次只乘以2（对应移位操作），如果有余数则需要执行加法操作.
-具体的数学运算见[Russian Peasant Multiplication](http://www.cut-the-knot.org/Curriculum/Algebra/PeasantMultiplication.shtml)。
+具体的数学运算见[Russian Peasant Multiplication][2]。
 
-下面来说一下作为算法的[Russian Peasant's Algorithm](http://www.cs.yale.edu/homes/aspnes/pinewiki/RussianPeasantsAlgorithm.html),
+下面来说一下作为算法的[Russian Peasant's Algorithm][3],
 
 基本的思想是如果要计算n\*m, 则可以转换为如下的运算：
 - 如果n是偶数， 则可以转换为计算 $\frac{n}{2} \ast 2m $
@@ -37,7 +37,7 @@ func RussianPeasantMultiply(n, m int) int{
 如果仅仅将上述思想仅仅用于简单的算术运算的话，那么就有点浪费人才了😂，
 其实在polynomial arithmetic, modular arithmetic, 有限域 $GF(2^{n}) $
 上的乘法运算它都可以大展身手的，
-[戳这里](https://www.embeddedrelated.com/showarticle/760.php)
+[戳这里][4]
 
 1. 用来计算 interger exponentiation : \\
   - 如果 m 是偶数，则有 $n^{m} = (n \times n)^{\frac{m}{2}} $
@@ -71,8 +71,8 @@ func RPexp(n, m int) int {
   ```
 
 
-## 2. Galois Field GF(2^N) 上的运算
-### 2.1 乘法运算
+## Galois Field GF(2^N) 上的运算
+### 乘法运算
 有限域GF(2^N) 上的乘法运算是多项式取模运算, 即乘法的结果如果大于2^N，则需要将该结果 modulo 不可约减多项式p(x), 可以表示如下：
 
 $$
@@ -84,7 +84,7 @@ $$
 $$ n \cdot m = ( \sum_{i=0}^N{n_i x^i} ) \ast ( \sum_{i=0}^N{m_i  x^i}), if \ n \ast m \ge 2^N $$
 
 
-### 2.2 加减法运算 
+### 加减法运算 
 有限域GF(2^N) 上的加法运算和减法运算都是系数运算，其中每个系数进行普通的加减、然后模以2的运算, 即 $$(m_{i} + n_{i}) \% 2 $$
 
 因此，有限域GF(2^N) 的加法、减法运算是等同于异或运算的,下面用公式来表示一下该有限域上的加法运算和减法运算。
@@ -100,7 +100,7 @@ $$ n \dot - m = \sum_{i=0}^N{(n_i -  m_i) \% 2 \ast x^i} = \sum_{i=0}^N{n_i \opl
 $$ n \dot + m =  n \dot - m $$
 
 
-## 3. Rijndael Finite Field Multiplication 实现算法
+## Rijndael Finite Field Multiplication 实现算法
 Rijndael 有限域其实是乘法运算中使用不可约减多项式<img src="http://chart.googleapis.com/chart?cht=tx&chl= p(x) = x^8 %2B x^4 %2B x^3 %2B x^1 %2B 1" style="border:none;"> 的
 Galois Field <img src="http://chart.googleapis.com/chart?cht=tx&chl= GF(2^8)" style="border:none;"> 
 该有限域上的乘法运算可以表示如下：
@@ -126,7 +126,7 @@ n \cdot m = \sum_{i=0}^7{n_i x^i}\   \dot +  \ [ (\sum_{i=0}^7{n_i x^i}) \cdot x
 n \cdot m = n \dot + (n \cdot x) \cdot ( (m \dot - 1) \div x)
 $$
 
-因此，可以实现如下, 算法的文字版见[此材料中的Multiplication 下的Rijndael's finite field 的描述](https://en.wikipedia.org/wiki/Finite_field_arithmetic#Rijndael.27s_finite_field)：
+因此，可以实现如下, 算法的文字版见[此材料中的Multiplication 下的Rijndael's finite field 的描述][5]：
 ```golang
 // 有限域GF(2^n)上的乘法，其中不可约减多项式是 p(x) = x^n + r(x)
 // 计算 n * m mod p
@@ -157,3 +157,9 @@ func RPMultRijndaelField(n, m) {
 
 有没有用简单的Russian Peasant's Multiplication 的思想来实现有限域GF(2^N) 上的乘法，
 再结合移位操作来实现很巧妙啊😉，其实GCM的实现中也用到的哦
+
+[1]: https://en.wikipedia.org/wiki/Multiplication_algorithm#Peasant_or_binary_multiplication "Russian Peasant Multiplication"
+[2]: http://www.cut-the-knot.org/Curriculum/Algebra/PeasantMultiplication.shtml "Peasant Multiplication"
+[3]: http://www.cs.yale.edu/homes/aspnes/pinewiki/RussianPeasantsAlgorithm.html "Russian Peasant Algorithm"
+[4]: https://www.embeddedrelated.com/showarticle/760.php "Russian Peasant Algorithm 应用"
+[5]: https://en.wikipedia.org/wiki/Finite_field_arithmetic#Rijndael.27s_finite_field "Rijndael Finite Field"

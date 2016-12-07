@@ -10,7 +10,7 @@ DES 由 IP、16轮转换运算、FP 这三种操作组成，如下图所示。
   中间的16轮都是相同的过程😂
 3. FP: 最后再将两个32位分组转换为计算机硬件存储中以字节为单位的类型--8个bytes
 
-注意，图中的IP、FP的具体的置换规则可以参看[此材料中的 Initial permutation (IP) 和 Final permutation (FP)](https://en.wikipedia.org/wiki/DES_supplementary_material),
+注意，图中的IP、FP的具体的置换规则可以参看[此材料中的 Initial permutation (IP) 和 Final permutation (FP)][1],
 IP 的实现代码可以见[DES 实现之 Initial Permutation](#imp_ip),
 FP 的实现代码可以见[DES 实现之 Final Permutation](#imp_fp)
 
@@ -28,16 +28,16 @@ The F-function, 每次作用于半个分组上(32 bits) ，总共有四个阶段
 
 1. Expansion: 使用 expansion permutation(对应图中的 E) 将32位的half-block 转换为48位. 具体为duplicate half of the bits. 输出为 eight 6-bit (8\*6=48 bits) pieces, 
    each containing a copy of 4 corresponding input bits, plus a copy of the immediately adjacent bit from each of the input pieces to either side.
-   具体的扩展规则见[此材料中的 Expansion function (E)](https://en.wikipedia.org/wiki/DES_supplementary_material)
+   具体的扩展规则见[此材料中的 Expansion function (E)][1] 
 2. Key mixing: 上一步的48位输出跟一个48位的subkey 做异或操作。 注意16轮中都有一个subkey, 这些subkeys 均是对 the main key 使用 key schedule 生成的。
 3. Substitution: 跟subkey 做完异或操作后， the block is divided into eight 6-bit pieces before processing by the S-boxes, or substitution boxes. 
    每个S-boxes 都是根据 lookup table 中的肥西那行转换将 the <b>six</b> input bits 转换为 the <b>four</b> ouput bits. 
    S-boxes 保障了 DES 的安全性. 
-   8个S-boxes的替换规则可以参看[此材料中的 Substitution boxes (S-boxes)](https://en.wikipedia.org/wiki/DES_supplementary_material), 
+   8个S-boxes的替换规则可以参看[此材料中的 Substitution boxes (S-boxes)][1], 
    其实这个相当于古典密码中的8\*单表替代密码😂
 4. Permutation: 上一步的8个 S-boxes 输出是32 bits. The 32 outputs from the S-boxes are rearranged according to a fixed permutation, the P-box. T
     his is designed so that, after permutation, each S-box's output bits are spread across four different S boxes in the next round.
-    具体的置换规则的定义可以参看[此材料中的Permution (P) 下的表](https://en.wikipedia.org/wiki/DES_supplementary_material)，赤裸裸的置换（说实话就是打乱顺序重新排列了一下😂）
+    具体的置换规则的定义可以参看[此材料中的Permution (P) 下的表][1]，赤裸裸的置换（说实话就是打乱顺序重新排列了一下😂）
 
 看到这里，有没有觉得DES 其实就是替换substitution 和 置换 permutation 的组成啊，本质上并没有啥创新的😂
 
@@ -55,7 +55,7 @@ Feistel Function 的实现代码可见<a href="#imp_feistelfunc">这里</a>
 
 另外，解密过程中的 key schedule 也是类似于上面的步骤的，只不过与用于加密的 key schedule 相比，它生成的subkeys 顺序正好颠倒过来。
 图中的PC1 和 PC2 操作中用到的置换表见
-[DES 补充材料中的 Permuted choice 1 (PC-1) 和 Permuted choice 2 (PC-2)](https://en.wikipedia.org/wiki/DES_supplementary_material)，
+[DES 补充材料中的 Permuted choice 1 (PC-1) 和 Permuted choice 2 (PC-2)][1]，
 特别注意到PC-1中只用到了56位，其中的bit 8, 16, 24, 32, 40, 48, 56, 64 这8 ibts 是用于奇偶校验码的😇
 
 ![ The key-schedule of DES](https://upload.wikimedia.org/wikipedia/commons/0/06/DES-key-schedule.png)
@@ -362,4 +362,6 @@ func cryptBlock(subkeys []uint64, dst, src []byte, decrypt bool) {
 
 ## 汇总
 1. DES 中的替换表和置换规则（比如 IP、FP、Expansion function、Permutation 等): https://en.wikipedia.org/wiki/DES_supplementary_material
+
+[1]: https://en.wikipedia.org/wiki/DES_supplementary_material "DES 中各个转换表"
 

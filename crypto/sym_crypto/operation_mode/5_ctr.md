@@ -1,12 +1,12 @@
 # Crypto 学习札记之 Operation Modes of Block Cipher
-## 5. Block Mode 之 Counter Mode (CTR)
+## Block Mode 之 Counter Mode (CTR)
 CTR mode (CM) 有两种模式：
 
 1. interger counter mode (ICM);
 2. segmented integer counter (SIC) mode
 
 Like OFB,  <font color="red">*Counter mode*</font> (CTR mode) makes a block cipher into a syncrhonous stream cipher. 
-It generates the next [key stream](https://en.wikipedia.org/wiki/Keystream) block by encrypting successive values of a 
+It generates the next [key stream][1] block by encrypting successive values of a 
 "counter". The counter can be any function which produces a sequence which is guaranteed not to repeat for a long time, 
   although an actual increment-by-one counter is the simplest and most popular. 
 
@@ -29,11 +29,11 @@ CTR mode 跟 OFB 虽然性质上类型，但是CTR mode 还允许 a random acces
 上边的Nonce 其实相当于其他模式中的initialization vector (IV), 此外值得注意的是,
 CTR mode 中的加密和解密操作都是并行的，这点是非常不同于前面所说的 CBC, CFB, OFB 等模式的。
 
-### 5.0 题外话 -- stream cipher
+### 题外话 -- stream cipher
 A stream cipher is a symmetric key cipher where plaintext digits are combined with a pseudorandom cipher digit stream (keystream).
 其中的combining 操作通常是采用异或运算。
 
-此外，其中的[keystream](https://en.wikipedia.org/wiki/Keystream)指的是a stream of random or pseudorandom characters that are combined
+此外，其中的[keystream][1] 指的是a stream of random or pseudorandom characters that are combined
 with a plaintext message to produce an encrypted message (the ciphertext)。值得注意的是，keystream 中的 characters 可以是bits, bytes, numbers,
 也可以是实际的字符（比如A-Z），keystream 是依使用情况而定的。
 
@@ -52,7 +52,7 @@ type Stream interface {
 
 ```
 
-### 5.1 cipher包中对于CTR  mode encryption 和 decryption 的实现
+### cipher包中对于CTR  mode encryption 和 decryption 的实现
 golang的crypto/cipher包中的ctr.go已经实现了 CTR mode，由于CTR mode 属于stream cipher，加密和解密操作中异或的对象都相同，所以可以实现如下：
 
 ```golang
@@ -133,7 +133,7 @@ func (x *ctr) XORKeyStream(dst, src []byte) {
 }
 ```
 
-### 5.2 CTR mode 的使用
+### CTR mode 的使用
 前面已经说明了 CTR 模式会使得block cipher 变成一个 stream cipher，
 注意下面如何使用CTR mode 进行加密和解密操作, 区别只在于输入的数据是明文数据还是密文数据, 
 不论block cipher 实现CTR mode 与否，均首先需要统一调用`NewCTR(b Block, iv []byte) Stream`来生成Strem
@@ -189,4 +189,4 @@ func NewCTR(block Block, iv []byte) Stream {
 }
 
 ```
-
+[1]: https://en.wikipedia.org/wiki/Keystream "Key Stream"

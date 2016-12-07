@@ -1,14 +1,13 @@
 # google protobuf 学习札记
 
-## [protocol buffers](https://developers.google.com/protocol-buffers/docs/gotutorial)
+## [protocol buffers][1]
 其实google 的protobuf作用有两个：
 1. 通过.proto文件来定义数据结构（它的message类型相当于struct），
 
 2. 然后通过其自带的编译器来生成将该数据结构序列化和反序列化的特定语言（c++, go, java, rugby...）
   的数据结构和方法，然后再通过特定语言下的proto包/库来进行序列化、反序列化方法
 
-## [go中使用protobuf](https://developers.google.com/protocol-buffers/docs/gotutorial)
-
+## [go中使用protobuf][1] 
 ### 定义数据结构.proto
   proto文件开头指定所编译生成的go文件的package的声明，
   ```protobuf
@@ -81,8 +80,7 @@ p := pb.Person{
 来进行序列化，利用`Unmarshal([]byte, pb.Message)error`来进行反序列化了。
 
 
-## [proto的语法](https://developers.google.com/protocol-buffers/docs/proto3)
-
+## [proto的语法][2] 
 ### Message 类型中Field Rules
   - sigular: 直接使用scalar value type 或者 enum, message类型
   - `repeated`: 比如下面的`repeated string snippets = 1;`, `repeated`关键字放在
@@ -578,5 +576,6 @@ proto3还支持json编码，编码规则如下表所示(二者之间是安装类
   - `--go_out=DST_DIR`则会生成GO代码，放在目录DST_DIR里面；
   - 其它语言类似
 
-
+[1]: https://developers.google.com/protocol-buffers/docs/gotutorial "protocol buffer GO 教程"
+[2]: https://developers.google.com/protocol-buffers/docs/proto3 "protocol buffer version 3"
 

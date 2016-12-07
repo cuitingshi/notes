@@ -1,6 +1,6 @@
 # Crypto 学习札记之 Authenticated Encryption 
 
-## 1. [Authenticated encryption](https://en.wikipedia.org/wiki/Authenticated_encryption) 定义
+## 1. [Authenticated encryption][1] 定义
 Authenticated Encryption (AE) 亦称为 Authenticated Encryption with Associated Data (AEAD) ，此种模式既实现了对数据
 加密，又通过将消息结合额外的 associated data 计算得到的 MAC 提供了对消息的认证及数据完整性的保护；
 
@@ -16,9 +16,9 @@ The header part is intended to provide authenticity and integrity protection for
 confidentiality is unnecessary, but authenticity is desired. 比如TLS Record 协议中的 record header.
 
 In addition to protecting message integrity and confidentiality, authenticated encryption can provide plaintext awareness and
-security againts [chosen ciphertext attack](https://en.wikipedia.org/wiki/Chosen-ciphertext_attack).  In these attacks, an 
+security againts [chosen ciphertext attack][2].  In these attacks, an 
 adversary attempts to gain an advantage against a cryptosystem (比如，关于secret decryption key的信息) by submitting carefuly 
-chosen ciphertexts to some ["decryption oracle"](https://en.wikipedia.org/wiki/Padding_oracle_attack) and analyzing the decrypted results.
+chosen ciphertexts to some ["decryption oracle"][3] and analyzing the decrypted results.
 而authenticated encryption scheme 可以识别出那些伪造的ciphertexts，并且拒绝解密它们😏.  This in turn prevents the attacker from requesting 
 the decryption of any ciphertext unless he generated it correctly using the encryption algorithm, which would imply that he already knows
 the plaintext. 
@@ -33,7 +33,7 @@ ISO/IEC 19772:2009 标准中列了六种不同的authenticated encryption modes:
 5. Enrypt-then-MAC (EtM)
 6. Galois/Counter Mode (GCM)
 
-另外，[sponge functions](https://en.wikipedia.org/wiki/Sponge_function) can be used in duplex mode to provide authenticated encryption.
+另外，[sponge functions][4] can be used in duplex mode to provide authenticated encryption.
 
 Many specialized authenticated encryption modes have been developed for use with symmetric block ciphers. 
 但是，其实只要将某种encryption scheme 和 一个MAC结合，便可以组成一种authenticated encryption, 只要满足
@@ -64,5 +64,7 @@ SSL/TLS 中用到了 MtE 方法，首先使用 Key、对明文 plaintext 应用M
 
 ![MAC-then-Encrypt (MtE)](https://upload.wikimedia.org/wikipedia/commons/a/ac/Authenticated_Encryption_MtE.png)
 
-
-
+[1]: https://en.wikipedia.org/wiki/Authenticated_encryption "Authenticated Encryption"
+[2]: https://en.wikipedia.org/wiki/Chosen-ciphertext_attack "Chosen Ciphertext Attack"
+[3]: https://en.wikipedia.org/wiki/Padding_oracle_attack "Padding Oracle Attack"
+[4]: https://en.wikipedia.org/wiki/Sponge_function "Sponge Function"
