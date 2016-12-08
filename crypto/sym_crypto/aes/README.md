@@ -1,4 +1,8 @@
-# Intro
+---
+search: false
+---
+
+# Introduction
  
 The next topic has something to do with Advanced Cryptography Standard.
 

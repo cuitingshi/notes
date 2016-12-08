@@ -8,19 +8,20 @@
     },
     "navigation":true,
     "plugins": [
-        "download-pdf",
         "prettify-html",
-        "comments",
         "advanced-emoji",
         "github",
-        "katex-full",
-        "theme-creative",
         "sharing",
-        "mermaid-gb3",
         "navigator",
         "highlight",
         "livereload",
-        "lunr"
+        "lunr",
+        "anchors",
+        "mermaid-gb3",
+        "katex-full",
+        "theme-creative",
+        "download-pdf",
+        "comments"
     ],
     "pluginsConfig": {
       "sharing":{
@@ -42,6 +43,6 @@
       "lunr":{
         "maxIndexSize": 20000
       }
-
+   
     }
 }

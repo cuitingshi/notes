@@ -1,4 +1,4 @@
-# Intro
+# Introduction
 We'll learn one of the most popular remote procedure call framework in the following section.
 But we need to know the basics of google protocol buffer at first~😁
 

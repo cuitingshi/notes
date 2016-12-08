@@ -1,4 +1,8 @@
-# Intro
+---
+search: false
+---
+
+# Introduction
 
 This section will focus on pseudo random number generator.
 

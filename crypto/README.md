@@ -1,10 +1,15 @@
+---
+search: false
+---
+
 # Introduction
 
 This is the summary of my notes on cryptography
 
 * I. Overview
   * [1. Symmetry Cryptography ](sym_crypto/README.md)
-    * [Data Encryption Standard](sym_crypto/des/des.md)
+    * [Data Encryption Standard](sym_crypto/des/README.md)
+      * [Data Encryption Algorithm](sym_crypto/des/des.md)
     * [Advanced Encryption Standard](sym_crypto/aes/README.md)
       * [Basic Number Theory -- Euclidean Algorithm ](sym_crypto/aes/euclid.md)
       * [Basic Number Theory -- Galois Field ](sym_crypto/aes/galois.md)

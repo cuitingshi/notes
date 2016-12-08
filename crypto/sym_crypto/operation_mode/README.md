@@ -1,4 +1,8 @@
-# Intro
+---
+search: false
+---
+
+# Introduction
 We have come through a long way in learning ciphers. 
 Both DES and AES can work well with a fix-sized block, but either of them could handle with plaintext or ciphertext with variant size.😭
 Furtunately, operation modes of block cipher offer us a feasible to resolve this embarrassed problem. 

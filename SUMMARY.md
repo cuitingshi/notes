@@ -3,7 +3,8 @@
 * [Introduction](README.md)
   * [Cryptography](crypto/README.md)
     * [1. Symmetry Cryptography ](crypto/sym_crypto/README.md)
-      * [1.1 Data Encryption Standard](crypto/sym_crypto/des/des.md)
+      * [1.1 Data Encryption Standard](crypto/sym_crypto/des/README.md)
+        * [Data Encryption Algorithm](crypto/sym_crypto/des/des.md)
       * [1.2 Advanced Encryption Standard](crypto/sym_crypto/aes/README.md)
         * [1.2.1 Basic Number Theory -- Euclidean Algorithm ](crypto/sym_crypto/aes/euclid.md)
         * [1.2.2 Basic Number Theory -- Galois Field ](crypto/sym_crypto/aes/galois_field.md)
@@ -26,4 +27,6 @@
         * [2.1.3 The Client-side Streaming RPC Method](grpc/method/clientstream.md)
         * [2.1.4 The Bidirectional Streaming RPC Method](grpc/method/bistream.md)
       * [2.2 gRPC Authenticaton](grpc/grpc_auth.md)
-
+  * [Nginx](nginx/README.md)
+    * [1. Elementary Tutorial](nginx/beginner_guide.md)
+    * [2. Used as a Load Balancer](nginx/http_load_balancer.md)

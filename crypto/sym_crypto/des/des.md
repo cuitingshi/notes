@@ -357,11 +357,10 @@ func cryptBlock(subkeys []uint64, dst, src []byte, decrypt bool) {
 ```
 
 ### 证明 DES 的解密过程与加密过程只需要将subkeys 颠倒即可
-具体见文档[des_proof](./des_proof.pdf)
-
+具体见文档[des_proof][2] 
 
 ## 汇总
 1. DES 中的替换表和置换规则（比如 IP、FP、Expansion function、Permutation 等): https://en.wikipedia.org/wiki/DES_supplementary_material
 
 [1]: https://en.wikipedia.org/wiki/DES_supplementary_material "DES 中各个转换表"
-
+[2]: https://github.com/xyzLOL/notes/tree/master/crypto/sym_crypto/des/des_proof.pdf "Proof of Relationship between DES Encryption and Decryption"

@@ -1,4 +1,4 @@
-# Intro
+# Introduction
 This part is all about how to define a gRPC method.
 
 * Contents

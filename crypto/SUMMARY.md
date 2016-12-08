@@ -2,7 +2,8 @@
 
 * [Introduction](README.md)
   * [1. Symmetry Cryptography ](sym_crypto/README.md)
-    * [1.1 Data Encryption Standard](sym_crypto/des/des.md)
+    * [1.1 Data Encryption Standard](sym_crypto/des/README.md)
+      * [1.1.1 Data Encryption Algorithm](sym_crypto/des/des.md)
     * [1.2 Advanced Encryption Standard](sym_crypto/aes/README.md)
       * [1.2.1 Basic Number Theory -- Euclidean Algorithm ](sym_crypto/aes/euclid.md)
       * [1.2.2 Basic Number Theory -- Galois Field ](sym_crypto/aes/galois_field.md)

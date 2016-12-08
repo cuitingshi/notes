@@ -2,7 +2,7 @@
 search: false
 ---
 
-# Intro
+# Introduction
 Recently, I tried to read the source codes of IBM hyperledger project to have a better understanding of blockchain.
 I found it a need to prepare myself with some knowledge in specific fields, like cryptography. 
 And it turned out that writing was an effective way.  It's not just about keeping track of what I have learned. 
@@ -37,3 +37,7 @@ Those ephemeral thoughts just came out like a spring.😁 Really amazing, I shou
       * [2.1.3 The Client-side Streaming RPC Method](grpc/method/clientstream.md)
       * [2.1.4 The Bidirectional Streaming RPC Method](grpc/method/bistream.md)
     * [2.2 gRPC Authenticaton](grpc/grpc_auth.md)
+
+## [Nginx](./nginx)
+  * [Elementary Tutorial](nginx/beginner_guide.md)
+  * [Used as a Load Balancer](nginx/http_load_balancer.md)

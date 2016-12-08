@@ -1,8 +1,13 @@
-# Intro
+---
+search: false
+---
+
+# Introduction
  These notes are about topics in symmetric cryptography.
 
 * Symmetry Cryptography 
-  * [Data Encryption Standard](des/des.md)
+  * [Data Encryption Standard](des/README.md)
+    * [Data Encryption Algorithm](des/des.md)
   * [Advanced Encryption Standard](aes/README.md)
     * [Basic Number Theory -- Euclidean Algorithm ](aes/euclid.md)
     * [Basic Number Theory -- Galois Field ](aes/galois_field.md)
