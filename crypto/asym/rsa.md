@@ -36,6 +36,22 @@ $$ c^d \equiv (m^e)^d \equiv m (mod\ n)$$
 ### Key Generation 算法
 
 
+### 快速计算 a^b mod n 的算法
+算法可以表示如下, 其中 b 共有 k 个二进制位，b_k, b_{k-1}, ..., b_1, b_0
+```golang
+c, f := 0, 1
+for i := k; i>=0; i-- {
+	c <<= 1
+	f = f * f % n
+	if (b>>i) & 0x01 {
+		c += 1
+		f = f * a % n
+	}
+}
+return f
+
+```
+
 ## 汇总
 1. RSA Wiki: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
 
