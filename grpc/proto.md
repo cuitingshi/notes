@@ -48,7 +48,7 @@ message AddressBook {
 
 ### 编译运行
 1. 首先保证你得安装了编译器protoc以及Go protocol buffers 插件，
-  插件可以直接用go命令获取：`$ go get -u github.com/golang/protobuf/protoc-gen-go`
+  插件可以直接用go命令获取：`$ go get -u github.com/go/protobuf/protoc-gen-go`
 
 2. 利用如下命令编译proto文件生成go文件：
   `$ protoc -I=$SRC_DIR --go_out=$DST_DIR $SRC_DIR/*.proto`,
@@ -65,7 +65,7 @@ message AddressBook {
 - The type `Person_PhoneTpe` and a value defined for each value in the `Person.PhoneType` enum.
 
 比如说，使用protoc编译生成的go文件中的Person类型生成一个变量，
-```golang
+```go
 p := pb.Person{
   Id: 1234,
   Name: "John Doe",
@@ -232,7 +232,7 @@ message Column {
 还有，对于oneof变量进行赋值的话，会删掉原本的值。
 
 上面的Column类型编译后生成的代码是，注意其中oneof是用接口类型实现的,
-```golang
+```go
 type Column struct {
 	// Types that are valid to be assigned to Value:
 	//	*Column_String_
@@ -358,7 +358,7 @@ message Batch {
 };
 ```
 对应的编译后的go代码是
-```golang
+```go
 type Batch struct {
 	Header     []byte            `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
 	Payloads   [][]byte          `protobuf:"bytes,2,rep,name=payloads,proto3" json:"payloads,omitempty"`
@@ -429,7 +429,7 @@ message BlockCount {
 service Openchain是对应接口类型的,会分别生成OpenchainClient和OpenChainServer两个接口类型的
 
 首先，这个是客户端接口的定义及实现
-```golang
+```go
 
 type OpenchainClient interface {
 	// GetBlockchainInfo returns information about the blockchain ledger such as
@@ -480,7 +480,8 @@ func (c *openchainClient) GetBlockByNumber(ctx context.Context, in *BlockNumber,
 可是，其中的GetBlockchainInfo等方法还是要我们手动实现的😭（毕竟是我们程序的逻辑，gRPC没有办法帮我们实现的）。
 比如说，我实现了OpenchainServer的接口的话，则必须通过`RegisterOpenchainServer(s *grpc.Server, srv OpenchainServer)`
 来把我的实现类型注册进去，这样它调用srv的方法的时候，就可以动态地调用我们实现的方法。
-```golang
+
+```go
 // Server API for Openchain service
 
 type OpenchainServer interface {

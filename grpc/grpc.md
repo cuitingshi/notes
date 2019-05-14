@@ -18,7 +18,7 @@ generate codes from .proto file:
 
 ### 最后的工作
 当然在最后，protoc编译.proto文件中生成的go代码还需要将各个rpc方法的处理函数进行注册：
-```golang
+```go
 var _RouteGuide_serviceDesc = grpc.ServiceDesc{
   ServiceName: "routeguide.RouteGuide",
   HandlerType: (*RouteGuideServer)(nil),
@@ -56,8 +56,8 @@ var _RouteGuide_serviceDesc = grpc.ServiceDesc{
 ## 汇总
 1. 定义gRPC: http://www.grpc.io/docs/tutorials/basic/go.html
 2. gRPC Authentication: http://www.grpc.io/docs/guides/auth.html
-3. package gRPC: https://godoc.org/google.golang.org/grpc
-4. package credentials: https://godoc.org/google.golang.org/grpc/credentials#PerRPCCredentials
+3. package gRPC: https://godoc.org/google.go.org/grpc
+4. package credentials: https://godoc.org/google.go.org/grpc/credentials#PerRPCCredentials
 5. go中TLS实现,package crypto/tls: https://godoc.org/crypto/tls#Config
 6. TLS 协议: https://tools.ietf.org/html/rfc5246
 

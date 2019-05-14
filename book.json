@@ -8,22 +8,31 @@
     },
     "navigation":true,
     "plugins": [
+        "-highlight",
+        "prism",
+        "katex-full",
+        "disqus",
+        "image-captions",
+        "sectionx",
+        "expandable-chapters",
+        "splitter",
         "prettify-html",
         "advanced-emoji",
         "github",
         "sharing",
         "navigator",
-        "highlight",
         "livereload",
         "lunr",
         "anchors",
         "mermaid-gb3",
-        "katex-full",
         "theme-creative",
         "download-pdf",
         "comments"
     ],
     "pluginsConfig": {
+      "disqus":{
+        "shortName": "webpack-handbook"
+      },
       "sharing":{
         "weibo": true,
         "facebook": true,

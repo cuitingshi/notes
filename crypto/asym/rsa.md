@@ -38,7 +38,7 @@ $$ c^d \equiv (m^e)^d \equiv m (mod\ n)$$
 
 ### 快速计算 a^b mod n 的算法
 算法可以表示如下, 其中 b 共有 k 个二进制位，b_k, b_{k-1}, ..., b_1, b_0
-```golang
+```go
 c, f := 0, 1
 for i := k; i>=0; i-- {
 	c <<= 1

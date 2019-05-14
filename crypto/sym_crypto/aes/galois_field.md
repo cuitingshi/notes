@@ -19,7 +19,7 @@ T(n) \leq T(\frac{n}{2}) + \Theta{(1)} = \Theta{(\lg{(n)})}
 $$
 
 对应的代码如下所示
-```golang
+```go
 func RussianPeasantMultiply(n, m int) int{
     var accumulator int = 0
     while m != 0 {
@@ -42,7 +42,7 @@ func RussianPeasantMultiply(n, m int) int{
 1. 用来计算 interger exponentiation : \\
   - 如果 m 是偶数，则有 $n^{m} = (n \times n)^{\frac{m}{2}} $
   - 如果 m 是奇数，则有 $n^{m} = (n \times n)^{\frac{m-1}{2}} \times n $
-```golang
+```go
 func RPexp(n, m int) int {
   var accumulator int = 1
   while m != 0 {
@@ -57,7 +57,7 @@ func RPexp(n, m int) int {
 ```
 2. 用来计算 multiplication in GF(2): 这里类似于上面的用来计算普通乘法的函数`RussianPeasantMultiply(n, m int) int`, 
   只不过因为GF(2)上的加法运算是异或运算（加法的结果只能是0或者1😁）
-  ```golang
+  ```go
   func RussianPeasantMultiplyGF2(n, m int) int {
     var acumulator int = 0;
     while m != 0 {
@@ -127,7 +127,7 @@ n \cdot m = n \dot + (n \cdot x) \cdot ( (m \dot - 1) \div x)
 $$
 
 因此，可以实现如下, 算法的文字版见[此材料中的Multiplication 下的Rijndael's finite field 的描述][5]：
-```golang
+```go
 // 有限域GF(2^n)上的乘法，其中不可约减多项式是 p(x) = x^n + r(x)
 // 计算 n * m mod p
 // 注意，下面都是高阶系数在左

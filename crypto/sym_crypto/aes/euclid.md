@@ -15,7 +15,7 @@ $$
 
 
 该算法的实现可以如下：
-```golang
+```go
 // 欧几里得算法计算a, b的最大公约数
 func gcd_euclid(a, b int) int {
   if a%b == 0 {
@@ -96,7 +96,7 @@ $$
 
 这样子，便可以得到了求解 $x_{1}, y_{1} $ 的方法： $x_{1}, y_{1} $ 的值可以基于 $x_{2},  y_{2} $ 来表示。 上面的思想便可以以递归的形式定义实现，
 算法可实现如下：
-```golang
+```go
 func extgcd(a, b int) ( r, x, y int) {
   if b == 0 {
     return a, 1, 0
@@ -181,7 +181,7 @@ integer solutions to the Diophantine equation at all.
 ## Stein 算法
 其实计算两个数的最大公约数的还有Stein 算法，该算法只有整数的移位和加减法，相比于Euclidean Algorithm, 该算法对于大素数更有优势.
 算法可以描述如下:
-```golang
+```go
 func gcdStein( a, b int) int {
   if a == 0 {
     return b

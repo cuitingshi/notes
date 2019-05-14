@@ -16,7 +16,7 @@ $$ P_i = D_K(C_i) \oplus C_{i-1},  \ where\ C_0 = IV$$
 
 
 ### cipher包中对于CBC mode encryption 和 decryption 的实现
-golang的crypto/cipher包中已经实现了CBC模式，其中，
+go的crypto/cipher包中已经实现了CBC模式，其中，
 - 对于CBC模式中的加密操作，`cbcEncrypter`(即cbc)实现了前面定义的`BlockMode`接口中的`CryptBlock(dst, src []byte)`，
 - 对于CBC模式中的解密操作，`cbcDecrypter`(即cbc)实现了前面定义的`BlockMode`接口中的`CryptBlock(dst, src []byte)`
 
@@ -32,7 +32,7 @@ $$ C_i = E_K(P_i \oplus C_{i-1}), \ where \  C_0 = IV$$
 
 注意下面的`CryptBlocks`方法的实现中的`for`循环里面的`xorBytes`操作、加密操作`x.b.Encrypt`分别对应上面的数学定义中的异或和加密操作。
 
-```golang
+```go
 type cbc struct {
 	b         Block
 	blockSize int
@@ -113,7 +113,7 @@ CBC解密的数学定义如下：
 $$ P_i = D_K(C_i) \oplus C_{i-1} , \ where\  C_0 = IV $$
 
 同样, `cbcDecrypter`实现了`BlockMode`接口中定义的两个方法, 所以cbcDecrypter也属于BlockMode。
-```golang
+```go
 // A BlockMode represents a block cipher running in a block-based mode (CBC,
 // ECB etc).
 type BlockMode interface {
@@ -131,7 +131,7 @@ type BlockMode interface {
 注意，由于CBC的解密操作需要用到前一个密文块，所以为了避免多余的复制，需要从最后一块开始解密（上图需要从右至左看😁）。
 此外，与加密过程反向的是，先对块进行解密，得到（plaintext xor prev_ciphertext）， 然后再进行异或操作-- （plaintext xor prev_ciphertext) xor prev_ciphertext
 ，便可以得到plaintext，有木有觉得异或操作很🐂吖😄
-```golang
+```go
 type cbc struct {
 	b         Block
 	blockSize int
@@ -221,7 +221,7 @@ func newCBC(b Block, iv []byte) *cbc {
 **1. BlockMode**
 
 首先需要实现接口`BlockMode`中定义的两个方法，完成自定义的连接模式的加密操作
-```golang
+```go
 // A BlockMode represents a block cipher running in a block-based mode (CBC,
 // ECB etc).
 type BlockMode interface {
@@ -238,7 +238,7 @@ type BlockMode interface {
 **2. cbcEncAble**
 
 然后，需要实现cbcEncAble接口
-```golang
+```go
 type cbcEncrypter cbc
 
 // block cipher 需要实现该加密接口
@@ -259,7 +259,7 @@ type cbcEncAble interface {
   这里的`BlockMode中的CrypBlocks(dst, src []byte)`需要实现CBC的解密操作。
 
 **2. cbcDecAble**
-```golang
+```go
 // block cipher 需要实现该解密接口
 // cbcDecAble is an interface implemented by ciphers that have a specific
 // optimized implementation of CBC decryption, like crypto/aes.
@@ -276,7 +276,7 @@ type cbcDecAble interface {
 - 对于解密，也是可以使用cipher包中统一的接口`NewCBCDecrypter(b Block, iv []byte) BlockMode`，
   然后解密的时候调用的是自己实现的BlockMode接口中的`CryptBlocks(dst, src []byte)`方法
 
-```golang
+```go
 // 生成负责加密的
 // NewCBCEncrypter returns a BlockMode which encrypts in cipher block chaining
 // mode, using the given Block. The length of iv must be the same as the

@@ -21,7 +21,7 @@ message Feature {
 
   protoc编译该.proto文件生成的go源码中的客户端定义如下：
 
-```golang
+```go
     
 type RouteGuideClient interface {
   // A simple RPC.
@@ -53,7 +53,7 @@ func (c *routeGuideClient) GetFeature(ctx context.Context, in *Point, opts ...gr
 ```
 
   protoc编译该.proto文件生成的go源码中的server短定义如下：
-```golang
+```go
 type RouteGuideServer interface {
   // A simple RPC.
   //
@@ -89,7 +89,7 @@ func _RouteGuide_GetFeature_Handler(srv interface{}, ctx context.Context, dec fu
 ```
     
   所以，作为server的时候，需要实现`RouteGuideServer`接口中定义的`GetFeature`方法，
-```golang
+```go
 type routeGuideServer struct {
   savedFeatures []*pb.Feature
   routeNotes    map[string][]*pb.RouteNote
@@ -109,7 +109,7 @@ func (s *routeGuideServer) GetFeature(ctx context.Context, point *pb.Point) (*pb
 
   而作为客户端，其实，只是单纯地调用编译器protoc中已经实现的`RouteGuideClient`接口，
   即方法`func (c *routeGuideClient) GetFeature(...)`,比如如下的客户端的使用，
-```golang
+```go
 // printFeature gets the feature for the given point.
 func printFeature(client pb.RouteGuideClient, point *pb.Point) {
   grpclog.Printf("Getting feature for point (%d, %d)", point.Latitude, point.Longitude)

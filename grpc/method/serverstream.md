@@ -23,7 +23,7 @@ service RouteGuide {
 protoc编译该.proto文件生成的go源码客户端如下,相比于上面那种simple-rpc,可以注意到客户端如果调用`ListFeatures`方法的话，
 返回的会是接口`RouteGuide_ListFeaturesClient`, 用户需要使用该接口的`Recv`方法来接收server端返回的stream Feature。
 
-```golang
+```go
 type RouteGuideClient interface {
   //...
 
@@ -80,7 +80,7 @@ protoc编译.proto文件生成的server端所需要的go代码如下，注意到
 `ListFeatures(*Rectangle, RouteGuide_ListFeaturesServer) error`，由于是response前边带了关键字stream
 （对应server-side streaming RPC)，因此，不同于前边那种simple rpc，传入的第二个参数是一个server stream,
 只有Send方法。
-```golang
+```go
 type RouteGuideServer interface {
   // A server-to-client streaming RPC.
   //
@@ -124,7 +124,7 @@ func (x *routeGuideListFeaturesServer) Send(m *Feature) error {
 如下所示。注意到第二个参数传入的是`stream pb.RouteGuide_ListFeaturesServer`,Server发送features的时候是
 调用`func (x *routeGuideListFeaturesServer) Send(m *Feature) error`方法，每次只发送一个`Feature`，直至发送完毕，比如下面的实现：
 
-```golang
+```go
 // ListFeatures lists all features contained within the given bounding Rectangle.
 func (s *routeGuideServer) ListFeatures(rect *pb.Rectangle, stream pb.RouteGuide_ListFeaturesServer) error {
   for _, feature := range s.savedFeatures {
@@ -140,13 +140,13 @@ func (s *routeGuideServer) ListFeatures(rect *pb.Rectangle, stream pb.RouteGuide
 
 
 作为client的时候，由于已经实现了`RouteGuideClient`接口，所以只需要简单地调用该接口的实现者`routeGuideClient`中定义的方法即可，
-```golang
+```go
 func (c *routeGuideClient) ListFeatures(ctx context.Context, in *Rectangle, opts ...grpc.CallOption) (RouteGuide_ListFeaturesClient, error)
 ```
 
 但是由于该方法是server-side streaming RPC，所以返回的是`RouteGuide_ListFeaturesClient`接口，该接口只定义了Recv方法，
 所以调用完`ListFeatures`方法之后，客户端需要使用Recv方法读取server端发送的消息流，比如下面的用法：
-```golang
+```go
 // printFeatures lists all the features within the given bounding Rectangle.
 func printFeatures(client pb.RouteGuideClient, rect *pb.Rectangle) {
   grpclog.Printf("Looking for features within %v", rect)

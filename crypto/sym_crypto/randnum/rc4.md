@@ -25,7 +25,7 @@ Anyway, 生成 keystream 只要有两部分：
 - len(key): the number of bytes in the key, 长度范围可以为 [1, 256]，不过一般是 [5, 256].
 
 算法可以表示如下：
-```golang
+```go
 var S [256]uint32
 
 for i := 0; i < 256; i++ {
@@ -44,7 +44,7 @@ for i := 0; i < 256; i++{
 - keystream: the keystream
 
 算法可以表示如下：
-```golang
+```go
 var i uint8 = 0
 var j uint8 = 0
 var keystream []byte
@@ -60,7 +60,7 @@ for k, v := range src {
 ## RC4 cipher 的实现
 go 语言中的 crypto/rc4 实现了rc4 cipher，代码如下：
 
-```golang
+```go
 import "strconv"
 
 // A Cipher is an instance of RC4 using a particular key.
@@ -124,7 +124,7 @@ func (c *Cipher) xorKeyStreamGeneric(dst, src []byte) {
 ```
 
 与汇编语言的接口如下：
-```golang
+```go
 // +build amd64 amd64p32 arm,!nacl 386
 
 func xorKeyStream(dst, src *byte, n int, state *[256]uint32, i, j *uint8)
@@ -140,7 +140,7 @@ func (c *Cipher) XORKeyStream(dst, src []byte) {
 ```
 
 对应 [AMD64 处理器上的汇编语言的优化版][1]实现如下：
-```arm
+```
 // RC4 implementation optimized for AMD64 processors.
 TEXT .xorKeyStream(SB),NOSPLIT, $0
   MOVQ n+16(FP), BX   // rbx = ARG(len)

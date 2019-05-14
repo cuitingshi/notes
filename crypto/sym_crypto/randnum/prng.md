@@ -95,7 +95,7 @@ Blum prime number x: x 是素数，且 x mod 4 = 3
  
 
 算法如下：
-```golang
+```go
 // Input: p and q, two big Blum prime numbers
 // Output: z, pseudo-random number 
 func BBS(p, q int) int {

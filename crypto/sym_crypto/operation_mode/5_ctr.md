@@ -37,9 +37,9 @@ A stream cipher is a symmetric key cipher where plaintext digits are combined wi
 with a plaintext message to produce an encrypted message (the ciphertext)。值得注意的是，keystream 中的 characters 可以是bits, bytes, numbers,
 也可以是实际的字符（比如A-Z），keystream 是依使用情况而定的。
 
-golang的cipher包中将stream cipher定义成一个接口，注意只有一个方法哦，想想异或操作的特性，所以加密和解密均是异或上keystream就可以了😄，
+go的cipher包中将stream cipher定义成一个接口，注意只有一个方法哦，想想异或操作的特性，所以加密和解密均是异或上keystream就可以了😄，
 又一次对于异或操作表示佩服↖(^ω^)↗.注意，keystream 是存储在cipher中的，接口的定义如下：
-```golang
+```go
 // A Stream represents a stream cipher.
 type Stream interface {
 	// XORKeyStream XORs each byte in the given slice with a byte from the
@@ -53,9 +53,9 @@ type Stream interface {
 ```
 
 ### cipher包中对于CTR  mode encryption 和 decryption 的实现
-golang的crypto/cipher包中的ctr.go已经实现了 CTR mode，由于CTR mode 属于stream cipher，加密和解密操作中异或的对象都相同，所以可以实现如下：
+go的crypto/cipher包中的ctr.go已经实现了 CTR mode，由于CTR mode 属于stream cipher，加密和解密操作中异或的对象都相同，所以可以实现如下：
 
-```golang
+```go
 type ctr struct {
 	b       Block
 	ctr     []byte
@@ -147,7 +147,7 @@ func (x *ctr) XORKeyStream(dst, src []byte) {
   这样用户在`NewCTR(block Block, iv []byte) Stream`的时候，便可以使用block cipher <b>Block</b>中的实现的`Stream`接口中的方法.
 
 
-```golang
+```go
 type ctr struct {
 	b       Block
 	ctr     []byte

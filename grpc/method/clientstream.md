@@ -35,7 +35,7 @@ protoc编译该.proto文件生成的go源码客户端如下,相比于第一种si
 客户端如果调用`RecordRoute`方法的话，返回的会是接口`RouteGuide_RecordRouteClient`,
 用户需要使用该接口的`Send`方法来给server端发送那笸箩的messages（Point类型），
 然后使用`CloseAndRecv()(*RouteSummary, error)`方法来进行接收server最后的response：
-```golang
+```go
 type RouteGuideClient interface {
   // A client-to-server streaming RPC.
   //
@@ -93,7 +93,7 @@ protoc编译.proto文件生成的server端所需要的go代码如下，注意到
 `RecordRoute(RouteGuide_RecordRouteServer) error`，由于是request类型前边带了关键字stream
 （对应client-side streaming RPC)，因此，不同于前边那种simple rpc，传入的参数是`RouteGuide_RecordRouteServer`接口，
 有`Recv()(*Point, error)`和`SendAndClose(*RouteSummary) error`方法:
-```golang
+```go
 type RouteGuideServer interface {
   // A client-to-server streaming RPC.
   //
@@ -135,7 +135,7 @@ func (x *routeGuideRecordRouteServer) Recv() (*Point, error) {
 使用接口`pb.RouteGuide_RecordRouteServer`中定义的Recv方法，
 当接收完毕的时候（err == io.EOF），则需要调用`SendAndClose(m *RouteSummary)`方法来向client端发送
 最终的Response，
-```golang
+```go
 // RecordRoute records a route composited of a sequence of points.
 //
 // It gets a stream of points, and responds with statistics about the "trip":
@@ -178,7 +178,7 @@ func (s *routeGuideServer) RecordRoute(stream pb.RouteGuide_RecordRouteServer) e
 ` RecordRoute(ctx context.Context, opts ...grpc.CallOption) (RouteGuide_RecordRouteClient, error)`，
 需要使用接口`RouteGuide_RecordRouteClient`中定义的方法Send来向Server端发送消息(一笸箩的Points),
 比如下面的用法：
-```golang
+```go
 // runRecordRoute sends a sequence of points to server and expects to get a RouteSummary from server.
 func runRecordRoute(client pb.RouteGuideClient) {
   // Create a random number of random points

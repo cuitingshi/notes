@@ -259,7 +259,7 @@ $$ = (S_1 \cdot H^{m+n+1}) \oplus (S_2 \cdot H^{m+n}) \oplus \ldots \oplus (S_{m
 
 ### 2.4 Authenticated Encryption 实现
 Authenticated Encryption (AE/AEAD) 模式在 go 语言中可以设计为一个接口：
-```golang
+```go
 // AEAD is a cipher mode providing authenticated encryption with associated
 // data. For a description of the methodology, see
 //	https://en.wikipedia.org/wiki/Authenticated_encryption
@@ -315,9 +315,9 @@ type gcmAble interface {
 ```
 
 
-### 2.5 golang cipher包中GCM的实现
+### 2.5 go cipher包中GCM的实现
 
-golang 的cipher/gcm包实现了GCM，可以调用函数`NewGCM(cipher Block) (AEAD, error)` 或者函数
+go 的cipher/gcm包实现了GCM，可以调用函数`NewGCM(cipher Block) (AEAD, error)` 或者函数
 `func NewGCMWithNonceSize(cipher Block, size int) (AEAD, error)` 来生成接口`AEAD`的实现者`gcm`;
 当然，如果某个block cipher 自己实现了GCM（比如block cipher `aes`), 则除了实现接口AEAD中实现的方法外，
 还需要实现接口`gcmAble` 中定义的方法`NewGCM(int)(AEAD, error)`，这样子可以有两个好处：
@@ -334,7 +334,7 @@ gcm的定义部分的实现如下, 其中的 `gcm.productTable`
 
 <img src="http://chart.googleapis.com/chart?cht=tx&chl= 15H , \qquad 14H, \qquad 13H, \qquad \cdots \qquad , \quad H , \quad 0 " style="border:none;">
 
-```golang
+```go
 // gcmAble is an interface implemented by ciphers that have a specific optimized
 // implementation of GCM, like crypto/aes. NewGCM will check for this interface
 // and return the specific AEAD if found.
@@ -444,7 +444,7 @@ func (*gcm) Overhead() int {
 所以，最终就是 double.low ^= 0xe100000000000000
 
 
-```golang
+```go
 // reverseBits reverses the order of the bits of 4-bit number in i.
 func reverseBits(i int) int {
 	i = ((i << 2) & 0xc) | ((i >> 2) & 0x3)
@@ -486,7 +486,7 @@ func gcmDouble(x *gcmFieldElement) (double gcmFieldElement) {
 说明：
 
 Block是代表 block cipher 的一个接口，如下
-```golang
+```go
 // A Block represents an implementation of block cipher
 // using a given key. It provides the capability to encrypt
 // or decrypt individual blocks. The mode implementations
@@ -507,7 +507,7 @@ type Block interface {
 ```
 
 其中，go的cipher包下的gcm.go中的`gcm`实现了该接口，下面是`Seal`方法的定义：
-```golang
+```go
 func (g *gcm) Seal(dst, nonce, plaintext, data []byte) []byte {
 	if len(nonce) != g.nonceSize {
 		panic("cipher: incorrect nonce length given to GCM")
@@ -527,7 +527,7 @@ func (g *gcm) Seal(dst, nonce, plaintext, data []byte) []byte {
 }
 ```
 下面是解密方法`Open`的实现：
-```golang
+```go
 var errOpen = errors.New("cipher: message authentication failed")
 
 func (g *gcm) Open(dst, nonce, ciphertext, data []byte) ([]byte, error) {
@@ -576,7 +576,7 @@ func (g *gcm) Open(dst, nonce, ciphertext, data []byte) ([]byte, error) {
 3. tls version (1 byte) 
 4. tls record lenght (1 byte)
 
-```golang
+```go
 //加密部分
 // encrypt encrypts and macs the data in b.
 func (hc *halfConn) encrypt(b *block, explicitIVLen int) (bool, alert) {

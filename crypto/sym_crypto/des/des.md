@@ -64,14 +64,14 @@ Feistel Function 的实现代码可见<a href="#imp_feistelfunc">这里</a>
 ### DES 的使用与实现
 
 #### DES 的使用
-golang 中的crypto/des包已经实现了DES 算法了，调用的接口如下, 
+go 中的crypto/des包已经实现了DES 算法了，调用的接口如下, 
 1. 首先调用`NewCipher(key []byte) (cipher.Block, error)`函数生成一个cipher.Block， 需要传入一个64位的key (前面说过了其中的8位是用于parity checking的)
 2. 然后调用`Encrypt(dst, src []byte)` 进行加密明文src, 生成密文dst
 3. 若是解密，则调用`Decrypt(dst, src []byte)` 解密密文src, 生成明文dst
 
 此外， Block Cipher DES 中所处理的分组的大小是64位（8个字节），调用`BlockSize() int` 即可以返回分组大小
 
-```golang
+```go
 // The DES block size in bytes.
 const BlockSize = 8
 
@@ -111,7 +111,7 @@ func (c *desCipher) Decrypt(dst, src []byte) { decryptBlock(c.subkeys[:], dst, s
 
 ##### <label id=imp_keyschedule>DES 实现之生成16轮中的subkeys</label>
 subkey 的生成可以实现如下，结合上面的<a href="#sec_keyschedule">key schedule</a>的流程图看哦😁
-```golang
+```go
 // creates 16 56-bit subkeys from the original key
 func (c *desCipher) generateSubkeys(keyBytes []byte) {
 	// apply PC1 permutation to key
@@ -180,7 +180,7 @@ func ksRotate(in uint32) (out []uint32) {
 
 #### <lable id="imp_ip">DES 实现之 Initial Permutation</label>
 
-```golang
+```go
 // permuteInitialBlock is equivalent to the permutation defined
 // by initialPermutation.
 func permuteInitialBlock(block uint64) uint64 {
@@ -254,7 +254,7 @@ func permuteInitialBlock(block uint64) uint64 {
 
 #### <label id="imp_fp">DES 实现之 Final Permutation</label>
 
-```golang
+```go
 // permuteInitialBlock is equivalent to the permutation defined
 // by finalPermutation.
 func permuteFinalBlock(block uint64) uint64 {
@@ -285,7 +285,7 @@ func permuteFinalBlock(block uint64) uint64 {
 
 #### <label id="imp_feistelfunc">DES 实现之 Feistel Function</label>
 还是要结合上面<a href="#sub_feistelfunc">Feistel Function</a> 的步骤来看哦😁
-```golang
+```go
 // DES Feistel function
 func feistel(right uint32, key uint64) (result uint32) {
 	sBoxLocations := key ^ expandBlock(right)
@@ -322,7 +322,7 @@ func expandBlock(src uint32) (block uint64) {
 
 #### <label id="imp_enc">DES 实现之加密、解密</label>
 
-```golang
+```go
 // Encrypt one block from src into dst, using the subkeys.
 func encryptBlock(subkeys []uint64, dst, src []byte) {
 	cryptBlock(subkeys, dst, src, false)

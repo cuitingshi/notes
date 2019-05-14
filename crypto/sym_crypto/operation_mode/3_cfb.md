@@ -34,7 +34,7 @@ with a plaintext message to produce an encrypted message (the ciphertext)。值�
 
 golang的cipher包中将stream cipher定义成一个接口，注意只有一个方法哦，想想异或操作的特性，所以加密和解密均是异或上keystream就可以了😄，
 又一次对于异或操作表示佩服↖(^ω^)↗.注意，keystream 是存储在cipher中的，接口的定义如下：
-```golang
+```go
 // A Stream represents a stream cipher.
 type Stream interface {
 	// XORKeyStream XORs each byte in the given slice with a byte from the
@@ -62,7 +62,7 @@ golang的crypto/cipher包中的cfb.go已经实现了CFB模式，由于CFB模式�
   的 <img src="http://chart.googleapis.com/chart?cht=tx&chl= C_{i-1}" style="border:none;">
 
 具体的实现如下。：
-```golang
+```go
 type cfb struct {
 	b       Block
 	next    []byte
@@ -107,7 +107,7 @@ func (x *cfb) XORKeyStream(dst, src []byte) {
     - 对于解密的话，需要调用函数 `NewCFBDecrypter(block Block, iv []byte) Stream` 来生成一个用于解密的 stream cipher -- CFBDecrypter;
 2. 然后调用 cfb 对于 Stream 接口的 `XORKeyStream` 方法，进行相应的加密或者解密操作（其实都是异或上 keystream ~\(≧▽≦)/~啦啦啦）
 
-```golang
+```go
 
 // NewCFBEncrypter returns a Stream which encrypts with cipher feedback mode,
 // using the given Block. The iv must be the same length as the Block's block

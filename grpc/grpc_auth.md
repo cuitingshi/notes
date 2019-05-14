@@ -15,7 +15,7 @@ gRPC支持两种[认证机制][1]，一是SSL/TLS, 另外一种是Token-based au
 ### Client端使用SSL/TLS
 场景：客户端想授权给server，并且加密所有的数据，则可以如下实现。
 首先是C++的实现：
-```C++
+```cpp
 // create a default SSL ChannelCredentials object
 auto creds = grpc::SslCredentials(grpc::SslCredentialsOptions());
 // create a channel using the credentials created in the previous step.
@@ -27,7 +27,7 @@ grpc::Status s = stub->sayHello(&context, *request, response);
 ```
 
 然后是go语言版本--routeguide客户端
-```golang
+```go
 var (
 	tls                = flag.Bool("tls", false, "Connection uses TLS if true, else plain TCP")
 	caFile             = flag.String("ca_file", "testdata/ca.pem", "The file containning the CA root cert file")
@@ -89,7 +89,7 @@ func main() {
 ```
 
 下面是routeguide server端的：
-```golang
+```go
 var (
 	tls        = flag.Bool("tls", false, "Connection uses TLS if true, else plain TCP")
 	certFile   = flag.String("cert_file", "testdata/server1.pem", "The TLS cert file")
@@ -123,7 +123,7 @@ func main() {
 ```
 
 注意，其实在go中credential其实是一个接口
-```golang
+```go
 type TransportCredentials interface {
   // ClientHandshake does the authentication handshake specified by the corresponding
   // authentication protocol on rawConn for clients. It returns the authenticated
@@ -152,7 +152,7 @@ type TransportCredentials interface {
 
 对于客户端，`NewClientTLSFromCert`和`NewClientTLSFromFile`均是会返回接口`TransportCredentials`
 下面是两个函数的定义：
-```golang
+```go
 func NewClientTLSFromCert(cp *x509.CertPool, serverNameOverride string) TransportCredentials
 
 func NewClientTLSFromFile(certFile, serverNameOverride string) (TransportCredentials, error)
@@ -160,7 +160,7 @@ func NewClientTLSFromFile(certFile, serverNameOverride string) (TransportCredent
 
 对于server端，`NewServerTLSFromCert`和`NewServerTLSFromFile`会返回接口`TransportCredentials`
 注意到，server端创建`TransportCredentials`是不同于客户端的，如下：
-```golang
+```go
 // 由server的证书cert构建TransportCredentials
 func NewServerTLSFromCert(cert *tls.Certificate) TransportCredentials
 // 由存储于磁盘中的证书certFile和秘钥keyFile创建TransportCredentials
@@ -168,7 +168,7 @@ func NewServerTLSFromFile(certFile, keyFile string) (TransportCredentials, error
 ```
 
 当然，也可以直接通过TLS配置生成`TransportCredentials`，如下
-```golang
+```go
 func NewTLS(c *tls.Config) TransportCredentials
 ```
 
@@ -177,7 +177,7 @@ func NewTLS(c *tls.Config) TransportCredentials
 BTW, 接口`TransportCredentials`已经由tlsCreds实现了,
 其重用可以参见hyperledger/fabric/gossip/comm/crypto.go,
 下面是grpc/credential对该接口的实现：
-```golang
+```go
 // tlsCreds is the credentials required for authenticating a connection using TLS.
 type tlsCreds struct {
     // TLS configuration
@@ -238,6 +238,6 @@ func (c *tlsCreds) ServerHandshake(rawConn net.Conn) (net.Conn, AuthInfo, error)
 ```
 
 [1]: http://www.grpc.io/docs/guides/auth.html "GRPC authentication guide"
-[2]: https://godoc.org/google.golang.org/grpc/credentials#PerRPCCredentials "gRPC authentication credential"
+[2]: https://godoc.org/google.go.org/grpc/credentials#PerRPCCredentials "gRPC authentication credential"
 [3]: https://godoc.org/crypto/tls#Config "go package crypto/tls"
 [4]: https://tools.ietf.org/html/rfc5246 "rfc5246 The Transport Layer Security Protocol"

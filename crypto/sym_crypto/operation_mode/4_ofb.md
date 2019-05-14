@@ -37,9 +37,9 @@ A stream cipher is a symmetric key cipher where plaintext digits are combined wi
 with a plaintext message to produce an encrypted message (the ciphertext)。值得注意的是，keystream 中的 characters 可以是bits, bytes, numbers,
 也可以是实际的字符（比如A-Z），keystream 是依使用情况而定的。
 
-golang的cipher包中将stream cipher定义成一个接口，注意只有一个方法哦，想想异或操作的特性，所以加密和解密均是异或上keystream就可以了😄，
+go的cipher包中将stream cipher定义成一个接口，注意只有一个方法哦，想想异或操作的特性，所以加密和解密均是异或上keystream就可以了😄，
 又一次对于异或操作表示佩服↖(^ω^)↗.注意，keystream 是存储在cipher中的，接口的定义如下：
-```golang
+```go
 // A Stream represents a stream cipher.
 type Stream interface {
 	// XORKeyStream XORs each byte in the given slice with a byte from the
@@ -59,9 +59,9 @@ type Stream interface {
 , 每次异或的对象均是 <img src="http://chart.googleapis.com/chart?cht=tx&chl= E_K(I_{j-1}) " style="border:none;">
 ,  因此，这个就可以当做一个stream cipher 了，每次的keystream 就是<img src="http://chart.googleapis.com/chart?cht=tx&chl= E_K(I_{j-1}) " style="border:none;">
 
-golang的crypto/cipher包中的cfb.go已经实现了OFB模式，由于OFB模式属于stream cipher，加密和解密操作中异或的对象都相同，所以可以实现如下：
+go的crypto/cipher包中的cfb.go已经实现了OFB模式，由于OFB模式属于stream cipher，加密和解密操作中异或的对象都相同，所以可以实现如下：
 
-```golang
+```go
 type ofb struct {
 	b       Block
 	cipher  []byte
@@ -133,7 +133,7 @@ func (x *ofb) XORKeyStream(dst, src []byte) {
 （其实都是异或上 keystream <img src="http://chart.googleapis.com/chart?cht=tx&chl= E_K(I_{j-1}) " style="border:none;">
 ~\(≧▽≦)/~啦啦啦）
 
-```golang
+```go
 type ofb struct {
 	b       Block
 	cipher  []byte

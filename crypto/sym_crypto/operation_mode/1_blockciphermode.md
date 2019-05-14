@@ -68,7 +68,7 @@ $$ \forall{K} : D_K(E_K(P)) = P $$
 
 ### Block Cipher 实现
 可以将Block cipher 定义成接口，如下
-```golang
+```go
 // A Block represents an implementation of block cipher
 // using a given key. It provides the capability to encrypt
 // or decrypt individual blocks. The mode implementations
@@ -90,7 +90,7 @@ type Block interface {
 
 block cipher mode of operation 可以定义为统一的接口，其中的`CryptBlocks`既可以是加密亦可以是解密操作，
 如下：
-```golang
+```go
 // A BlockMode represents a block cipher running in a block-based mode (CBC,
 // ECB etc).
 type BlockMode interface {

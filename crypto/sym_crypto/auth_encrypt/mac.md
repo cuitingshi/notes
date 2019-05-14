@@ -135,14 +135,14 @@ HMAC算法可以定义为：
 - 对于sender, 只需要前3个步骤计算出MAC就可以了，
 - 而对于receiver, 除了使用前三个步骤计算出MAC，还需要步骤4验证MAC是否相同，从而对消息的authentication 以及 数据的完整性进行核实。
 
-```golang
+```go
 // FIPS 198-1:
 // http://csrc.nist.gov/publications/fips/fips198-1/FIPS-198-1_final.pdf
 
 // key is zero padded to the block size of the hash function
 // ipad = 0x36 byte repeated for key length
 // opad = 0x5c byte repeated for key length
-// hmac = H([key ^ opad] H([key ^ ipad] text))
+// hmac = H([key ^ opad] H([key ^ ipad] plaintext))
 
 type hmac struct {
 	size         int
@@ -214,7 +214,7 @@ func Equal(mac1, mac2 []byte) bool {
 ```
 
 注意，上面的 `hmac` 实现了 `hash.Hash`接口，该接口定义的方法如下：
-```golang
+```go
 // Hash is the common interface implemented by all hash functions.
 type Hash interface {
 	// Write (via the embedded io.Writer interface) adds more data to the running hash.
@@ -241,7 +241,7 @@ type Hash interface {
 ```
 
 其中内嵌的 `io.Writer` 接口的定义如下, 对于`hmac`而言，其实就是将消息`p []byte`
-```golang
+```go
 // Writer is the interface that wraps the basic Write method.
 //
 // Write writes len(p) bytes from p to the underlying data stream.

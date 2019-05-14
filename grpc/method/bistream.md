@@ -37,7 +37,7 @@ protoc编译生成的客户端go代码如下所示，其中，如果客户端在
 - 如果需要接收消息的话，则需要调用该接口中定义的`Recv()(*RouteNote,, error)`方法
 
 具体的代码如下：
-```golang
+```go
 type RouteGuideClient interface {
   // ...
 
@@ -85,7 +85,7 @@ func (x *routeGuideRouteChatClient) Recv() (*RouteNote, error) {
 protoc编译.proto文件生成的server API如下所示，其中，server端需要实现接口RouteGuideServer，
 在实现的时候，可以调用接口`RouteGuide_RouteChatServer`中定义的方法`Send(*RouteNote) error`
 来发送消息给客户端，使用方法`Recv()(*RouteNote, error)`可以接受客户端发送的消息:
-```golang
+```go
 type RouteGuideServer interface {
   // A Bidirectional streaming RPC.
   //
@@ -124,7 +124,7 @@ func (x *routeGuideRouteChatServer) Recv() (*RouteNote, error) {
 
 ### 用户需要实现Server 和 Client 端
 因此，对于server端，可以按照如下来实现上面编译生成的server API,
-```golang
+```go
 
 // RouteChat receives a stream of message/location pairs, and responds with a stream of all
 // previous messages at each of those locations.
@@ -155,7 +155,7 @@ func (s *routeGuideServer) RouteChat(stream pb.RouteGuide_RouteChatServer) error
 对于客户端，可以像下面这样子使用，使用一个goroutine来接收server端发送来的消息，注意到
 当server端不再有消息发送来的时候（`err == io.EOF`），则通过关闭信道`waitc`来通知main goroutine
 来结束：
-```golang
+```go
 // runRouteChat receives a sequence of route notes, while sending notes for various locations.
 func runRouteChat(client pb.RouteGuideClient) {
   notes := []*pb.RouteNote{
